@@ -1,0 +1,10 @@
+﻿{
+    "css": [
+        "~/App_Plugins/DeveloperDashboard/css/dashboard.css"
+    ],
+    "javascript": [
+        "~/App_Plugins/DeveloperDashboard/js/dashboard.services.js",
+        "~/App_Plugins/DeveloperDashboard/js/dashboard.controller.js"
+    ]
+}
+

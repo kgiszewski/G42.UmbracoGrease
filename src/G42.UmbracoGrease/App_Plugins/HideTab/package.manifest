@@ -1,0 +1,23 @@
+﻿{
+  "propertyEditors": [
+    {
+      "name": "Hide Tab",
+      "alias": "HideTab",
+      "editor": {
+        "valueType": "JSON",
+        "view": "~/App_Plugins/HideTab/hideTab.html"
+      },
+      "prevalues": {
+        
+        
+      }
+    }
+  ],
+  "css": [
+   
+  ],
+  "javascript": [
+    "~/App_Plugins/HideTab/hideTab.directive.js"
+  ]
+}
+
