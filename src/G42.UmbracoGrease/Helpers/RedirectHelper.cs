@@ -28,14 +28,14 @@ namespace G42.UmbracoGrease.Helpers
             }
         }
 
-        public static void TryRedirect(IPublishedContent rootRedirectNode, Func<IPublishedContent, Redirect> mapUrlFunc)
+        public static void TryRedirect(IPublishedContent rootRedirectNode, string redirectDoctypeAlias, Func<IPublishedContent, Redirect> mapRedirectFunc)
         {
             if (HttpContext.Current == null)
                 return;
 
             var context = HttpContext.Current;
 
-            var redirects = _getRedirectConfig(rootRedirectNode, mapUrlFunc);
+            var redirects = _getRedirectConfig(rootRedirectNode, mapRedirectFunc, redirectDoctypeAlias);
 
             var redirect = redirects.FirstOrDefault(x => x.UrlToRedirect == GetCurrentPath());
 
@@ -71,11 +71,11 @@ namespace G42.UmbracoGrease.Helpers
             return context.Request.QueryString["aspxerrorpath"] ?? context.Request.RawUrl;
         }
 
-       private static IEnumerable<Redirect> _getRedirectConfig(IPublishedContent rootRedirectNode, Func<IPublishedContent, Redirect> mapUrlFunc)
+       private static IEnumerable<Redirect> _getRedirectConfig(IPublishedContent rootRedirectNode, Func<IPublishedContent, Redirect> mapUrlFunc, string redirectDoctypeAlias)
         {
             var redirects = new List<Redirect>();
 
-            var redirectNodes = rootRedirectNode.Descendants().Where(x => x.DocumentTypeAlias == "Redirect");
+            var redirectNodes = rootRedirectNode.Descendants().Where(x => x.DocumentTypeAlias == redirectDoctypeAlias);
 
             foreach (var redirect in redirectNodes)
             {

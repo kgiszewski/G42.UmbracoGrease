@@ -13,7 +13,7 @@ namespace G42.UmbracoGrease.Helpers
     {
         private static volatile NodeHelper _instance;
         private static object _padLock = new Object();
-        private static Type _concreteType;
+        private static Type _siteType;
 
         private NodeHelper()
         {
@@ -25,14 +25,14 @@ namespace G42.UmbracoGrease.Helpers
             //if more than one, take extended one
             if (types.Count() == 1)
             {
-                _concreteType = types.First();
+                _siteType = types.First();
             }
             else
             {
-                _concreteType = types.FirstOrDefault(x => x.IsAssignableFrom(x) && x != type);
+                _siteType = types.FirstOrDefault(x => x.IsAssignableFrom(x) && x != type);
             }
 
-            LogHelper.Info<Site>(_concreteType.AssemblyQualifiedName);
+            LogHelper.Info<Site>("Found class for NodeHelper site type=> " + _siteType.AssemblyQualifiedName);
         }
 
         public List<Site> Sites = new List<Site>();
@@ -69,7 +69,7 @@ namespace G42.UmbracoGrease.Helpers
                                     {
                                         var siteSettings = siteRootNode.Siblings().FirstOrDefault(x => x.DocumentTypeAlias.EndsWith("SiteSettings"));
 
-                                        var site = ((Site)Activator.CreateInstance(_concreteType));
+                                        var site = ((Site)Activator.CreateInstance(_siteType));
 
                                         site.Domain = domain.Name;
                                         site.RootId = rootNode.Id;
