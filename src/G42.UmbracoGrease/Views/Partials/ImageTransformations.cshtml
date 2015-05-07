@@ -1,0 +1,34 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ImageTransformation>
+@using G42.UmbracoGrease.Models
+
+@{
+    var meta = (ImageTag)Model.Meta;
+
+    switch (Model.Type)
+    {
+        case "image-full-width":
+            <div class="image-holder display-table">
+                <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="" />
+                <div class="caption"><em>@Html.Raw(meta.Alt)</em></div>
+            </div>
+            break;
+
+        case "image-right":
+        <div class="float-right display-table">
+            <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="image-right" />
+            <div class="caption"><em>@Html.Raw(meta.Alt)</em></div>
+        </div>
+            break;
+
+        case "image-left":
+        <div class="float-left display-table">
+            <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="image-left" />
+            <div class="caption"><em>@Html.Raw(meta.Alt)</em></div>
+        </div>
+            break;
+
+        default:
+        <span class="@Model.Type">@Model.Text</span>
+            break;
+    }
+}

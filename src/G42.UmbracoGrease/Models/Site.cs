@@ -13,7 +13,7 @@ namespace G42.UmbracoGrease.Models
         {
             get
             {
-                return _getUmbracoContent(RootId);
+                return GetUmbracoContent(RootId);
             }
         }
 
@@ -22,7 +22,7 @@ namespace G42.UmbracoGrease.Models
         {
             get
             {
-                return _getUmbracoContent(HomeId);
+                return GetUmbracoContent(HomeId);
             }
         }
 
@@ -31,11 +31,11 @@ namespace G42.UmbracoGrease.Models
         {
             get
             {
-                return _getUmbracoContent(SiteSettingsId);
+                return GetUmbracoContent(SiteSettingsId);
             }
         }
 
-        private IPublishedContent _getUmbracoContent(int id)
+        protected IPublishedContent GetUmbracoContent(int id)
         {
             return new UmbracoHelper(UmbracoContext.Current).TypedContent(id);
         }

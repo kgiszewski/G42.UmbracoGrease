@@ -1,6 +1,6 @@
 ﻿namespace G42.UmbracoGrease.Models
 {
-    public class InlineStyle
+    public class ImageTransformation
     {
         public string Type { get; set; }
         public string Text { get; set; }

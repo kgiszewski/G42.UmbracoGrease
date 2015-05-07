@@ -127,6 +127,9 @@
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PackageActionsContrib">
+      <HintPath>..\..\lib\PackageActionsContrib.dll</HintPath>
+    </Reference>
     <Reference Include="SQLCE4Umbraco, Version=1.0.5557.19142, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\UmbracoCms.Core.7.2.4\lib\SQLCE4Umbraco.dll</HintPath>
       <Private>True</Private>
@@ -253,7 +256,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\ImageTag.cs" />
-    <Compile Include="Models\InlineStyle.cs" />
+    <Compile Include="Models\ImageTransformation.cs" />
     <Compile Include="Models\Redirect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -261,6 +264,7 @@
     <Content Include="packages.config" />
     <Content Include="App_Plugins\DeveloperDashboard\package.manifest" />
     <Content Include="App_Plugins\HideTab\package.manifest" />
+    <Content Include="Views\Partials\ImageTransformations.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

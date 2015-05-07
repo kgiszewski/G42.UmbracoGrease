@@ -100,7 +100,7 @@ namespace G42.UmbracoGrease.Extensions
             return Convert.ToInt32(Math.Truncate(Convert.ToDouble(input)));
         }
 
-        public static IHtmlString TransformImages(this string input, ControllerContext context)
+        public static IHtmlString TransformImages(this string input, ControllerContext context, string[] classesToTransform, string pathToPartial = "~/Views/Partials/ImageTransformations.cshtml")
         {
             if (String.IsNullOrWhiteSpace(input))
             {
@@ -122,7 +122,6 @@ namespace G42.UmbracoGrease.Extensions
                 {
                     var spanClasses = classAttribute.Value.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
-                    var classesToTransform = ConfigurationManager.AppSettings["inlineImageTriggers"].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                     var classValue = classAttribute.Value.Trim();
 
                     if (classesToTransform.Intersect(spanClasses).Any())
@@ -155,8 +154,6 @@ namespace G42.UmbracoGrease.Extensions
                             {
                                 var queryString = cropUrl.Substring(cropUrl.IndexOf('?') + 1);
 
-                                //LogHelper.Info<Uri>(queryString);
-
                                 var parameterDictionary = new Dictionary<string, string>();
 
                                 var pairs = queryString.Split(new[] { "&" }, StringSplitOptions.RemoveEmptyEntries);
@@ -174,7 +171,7 @@ namespace G42.UmbracoGrease.Extensions
                                 ).ToAzureBlobUrl();
                             }
 
-                            var inlineStyle = new InlineStyle()
+                            var inlineStyle = new ImageTransformation()
                             {
                                 Type = classValue,
                                 Text = span.InnerText,
@@ -189,10 +186,7 @@ namespace G42.UmbracoGrease.Extensions
                                 }
                             };
 
-                            //TODO: change to appsetting
-                            renderedTemplate =
-                                TransformationHelper.RenderRazorViewToString(context, "~/Views/Partials/Shared/InlineStyles.cshtml",
-                                    inlineStyle).Trim();
+                            renderedTemplate = TransformationHelper.RenderRazorViewToString(context, pathToPartial, inlineStyle).Trim();
 
                             var newNode = HtmlNode.CreateNode(renderedTemplate);
                             span.ParentNode.ReplaceChild(newNode, span);
