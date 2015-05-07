@@ -251,7 +251,7 @@
     <Compile Include="Helpers\TransformationHelper.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Helpers\IpHelper.cs" />
-    <Compile Include="Extensions\IpublishedContentExtensions.cs" />
+    <Compile Include="Extensions\IPublishedContentExtensions.cs" />
     <Compile Include="Helpers\NodeHelper.cs" />
     <Compile Include="Helpers\RedirectHelper.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

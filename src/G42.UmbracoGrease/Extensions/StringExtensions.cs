@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Security;
@@ -51,33 +50,6 @@ namespace G42.UmbracoGrease.Extensions
             var escapedString = SecurityElement.Escape(input);
 
             return input == escapedString ? input : "<![CDATA[" + input + "]]>";
-        }
-
-        public static string AddOrdinal(this string input)
-        {
-            var num = Convert.ToInt32(input);
-
-            if (num <= 0) return num.ToString();
-
-            switch (num % 100)
-            {
-                case 11:
-                case 12:
-                case 13:
-                    return input + "th";
-            }
-
-            switch (num % 10)
-            {
-                case 1:
-                    return input + "st";
-                case 2:
-                    return input + "nd";
-                case 3:
-                    return input + "rd";
-                default:
-                    return input + "th";
-            }
         }
 
         public static string ToHttpsUrl(this string input)

@@ -35,5 +35,30 @@ namespace G42.UmbracoGrease.Extensions
         {
             return ApplicationContext.Current.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(dtdId).PreValuesAsDictionary;
         }
+
+        public static string ToOrdinal(this int input)
+        {
+            if (input <= 0) return input.ToString();
+
+            switch (input % 100)
+            {
+                case 11:
+                case 12:
+                case 13:
+                    return input + "th";
+            }
+
+            switch (input % 10)
+            {
+                case 1:
+                    return input + "st";
+                case 2:
+                    return input + "nd";
+                case 3:
+                    return input + "rd";
+                default:
+                    return input + "th";
+            }
+        }
     }
 }

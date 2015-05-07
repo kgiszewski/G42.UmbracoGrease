@@ -4,32 +4,24 @@ using Umbraco.Web;
 
 namespace G42.UmbracoGrease.Extensions
 {
-    public static class IpublishedContentExtensions
+    public static class IPublishedContentExtensions
     {
-        public static bool IsExternalLink(this IPublishedContent content)
+        public static string CoalesceHtmlTitle(this IPublishedContent content, string prefixPropertyAlias = "pageTitlePrefix", string htmlTitleAlias = "htmlTitle")
         {
-            if (content == null)
-                return false;
+            if (content == null || NodeHelper.Instance.CurrentSite.SiteSettings == null)
+                return "";
 
-            return (content.DocumentTypeAlias == "NavigationItem");
+            var umbHelper = new UmbracoHelper();
+            return NodeHelper.Instance.CurrentSite.SiteSettings.GetPropertyValue(prefixPropertyAlias) + " " + umbHelper.Coalesce(content.GetPropertyValue(htmlTitleAlias), content.Name);
         }
 
-        public static string CoalesceHtmlTitle(this IPublishedContent content)
+        public static string CoalesceNavigationTitle(this IPublishedContent content, string propertyAlias = "navigationTitle")
         {
             if (content == null)
                 return "";
 
             var umbHelper = new UmbracoHelper();
-            return NodeHelper.Instance.CurrentSite.SiteSettings.GetPropertyValue("pageTitlePrefix") + " " + umbHelper.Coalesce(content.GetPropertyValue("htmlTitle"), content.Name);
-        }
-
-        public static string CoalesceNavigationTitle(this IPublishedContent content)
-        {
-            if (content == null)
-                return "";
-
-            var umbHelper = new UmbracoHelper();
-            return umbHelper.Coalesce(content.GetPropertyValue("navigationTitle"), content.Name);
+            return umbHelper.Coalesce(content.GetPropertyValue(propertyAlias), content.Name);
         }
     }
 }
