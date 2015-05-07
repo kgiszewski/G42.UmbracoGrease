@@ -17,4 +17,4 @@ For example, Grease currently offers the following functionality:
   * `TransformationHelper`, render a partial as a string.  Great for altering how the RTE would normally render things like image markup.
 
 ##Install
-Install with NuGet: Install-Package G42.UmbracoGrease
+Install with NuGet: `Install-Package G42.UmbracoGrease` https://www.nuget.org/packages/G42.UmbracoGrease/
