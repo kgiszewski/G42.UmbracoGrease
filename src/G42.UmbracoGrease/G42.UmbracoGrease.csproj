@@ -236,16 +236,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\DeveloperDashboard\css\dashboard.css" />
-    <Content Include="App_Plugins\DeveloperDashboard\js\dashboard.controller.js" />
-    <Content Include="App_Plugins\DeveloperDashboard\js\dashboard.services.js" />
-    <Content Include="App_Plugins\DeveloperDashboard\views\dashboard.html" />
-    <Content Include="App_Plugins\HideTab\hideTab.directive.js" />
-    <Content Include="App_Plugins\HideTab\hideTab.html" />
+    <Content Include="App_Plugins\G42.UmbracoGrease\DeveloperDashboard\css\dashboard.css" />
+    <Content Include="App_Plugins\G42.UmbracoGrease\DeveloperDashboard\js\dashboard.controller.js" />
+    <Content Include="App_Plugins\G42.UmbracoGrease\DeveloperDashboard\js\dashboard.services.js" />
+    <Content Include="App_Plugins\G42.UmbracoGrease\DeveloperDashboard\views\dashboard.html" />
+    <Content Include="App_Plugins\G42.UmbracoGrease\HideTab\hideTab.directive.js" />
+    <Content Include="App_Plugins\G42.UmbracoGrease\HideTab\hideTab.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DeveloperDashboardController.cs" />
+    <Compile Include="Events\PackageActions.cs" />
     <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Helpers\TransformationHelper.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
@@ -262,8 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="App_Plugins\DeveloperDashboard\package.manifest" />
-    <Content Include="App_Plugins\HideTab\package.manifest" />
+    <Content Include="App_Plugins\G42.UmbracoGrease\package.manifest" />
     <Content Include="Views\Partials\ImageTransformations.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-        <metadata>
-                <id>G42.UmbracoGrease</id>
-                <version><%= version %></version>
-                <title><%= name %></title>
-                <authors>kgiszewski</authors>
-                <owners>kgiszewski</owners>
-                <projectUrl>https://github.com/kgiszewski/G42.UmbracoGrease</projectUrl>
-                <description><![CDATA[Collection of stuff not core worthy, but otherwise makes Umbraco 7 site building faster.]]></description>
-                <tags>umbraco</tags>
-                <iconUrl>http://github.com/kgiszewski/G42.UmbracoGrease/raw/master/assets/logo.png</iconUrl>
-                <licenseUrl><%= licenseUrl %></licenseUrl>
-        </metadata>
+    <metadata>
+        <id>G42.UmbracoGrease</id>
+        <version><%= version %></version>
+        <title><%= name %></title>
+        <authors>kgiszewski</authors>
+        <owners>kgiszewski</owners>
+        <projectUrl>https://github.com/kgiszewski/G42.UmbracoGrease</projectUrl>
+        <description><![CDATA[Collection of stuff not core worthy, but otherwise makes Umbraco 7 site building faster.]]></description>
+        <tags>umbraco</tags>
+        <iconUrl>http://github.com/kgiszewski/G42.UmbracoGrease/raw/master/assets/logo.png</iconUrl>
+        <licenseUrl><%= licenseUrl %></licenseUrl>
+        <dependencies>
+            <dependency id="UmbracoCms.Core" version="7.2.4" />
+        </dependencies>
+    </metadata>
 </package>

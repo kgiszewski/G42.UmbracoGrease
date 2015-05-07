@@ -25,7 +25,7 @@ module.exports = function(grunt) {
     
     copy: {
       app_plugins: {
-        cwd: 'src/G42.UmbracoGrease/App_Plugins',
+        cwd: 'src/G42.UmbracoGrease/App_Plugins/G42.UmbracoGrease',
         src: ['**'],
         dest: '<%= basePath %>',
         expand: true

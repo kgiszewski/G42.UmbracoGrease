@@ -1,0 +1,25 @@
+﻿{
+    "propertyEditors": [
+        {
+          "name": "Hide Tab",
+          "alias": "HideTab",
+          "editor": {
+            "valueType": "JSON",
+            "view": "~/App_Plugins/G42.UmbracoGrease/HideTab/hideTab.html"
+          },
+          "prevalues": {
+        
+        
+          }
+        }
+      ],
+    "css": [
+        "~/App_Plugins/G42.UmbracoGrease/DeveloperDashboard/css/dashboard.css"
+    ],
+    "javascript": [
+        "~/App_Plugins/G42.UmbracoGrease/DeveloperDashboard/js/dashboard.services.js",
+        "~/App_Plugins/G42.UmbracoGrease/DeveloperDashboard/js/dashboard.controller.js",
+        "~/App_Plugins/G42.UmbracoGrease/HideTab/hideTab.directive.js"
+    ]
+}
+
