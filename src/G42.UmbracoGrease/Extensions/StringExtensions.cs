@@ -134,7 +134,7 @@ namespace G42.UmbracoGrease.Extensions
                                 parameterDictionary.Add(kvp[0], kvp[1].Replace("px", ""));
                             }
 
-                            cropUrl = string.Format("{0}?width={1}&height={2}", cropUrl.ToAzureBlobUrl(), parameterDictionary["width"].ToIntFromDoubleString(), parameterDictionary["height"].ToIntFromDoubleString());
+                            cropUrl = string.Format("{0}?width={1}&height={2}", cropUrl.Substring(0, cropUrl.IndexOf('?')) .ToAzureBlobUrl(), parameterDictionary["width"].ToIntFromDoubleString(), parameterDictionary["height"].ToIntFromDoubleString());
 
                             var inlineStyle = new ImageTransformation()
                             {
