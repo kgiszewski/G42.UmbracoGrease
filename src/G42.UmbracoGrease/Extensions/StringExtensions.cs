@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using G42.UmbracoGrease.Helpers;
 using G42.UmbracoGrease.Models;
 using HtmlAgilityPack;
+using Umbraco.Core.Logging;
 using Umbraco.Web;
 
 namespace G42.UmbracoGrease.Extensions
@@ -115,33 +116,25 @@ namespace G42.UmbracoGrease.Extensions
 
                             var classAttr = img.Attributes["class"];
 
-                            var umbHelper = new UmbracoHelper(UmbracoContext.Current);
-
                             var cropUrl = img.Attributes["src"].Value;
 
                             //for some reason the httputility decoders won't do this
                             cropUrl = cropUrl.Replace("&amp;", "&");
+                            
+                            var queryString = cropUrl.Substring(cropUrl.IndexOf('?') + 1);
 
-                            if (relAttr != null)
+                            var parameterDictionary = new Dictionary<string, string>();
+
+                            var pairs = queryString.Split(new[] { "&" }, StringSplitOptions.RemoveEmptyEntries);
+
+                            foreach (var pair in pairs)
                             {
-                                var queryString = cropUrl.Substring(cropUrl.IndexOf('?') + 1);
+                                var kvp = pair.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
 
-                                var parameterDictionary = new Dictionary<string, string>();
-
-                                var pairs = queryString.Split(new[] { "&" }, StringSplitOptions.RemoveEmptyEntries);
-
-                                foreach (var pair in pairs)
-                                {
-                                    var kvp = pair.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-
-                                    parameterDictionary.Add(kvp[0], kvp[1].Replace("px", ""));
-                                }
-
-                                cropUrl = umbHelper.TypedMedia(relAttr.Value).GetCropUrl(
-                                    width: parameterDictionary["width"].ToIntFromDoubleString(),
-                                    height: parameterDictionary["height"].ToIntFromDoubleString()
-                                ).ToAzureBlobUrl();
+                                parameterDictionary.Add(kvp[0], kvp[1].Replace("px", ""));
                             }
+
+                            cropUrl = string.Format("{0}?width={1}&height={2}", cropUrl.ToAzureBlobUrl(), parameterDictionary["width"].ToIntFromDoubleString(), parameterDictionary["height"].ToIntFromDoubleString());
 
                             var inlineStyle = new ImageTransformation()
                             {
