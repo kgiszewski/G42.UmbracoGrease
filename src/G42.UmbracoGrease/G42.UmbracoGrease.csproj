@@ -256,6 +256,7 @@
     <Compile Include="Helpers\NodeHelper.cs" />
     <Compile Include="Helpers\RedirectHelper.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Interfaces\IErrorHandler.cs" />
     <Compile Include="Models\Site.cs" />
     <Compile Include="Models\ImageTag.cs" />
     <Compile Include="Models\ImageTransformation.cs" />

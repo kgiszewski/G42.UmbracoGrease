@@ -6,6 +6,7 @@ using Umbraco.Web;
 using umbraco.cms.businesslogic.web;
 using Umbraco.Core.Logging;
 using G42.UmbracoGrease.Models;
+using Umbraco.Core;
 
 namespace G42.UmbracoGrease.Helpers
 {
@@ -18,21 +19,7 @@ namespace G42.UmbracoGrease.Helpers
         private NodeHelper()
         {
             //find an implementation of SiteBase
-            var type = typeof (Site);
-
-            var types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(p => type.IsAssignableFrom(p));
-
-            //if more than one, take extended one
-            if (types.Count() == 1)
-            {
-                _siteType = types.First();
-            }
-            else
-            {
-                _siteType = types.FirstOrDefault(x => x.IsAssignableFrom(x) && x != type);
-            }
-
-            LogHelper.Info<Site>("Found class for NodeHelper site type=> " + _siteType.AssemblyQualifiedName);
+            _siteType = PluginManager.Current.ResolveTypes<Site>(true).FirstOrDefault();
         }
 
         public List<Site> Sites = new List<Site>();

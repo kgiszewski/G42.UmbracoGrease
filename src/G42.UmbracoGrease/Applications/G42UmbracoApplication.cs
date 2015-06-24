@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using System.Web;
 using G42.UmbracoGrease.Helpers;
+using G42.UmbracoGrease.Interfaces;
+using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Web;
 
@@ -17,19 +20,31 @@ namespace G42.UmbracoGrease.Applications
 
             if (lastError != null)
             {
-                LogHelper.Info<string>("Sending email to the ErrorEmailToCsv list...");
+                var errorHandlerType = PluginManager.Current.ResolveTypes<IG42ErrorHandler>().FirstOrDefault();
 
-                var sendTo = ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailToCsv"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                foreach (var email in sendTo)
+                if (errorHandlerType == null)
                 {
-                    FormHelper.SendMail(email, ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailFrom"],
-                        "Error reported by: " + HttpContext.Current.Request.Url.AbsoluteUri, lastError.Message, true);
+                    LogHelper.Info<string>("Sending email to the ErrorEmailToCsv list...");
+
+                    var sendTo = ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailToCsv"].Split(
+                        new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (var email in sendTo)
+                    {
+                        FormHelper.SendMail(email, ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailFrom"],
+                            "Error reported by: " + HttpContext.Current.Request.Url.AbsoluteUri, lastError.Message, true);
+                    }
+
+                    Server.ClearError();
+
+                    Response.Redirect(ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorRedirectTo"]);
                 }
+                else
+                {
+                    var errorHandler = ((IG42ErrorHandler)Activator.CreateInstance(errorHandlerType));
 
-                Server.ClearError();
-
-                Response.Redirect(ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorRedirectTo"]);
+                    errorHandler.Execute(sender, e);
+                }
             }
         }
     }

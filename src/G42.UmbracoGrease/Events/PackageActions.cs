@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
 using umbraco.cms.businesslogic.packager;
@@ -10,20 +11,32 @@ namespace G42.UmbracoGrease.Events
 {
     public class PackageActions : ApplicationEventHandler
     {
+
+        private string _dllVersion;
+
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
             base.ApplicationStarted(umbracoApplication, applicationContext);
 
             const string versionAppsettingKey = "G42.UmbracoGrease:Version";
 
-            LogHelper.Info<PackageActions>("Determining G42.UmbracoGrease:Version");
+            _dllVersion = _version();
+
+            LogHelper.Info<PackageActions>("Determining G42.UmbracoGrease:Version to be: " + _dllVersion);
 
             if (string.IsNullOrEmpty(ConfigurationManager.AppSettings[versionAppsettingKey]))
             {
                 _addDashboardTab();
 
                 var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-                config.AppSettings.Settings.Add(versionAppsettingKey, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);
+                config.Save();
+            }
+            else
+            {
+                var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                config.AppSettings.Settings.Remove(versionAppsettingKey);
+                config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);
                 config.Save();
             }
         }
@@ -44,6 +57,14 @@ namespace G42.UmbracoGrease.Events
             {
                 LogHelper.Error<PackageActions>(ex.Message, ex); 
             }
+        }
+
+        private string _version()
+        {
+            var asm = Assembly.GetExecutingAssembly();
+            var fvi = FileVersionInfo.GetVersionInfo(asm.Location);
+
+            return fvi.FileVersion;
         }
     }
 }
