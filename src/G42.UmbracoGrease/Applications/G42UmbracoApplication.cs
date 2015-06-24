@@ -24,7 +24,7 @@ namespace G42.UmbracoGrease.Applications
 
                 if (errorHandlerType == null)
                 {
-                    LogHelper.Info<string>("Sending email to the ErrorEmailToCsv list...");
+                    LogHelper.Info<G42UmbracoApplication>("Sending email to the ErrorEmailToCsv list...");
 
                     var sendTo = ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailToCsv"].Split(
                         new[] {','}, StringSplitOptions.RemoveEmptyEntries);
