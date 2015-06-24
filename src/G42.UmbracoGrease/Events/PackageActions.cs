@@ -34,10 +34,13 @@ namespace G42.UmbracoGrease.Events
             }
             else
             {
-                var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-                config.AppSettings.Settings.Remove(versionAppsettingKey);
-                config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);
-                config.Save();
+                if (ConfigurationManager.AppSettings[versionAppsettingKey] != _dllVersion)
+                {
+                    var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                    config.AppSettings.Settings.Remove(versionAppsettingKey);
+                    config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);
+                    config.Save();
+                }
             }
         }
 
