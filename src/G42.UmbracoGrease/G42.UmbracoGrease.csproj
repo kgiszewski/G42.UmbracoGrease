@@ -245,6 +245,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\G42UmbracoApplication.cs" />
     <Compile Include="Controllers\DeveloperDashboardController.cs" />
     <Compile Include="Events\PackageActions.cs" />
     <Compile Include="Helpers\FormHelper.cs" />
