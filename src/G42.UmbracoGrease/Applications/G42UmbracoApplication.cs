@@ -22,22 +22,26 @@ namespace G42.UmbracoGrease.Applications
             {
                 var errorHandlerType = PluginManager.Current.ResolveTypes<IG42ErrorHandler>().FirstOrDefault();
 
+                var sendTo = ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailToCsv"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
                 if (errorHandlerType == null)
                 {
-                    LogHelper.Info<G42UmbracoApplication>("Sending email to the ErrorEmailToCsv list...");
-
-                    var sendTo = ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailToCsv"].Split(
-                        new[] {','}, StringSplitOptions.RemoveEmptyEntries);
-
-                    foreach (var email in sendTo)
+                    if (sendTo.Any())
                     {
-                        FormHelper.SendMail(email, ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailFrom"],
-                            "Error reported by: " + HttpContext.Current.Request.Url.AbsoluteUri, lastError.Message, true);
+                        LogHelper.Info<G42UmbracoApplication>("Sending email to the ErrorEmailToCsv list...");
+
+                        foreach (var email in sendTo)
+                        {
+                            FormHelper.SendMail(email.Trim(),
+                                ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorEmailFrom"],
+                                "Error reported by: " + HttpContext.Current.Request.Url.AbsoluteUri, lastError.Message,
+                                true);
+                        }
+
+                        Server.ClearError();
+
+                        Response.Redirect(ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorRedirectTo"]);
                     }
-
-                    Server.ClearError();
-
-                    Response.Redirect(ConfigurationManager.AppSettings["G42.UmbracoGrease:ErrorRedirectTo"]);
                 }
                 else
                 {
