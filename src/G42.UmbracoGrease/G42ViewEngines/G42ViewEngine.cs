@@ -25,7 +25,7 @@ namespace G42.UmbracoGrease.G42ViewEngines
 
                 pathList.Add(path);
 
-                LogHelper.Info<string>("Registering view engine path: " + folder);
+                LogHelper.Info<G42ViewEngine>("Registering view engine path: " + folder);
             }
 
             ViewLocationFormats = ViewLocationFormats.Union(pathList).ToArray();
