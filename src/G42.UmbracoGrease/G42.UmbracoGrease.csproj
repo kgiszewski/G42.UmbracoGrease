@@ -248,6 +248,7 @@
     <Compile Include="Applications\G42UmbracoApplication.cs" />
     <Compile Include="Controllers\DeveloperDashboardController.cs" />
     <Compile Include="Events\PackageActions.cs" />
+    <Compile Include="Events\RegisterViewEngine.cs" />
     <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Helpers\TransformationHelper.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Models\ImageTransformation.cs" />
     <Compile Include="Models\Redirect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="G42ViewEngines\G42ViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
