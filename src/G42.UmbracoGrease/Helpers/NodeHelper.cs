@@ -18,12 +18,27 @@ namespace G42.UmbracoGrease.Helpers
 
         private NodeHelper()
         {
+            var baseType = typeof (Site);
+
+            var types = PluginManager.Current.ResolveTypes<Site>().Where(x => x.IsSubclassOf(baseType));
+
+            //if more than one, reject
+            if (types.Count() > 1)
+            {
+                throw new Exception("You may only have one Site type.");
+            }
+
             //find an implementation of Site
-            _siteType = PluginManager.Current.ResolveTypes<Site>().FirstOrDefault(x => typeof(Site).IsAssignableFrom(x));
+            _siteType = types.FirstOrDefault(x => x.IsSubclassOf(baseType));
 
             if (_siteType == null)
             {
-                _siteType = typeof (Site);
+                LogHelper.Info<NodeHelper>("Using default Site Type.");
+                _siteType = baseType;
+            }
+            else
+            {
+                LogHelper.Info<NodeHelper>("Using " + _siteType.ToString());
             }
         }
 
