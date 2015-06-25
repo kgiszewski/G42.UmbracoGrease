@@ -18,8 +18,13 @@ namespace G42.UmbracoGrease.Helpers
 
         private NodeHelper()
         {
-            //find an implementation of SiteBase
-            _siteType = PluginManager.Current.ResolveTypes<Site>(true).FirstOrDefault();
+            //find an implementation of Site
+            _siteType = PluginManager.Current.ResolveTypes<Site>().FirstOrDefault(x => typeof(Site).IsAssignableFrom(x));
+
+            if (_siteType == null)
+            {
+                _siteType = typeof (Site);
+            }
         }
 
         public List<Site> Sites = new List<Site>();
