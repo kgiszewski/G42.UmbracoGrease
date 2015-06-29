@@ -1,0 +1,33 @@
+﻿{
+    "propertyEditors": [
+        {
+          "name": "Hide Tab",
+          "alias": "HideTab",
+          "editor": {
+            "valueType": "JSON",
+            "view": "~/App_Plugins/G42UmbracoGrease/HideTab/views/hideTab.html"
+          },
+          "prevalues": {
+        
+        
+          }
+        }
+      ],
+    "css": [
+        "~/App_Plugins/G42UmbracoGrease/Fonts/styles.css",
+        "~/App_Plugins/G42UmbracoGrease/_404Tracker/css/styles.css",
+        "~/App_Plugins/G42UmbracoGrease/HideTab/css/styles.css",
+        "~/App_Plugins/G42UmbracoGrease/SearchTracker/css/styles.css",
+        "~/App_Plugins/G42UmbracoGrease/Fonts/styles.css"
+
+            
+    ],
+    "javascript": [
+        "~/App_Plugins/G42UmbracoGrease/HideTab/js/directives.js",
+        "~/App_Plugins/G42UmbracoGrease/Shared/js/services/appSettings.js",
+        "~/App_Plugins/G42UmbracoGrease/Shared/js/services/reports.js",
+        "~/App_Plugins/G42UmbracoGrease/SearchTracker/js/controller.js",
+        "~/App_Plugins/G42UmbracoGrease/_404Tracker/js/controller.js"
+    ]
+}
+

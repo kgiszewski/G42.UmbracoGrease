@@ -1,0 +1,55 @@
+﻿<div ng-controller="searchTrackerDashboardController">
+    <umb-panel>
+        <umb-header tabs="content.tabs">
+            <div class="umb-headline-editor-wrapper span12">
+                <h1 class="ng-binding">{{model.Name}}</h1>
+            </div>
+        </umb-header>
+        <umb-tab-view>
+            <umb-tab id="tab1" rel="content" class="search-tracker-dashboard">
+                <div class="umb-pane">
+                    <div>
+                        <label><strong>Minimum Count</strong></label>
+                        <input type="text" ng-model="model.countFilter" />
+                        <button class="btn btn-default" ng-click="getResults()">Update</button>
+                    </div>
+
+                    <div class="loading" ng-show="isLoading">
+                        <img src="/assets/shared/images/loader.gif" />LOADING...
+                    </div>
+
+                    <table ng="!isLoading" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Domain</th>
+                                <th>Keywords</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="!model.data || model.data.length == 0">
+                                <td colspan="2">There are no results.</td>
+                            </tr>
+                            <tr ng-repeat="data in model.data">
+                                <td>{{data.domain}}</td>
+                                <td>
+                                    <table class="url-table">
+                                        <tr>
+                                            <th>Keyword</th>
+                                            <th>Last Tried</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        <tr ng-repeat="keyword in data.keywords">
+                                            <td>{{keyword.keyword}}</td>
+                                            <td class="url-last-tried">{{keyword.lastUsedOn}}</td>
+                                            <td class="url-count">{{keyword.count}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </umb-tab>
+        </umb-tab-view>
+    </umb-panel>
+</div>

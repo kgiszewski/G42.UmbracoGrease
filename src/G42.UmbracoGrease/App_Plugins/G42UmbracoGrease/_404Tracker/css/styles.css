@@ -1,0 +1,22 @@
+﻿.url-table {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+td {
+    word-break: break-all;
+}
+
+td.url-last-tried {
+    width: 100px;
+}
+
+td.url-count {
+    text-align: right;
+    width: 75px;
+}
+
+._404-tracker-dashboard input[type=text] {
+    text-align: right;
+    width: 50px;
+}
