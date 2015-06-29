@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
+using G42.UmbracoGrease.AppSettings.PetaPocoModels;
+using G42.UmbracoGrease.Reports.PetaPocoModels;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
@@ -26,7 +28,14 @@ namespace G42.UmbracoGrease.Shared.Events
 
             if (string.IsNullOrEmpty(ConfigurationManager.AppSettings[versionAppsettingKey]))
             {
-                _addDashboardTab();
+                LogHelper.Info<PackageActions>("Running initial setup block.");
+                //_addDashboardTab();
+                _addLanguageKey();
+
+                G42Grease404Tracker.CreateTable();
+                G42GreaseSearchTrackerKeyword.CreateTable();
+                G42GreaseSearchTrackerSearch.CreateTable();
+                G42GreaseAppSetting.CreateTable();
 
                 var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
                 config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);
@@ -34,6 +43,8 @@ namespace G42.UmbracoGrease.Shared.Events
             }
             else
             {
+                LogHelper.Info<PackageActions>("Running alternate setup block, found => " + ConfigurationManager.AppSettings[versionAppsettingKey]);
+
                 if (ConfigurationManager.AppSettings[versionAppsettingKey] != _dllVersion)
                 {
                     var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
@@ -60,6 +71,16 @@ namespace G42.UmbracoGrease.Shared.Events
             {
                 LogHelper.Error<PackageActions>(ex.Message, ex); 
             }
+        }
+
+        private void _addLanguageKey()
+        {
+            var xd = new XmlDocument();
+
+            xd.LoadXml(@"<Action runat='install' undo='true' alias='AddLanguageFileKey' language='en' position='beginning' area='sections' key='G42UmbracoGrease' value='G42 Grease' />");
+
+            LogHelper.Info<PackageActions>("Running Grease language action.");
+            PackageAction.RunPackageAction("G42.UmbracoGrease", "AddLanguageFileKey", xd.FirstChild);
         }
 
         private string _version()

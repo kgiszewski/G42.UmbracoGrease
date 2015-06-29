@@ -1,0 +1,44 @@
+﻿<div ng-controller="G42UmbracoGreaseAppSettingsDashboardController">
+    <umb-panel>
+        <umb-header tabs="content.tabs">
+            <div class="umb-headline-editor-wrapper span12">
+                <h1 class="ng-binding">{{model.Name}}</h1>
+            </div>
+        </umb-header>
+        <umb-tab-view>
+            <umb-tab id="tab1" rel="content" class="app-settings-dashboard">
+                <div class="umb-pane">
+                    <table ng="!isLoading" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="!model.data || model.data.length == 0">
+                                <td colspan="3">There are no results.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" ng-model="model.new.key" /></td>
+                                <td><input type="text" ng-model="model.new.value" /></td>
+                                <td>
+                                    <button class="btn btn-success" ng-click="add()">Add</button>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="data in model.data">
+                                <td>{{data.key}}</td>
+                                <td><input type="text" ng-model="data.value"/></td>
+                                <td>
+                                    <button class="btn btn-warning" ng-click="remove(data.id)">Remove</button>
+                                    <button class="btn btn-success" ng-click="save(data)">Save</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </umb-tab>
+        </umb-tab-view>
+    </umb-panel>
+</div>

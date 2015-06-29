@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using G42.UmbracoGrease.Helpers;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.Reports.PetaPocoModels
@@ -48,6 +49,32 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
                 Count = 1,
                 LastUsedOn = DateTime.UtcNow
             });
+        }
+
+        internal static void CreateTable()
+        {
+            if (!DbHelper.DbContext.Database.TableExist("G42GreaseSearchTrackerKeywords"))
+            {
+                LogHelper.Info<G42GreaseSearchTrackerKeyword>("Creating table.");
+
+                DbHelper.DbContext.Database.Execute(@"
+                    CREATE TABLE [dbo].[G42GreaseSearchTrackerKeywords](
+	                    [id] [int] IDENTITY(1,1) NOT NULL,
+	                    [domain] [nvarchar](50) NOT NULL,
+	                    [keyword] [nvarchar](50) NOT NULL,
+	                    [count] [int] NOT NULL,
+	                    [lastUsedOn] [datetime] NOT NULL,
+                     CONSTRAINT [PK_searchTrackerKeywords] PRIMARY KEY CLUSTERED 
+                    (
+	                    [id] ASC
+                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+                    )
+                ");
+            }
+            else
+            {
+                LogHelper.Info<G42GreaseSearchTrackerKeyword>("Table exists.");
+            }
         }
     }
 }

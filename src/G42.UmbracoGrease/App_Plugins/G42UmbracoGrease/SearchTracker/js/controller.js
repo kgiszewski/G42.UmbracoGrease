@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').controller('searchTrackerDashboardController', function ($scope, $routeParams, greaseReportsService) {
+﻿angular.module('umbraco').controller('G42UmbracoGreaseSearchTrackerDashboardController', function ($scope, $routeParams, greaseReportsService) {
 
     $scope.model = {};
     $scope.model.Name = decodeURIComponent($routeParams.id);

@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').controller('_404TrackerDashboardController', function ($scope, $routeParams, greaseReportsService) {
+﻿angular.module('umbraco').controller('G42UmbracoGrease404TrackerDashboardController', function ($scope, $routeParams, greaseReportsService) {
 
     $scope.model = {};
     $scope.model.Name = decodeURIComponent($routeParams.id);

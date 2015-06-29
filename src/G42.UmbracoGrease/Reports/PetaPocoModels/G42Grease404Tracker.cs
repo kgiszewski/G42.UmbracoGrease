@@ -63,5 +63,32 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
                 LogHelper.Error<Exception>(ex.Message, ex);
             }
         }
+
+        internal static void CreateTable()
+        {
+            if (!DbHelper.DbContext.Database.TableExist("G42Grease404Tracker"))
+            {
+                LogHelper.Info<G42Grease404Tracker>("Creating table.");
+
+                DbHelper.DbContext.Database.Execute(@"
+                    CREATE TABLE [dbo].[G42Grease404Tracker](
+	                    [id] [bigint] IDENTITY(1,1) NOT NULL,
+	                    [domain] [nvarchar](50) NOT NULL,
+	                    [path] [nvarchar](255) NOT NULL,
+	                    [referrer] [nvarchar](50) NOT NULL,
+	                    [userAgent] [nvarchar](max) NULL,
+	                    [updatedOn] [datetime] NOT NULL,
+                     CONSTRAINT [PK_G42Grease404Tracker] PRIMARY KEY CLUSTERED 
+                    (
+	                    [id] ASC
+                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+                    )
+                ");
+            }
+            else
+            {
+                LogHelper.Info<G42Grease404Tracker>("Table exists.");
+            }
+        }
     }
 }

@@ -237,6 +237,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\G42UmbracoGrease\AppSettings\js\controller.js" />
+    <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\app-settings-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\search-tracker-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\_404-tracker-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Fonts\grease.svg" />
@@ -246,8 +248,8 @@
     <Content Include="App_Plugins\G42UmbracoGrease\HideTab\views\hideTab.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\SearchTracker\css\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\SearchTracker\js\controller.js" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Shared\js\services\appSettings.js" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Shared\js\services\reports.js" />
+    <Content Include="App_Plugins\G42UmbracoGrease\AppSettings\js\services.js" />
+    <Content Include="App_Plugins\G42UmbracoGrease\Shared\js\services.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\_404Tracker\css\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\_404Tracker\js\controller.js" />
     <Content Include="Web.config" />
@@ -301,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppSettings\Models\" />
+    <Folder Include="App_Plugins\G42UmbracoGrease\AppSettings\css\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

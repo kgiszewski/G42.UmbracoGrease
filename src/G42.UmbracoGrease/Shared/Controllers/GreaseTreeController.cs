@@ -6,7 +6,7 @@ using Umbraco.Web.Trees;
 namespace G42.UmbracoGrease.Shared.Controllers
 {
     [PluginController("G42UmbracoGrease")]
-    [Umbraco.Web.Trees.Tree("G42UmbracoGrease", "G42UmbracoGreaseTree", "Grease", iconClosed: "icon-folder")]
+    [Umbraco.Web.Trees.Tree("G42UmbracoGrease", "G42UmbracoGreaseTree", "G42 Grease", iconClosed: "icon-folder")]
     public class GreaseTreeController : TreeController
     {
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
@@ -14,7 +14,10 @@ namespace G42.UmbracoGrease.Shared.Controllers
             var nodes = new TreeNodeCollection();
 
             if (id == "-1")
-            {
+            {   
+                //app_settings
+                _addNode(nodes, queryStrings, "AppSettings", "", "App Settings", "icon-settings", "/G42UmbracoGrease/G42UmbracoGreaseTree/app-settings-dashboard/App%20Settings");
+
                 //404
                 _addNode(nodes, queryStrings, "404Tracker", "", "404 Tracker", "icon-block", "/G42UmbracoGrease/G42UmbracoGreaseTree/_404-tracker-dashboard/404%20Tracker");
 

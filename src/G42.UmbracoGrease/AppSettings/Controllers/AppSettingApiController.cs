@@ -1,5 +1,7 @@
 ﻿using System.Web.Http;
 using G42.UmbracoGrease.AppSettings.PetaPocoModels;
+using G42.UmbracoGrease.Filters;
+using Umbraco.Core.Logging;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
 
@@ -9,17 +11,43 @@ namespace G42.UmbracoGrease.AppSettings.Controllers
     public class AppSettingsApiController : UmbracoAuthorizedJsonController
     {
         [HttpGet]
+        [CamelCasingFilter]
         public object Get(string key)
         {
             return G42GreaseAppSetting.GetAppSetting(key);
         }
 
-        [HttpPost]
-        public object Set(G42GreaseAppSetting model)
+        [HttpGet]
+        [CamelCasingFilter]
+        public object GetAll()
         {
-            G42GreaseAppSetting.SetAppSetting(model.Key, model.Value);
+            return G42GreaseAppSetting.GetAll();
+        }
+
+        [HttpPost]
+        public object Save(G42GreaseAppSetting model)
+        {
+            G42GreaseAppSetting.SaveAppSetting(model.Key, model.Value);
 
             return "saved";
+        }
+
+        [HttpPost]
+        public object Remove([FromBody] int id)
+        {
+            G42GreaseAppSetting.RemoveAppSetting(id);
+
+            return "removed";
+        }
+
+        [HttpPost]
+        public object Add(G42GreaseAppSetting model)
+        {
+            LogHelper.Info<G42GreaseAppSetting>(model.Key + " " + model.Value);
+
+            G42GreaseAppSetting.AddAppSetting(model.Key, model.Value);
+
+            return "added";
         }
     }
 }
