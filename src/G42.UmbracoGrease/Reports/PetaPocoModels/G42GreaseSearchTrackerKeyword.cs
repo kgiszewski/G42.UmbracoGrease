@@ -5,9 +5,9 @@ using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.Reports.PetaPocoModels
 {
-    [TableName("SearchTrackerKeywords")]
+    [TableName("G42GreaseSearchTrackerKeywords")]
     [PrimaryKey("id")]
-    public class SearchTrackerKeyword
+    public class G42GreaseSearchTrackerKeyword
     {
         public int Id { get; set; }
         public string Domain { get; set; }
@@ -18,7 +18,7 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
         internal static void Add(string domain, string keyword)
         {
             var currentKeyword =
-                DbHelper.DbContext.Database.SingleOrDefault<SearchTrackerKeyword>("SELECT * FROM searchTrackerKeywords WHERE domain = @0 AND keyword = @1", domain,  keyword);
+                DbHelper.DbContext.Database.SingleOrDefault<G42GreaseSearchTrackerKeyword>("SELECT * FROM G42GreaseSearchTrackerKeywords WHERE domain = @0 AND keyword = @1", domain, keyword);
 
             if (currentKeyword == null)
             {
@@ -32,16 +32,16 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             }
         }
 
-        public static IEnumerable<SearchTrackerKeyword> Get(int countFilter = 1)
+        public static IEnumerable<G42GreaseSearchTrackerKeyword> Get(int countFilter = 1)
         {
             return
-                DbHelper.DbContext.Database.Fetch<SearchTrackerKeyword>(
-                    "SELECT * FROM searchTrackerKeywords WHERE count >= @0", countFilter);
+                DbHelper.DbContext.Database.Fetch<G42GreaseSearchTrackerKeyword>(
+                    "SELECT * FROM G42GreaseSearchTrackerKeywords WHERE count >= @0", countFilter);
         }
 
         private static void _insert(string domain, string keyword)
         {
-            DbHelper.DbContext.Database.Save(new SearchTrackerKeyword()
+            DbHelper.DbContext.Database.Save(new G42GreaseSearchTrackerKeyword()
             {
                 Domain = domain,
                 Keyword = keyword,

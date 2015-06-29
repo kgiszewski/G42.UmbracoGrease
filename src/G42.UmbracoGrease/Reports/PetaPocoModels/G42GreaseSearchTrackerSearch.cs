@@ -5,9 +5,9 @@ using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.Reports.PetaPocoModels
 {
-    [TableName("SearchTrackerSearches")]
+    [TableName("G42GreaseSearchTrackerSearches")]
     [PrimaryKey("id")]
-    public class SearchTrackerSearch
+    public class G42GreaseSearchTrackerSearch
     {
         public int Id { get; set; }
         public string Domain { get; set; }
@@ -23,10 +23,10 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
 
             foreach (var keyword in keywords.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries))
             {
-                SearchTrackerKeyword.Add(domain, keyword);
+                G42GreaseSearchTrackerKeyword.Add(domain, keyword);
             }
 
-            DbHelper.DbContext.Database.Save(new SearchTrackerSearch()
+            DbHelper.DbContext.Database.Save(new G42GreaseSearchTrackerSearch()
             {
                 Domain = domain,
                 Path = RedirectHelper.GetCurrentPath(),

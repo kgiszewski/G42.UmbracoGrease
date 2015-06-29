@@ -14,14 +14,14 @@ namespace G42.UmbracoGrease.Reports.Controllers
         [CamelCasingFilter]
         public object Get404s(int countFilter)
         {
-            return new _404TableModel(_404Tracker.Get(countFilter));
+            return new G42Grease404TableModel(G42Grease404Tracker.Get(countFilter));
         }
 
         [HttpGet]
         [CamelCasingFilter]
         public object GetKeywords(int countFilter)
         {
-            return new SearchTableModel(SearchTrackerKeyword.Get(countFilter));
+            return new G42GreaseSearchTableModel(G42GreaseSearchTrackerKeyword.Get(countFilter));
         }
     }
 }

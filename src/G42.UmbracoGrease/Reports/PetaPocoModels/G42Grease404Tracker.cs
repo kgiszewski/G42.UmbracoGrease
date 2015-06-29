@@ -8,8 +8,8 @@ using Umbraco.Core.Persistence;
 namespace G42.UmbracoGrease.Reports.PetaPocoModels
 {
     [PrimaryKey("id")]
-    [TableName("_404Tracker")]
-    public class _404Tracker
+    [TableName("G42Grease404Tracker")]
+    public class G42Grease404Tracker
     {
         public long Id { get; set; }
         public string Domain { get; set; }
@@ -24,13 +24,13 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
         [ResultColumn]
         public DateTime LastTried { get; set; }
 
-        public static IEnumerable<_404Tracker> Get(int countFilter = 1)
+        public static IEnumerable<G42Grease404Tracker> Get(int countFilter = 1)
         {
-            return DbHelper.DbContext.Database.Fetch<_404Tracker>(@"
-                SELECT *, (SELECT MAX(updatedOn) FROM _404Tracker WHERE domain = t1.domain AND path = t1.path) AS lastTried
+            return DbHelper.DbContext.Database.Fetch<G42Grease404Tracker>(@"
+                SELECT *, (SELECT MAX(updatedOn) FROM G42Grease404Tracker WHERE domain = t1.domain AND path = t1.path) AS lastTried
                 FROM (
 	                SELECT domain, path, COUNT(id) AS count
-	                FROM _404Tracker
+	                FROM G42Grease404Tracker
 	                GROUP BY domain, path
                 ) AS t1
                 WHERE t1.count >= @0
@@ -49,7 +49,7 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
 
             try
             {
-                DbHelper.DbContext.Database.Save(new _404Tracker()
+                DbHelper.DbContext.Database.Save(new G42Grease404Tracker()
                 {
                     Domain = context.Request.Url.Host,
                     Path = RedirectHelper.GetCurrentPath(),

@@ -255,14 +255,16 @@
   <ItemGroup>
     <Compile Include="Applications\GreaseApplication.cs" />
     <Compile Include="Applications\GreaseUmbracoApplication.cs" />
+    <Compile Include="AppSettings\Controllers\AppSettingApiController.cs" />
+    <Compile Include="AppSettings\PetaPocoModels\G42GreaseAppSetting.cs" />
     <Compile Include="Filters\CamelCaseFilter.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Reports\Controllers\ReportsApi.cs" />
-    <Compile Include="Reports\Models\SearchTableModel.cs" />
-    <Compile Include="Reports\Models\_404TableModel.cs" />
-    <Compile Include="Reports\PetaPocoModels\SearchTrackerKeyword.cs" />
-    <Compile Include="Reports\PetaPocoModels\SearchTrackerSearch.cs" />
-    <Compile Include="Reports\PetaPocoModels\_404Tracker.cs" />
+    <Compile Include="Reports\Models\G42GreaseSearchTableModel.cs" />
+    <Compile Include="Reports\Models\G42Grease404TableModel.cs" />
+    <Compile Include="Reports\PetaPocoModels\G42GreaseSearchTrackerKeyword.cs" />
+    <Compile Include="Reports\PetaPocoModels\G42GreaseSearchTrackerSearch.cs" />
+    <Compile Include="Reports\PetaPocoModels\G42Grease404Tracker.cs" />
     <Compile Include="Shared\Controllers\GreaseTreeController.cs" />
     <Compile Include="Shared\Events\PackageActions.cs" />
     <Compile Include="Shared\Events\RegisterViewEngine.cs" />
@@ -298,7 +300,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Shared\Helpers\" />
+    <Folder Include="AppSettings\Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

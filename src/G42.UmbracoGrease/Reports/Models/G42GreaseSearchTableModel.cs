@@ -5,11 +5,11 @@ using G42.UmbracoGrease.Reports.PetaPocoModels;
 
 namespace G42.UmbracoGrease.Reports.Models
 {
-    public class SearchTableModel
+    public class G42GreaseSearchTableModel
     {
         public IEnumerable<DomainSearch> Data { get; set; }
 
-        public SearchTableModel(IEnumerable<SearchTrackerKeyword> data)
+        public G42GreaseSearchTableModel(IEnumerable<G42GreaseSearchTrackerKeyword> data)
         {
             var domains = new List<DomainSearch>();
 

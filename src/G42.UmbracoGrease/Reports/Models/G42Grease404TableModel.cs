@@ -5,11 +5,11 @@ using G42.UmbracoGrease.Reports.PetaPocoModels;
 
 namespace G42.UmbracoGrease.Reports.Models
 {
-    public class _404TableModel
+    public class G42Grease404TableModel
     {
         public IEnumerable<DomainPaths> Data { get; set; } 
 
-        public _404TableModel(IEnumerable<_404Tracker> data)
+        public G42Grease404TableModel(IEnumerable<G42Grease404Tracker> data)
         {
             var domains = new List<DomainPaths>();
 

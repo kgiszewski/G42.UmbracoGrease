@@ -3,7 +3,7 @@ using System.Net;
 
 namespace G42.UmbracoGrease.Helpers
 {
-    public class WebHelper
+    public static class WebHelper
     {
         public static string MakeWebRequest(string url)
         {
