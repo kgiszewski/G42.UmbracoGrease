@@ -6,7 +6,7 @@ using Umbraco.Core.Logging;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
 
-namespace G42.UmbracoGrease.Helpers.Controllers
+namespace G42.UmbracoGrease.G42NodeHelper.Controllers
 {
     [PluginController("G42UmbracoGrease")]
     public class NodeHelperApiController : UmbracoAuthorizedJsonController

@@ -6,9 +6,9 @@ using Umbraco.Web;
 using umbraco.cms.businesslogic.web;
 using Umbraco.Core.Logging;
 using Umbraco.Core;
-using G42.UmbracoGrease.Helpers.Models;
+using G42.UmbracoGrease.G42NodeHelper.Models;
 
-namespace G42.UmbracoGrease.Helpers
+namespace G42.UmbracoGrease.G42NodeHelper
 {
     public sealed class NodeHelper
     {

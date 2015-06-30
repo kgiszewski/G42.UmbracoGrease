@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Web.Mvc;
 
-namespace G42.UmbracoGrease.Helpers
+namespace G42.UmbracoGrease.G42TransformationHelper
 {
     public static class TransformationHelper
     {

@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
-using G42.UmbracoGrease.AppSettings.PetaPocoModels;
+using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.Reports.PetaPocoModels;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;

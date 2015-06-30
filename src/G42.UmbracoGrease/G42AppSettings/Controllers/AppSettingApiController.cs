@@ -1,11 +1,11 @@
 ﻿using System.Web.Http;
-using G42.UmbracoGrease.AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.Filters;
+using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using Umbraco.Core.Logging;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
 
-namespace G42.UmbracoGrease.AppSettings.Controllers
+namespace G42.UmbracoGrease.G42AppSettings.Controllers
 {
     [PluginController("G42UmbracoGrease")]
     public class AppSettingsApiController : UmbracoAuthorizedJsonController

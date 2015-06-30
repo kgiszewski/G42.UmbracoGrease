@@ -1,4 +1,4 @@
-﻿using G42.UmbracoGrease.Helpers;
+﻿using G42.UmbracoGrease.G42NodeHelper;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 

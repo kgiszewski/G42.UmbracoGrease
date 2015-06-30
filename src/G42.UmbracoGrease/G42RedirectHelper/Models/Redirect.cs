@@ -1,4 +1,4 @@
-﻿namespace G42.UmbracoGrease.Helpers.Models
+﻿namespace G42.UmbracoGrease.G42RedirectHelper.Models
 {
     public class Redirect
     {

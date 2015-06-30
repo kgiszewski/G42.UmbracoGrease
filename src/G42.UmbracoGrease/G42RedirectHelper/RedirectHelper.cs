@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using G42.UmbracoGrease.Helpers.Models;
+using G42.UmbracoGrease.G42RedirectHelper.Models;
 using Umbraco.Core.Logging;
 using Umbraco.Web;
 using Umbraco.Core.Models;
 
-namespace G42.UmbracoGrease.Helpers
+namespace G42.UmbracoGrease.G42RedirectHelper
 {
     public static class RedirectHelper
     {

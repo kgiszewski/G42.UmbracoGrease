@@ -5,8 +5,8 @@ using System.Text.RegularExpressions;
 using System.Security;
 using System.Web;
 using System.Web.Mvc;
-using G42.UmbracoGrease.Helpers;
-using G42.UmbracoGrease.Helpers.Models;
+using G42.UmbracoGrease.G42TransformationHelper;
+using G42.UmbracoGrease.G42TransformationHelper.Models;
 using HtmlAgilityPack;
 
 namespace G42.UmbracoGrease.Extensions

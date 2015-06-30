@@ -2,7 +2,7 @@
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace G42.UmbracoGrease.Helpers.Models
+namespace G42.UmbracoGrease.G42NodeHelper.Models
 {
     public class Site
     {

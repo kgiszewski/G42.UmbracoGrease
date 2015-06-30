@@ -261,10 +261,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Applications\GreaseApplication.cs" />
-    <Compile Include="Helpers\Controllers\NodeHelperApiController.cs" />
+    <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
     <Compile Include="UmbracoApplications\GreaseUmbracoApplication.cs" />
-    <Compile Include="AppSettings\Controllers\AppSettingApiController.cs" />
-    <Compile Include="AppSettings\PetaPocoModels\G42GreaseAppSetting.cs" />
+    <Compile Include="G42AppSettings\Controllers\AppSettingApiController.cs" />
+    <Compile Include="G42AppSettings\PetaPocoModels\G42GreaseAppSetting.cs" />
     <Compile Include="Filters\CamelCaseFilter.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Reports\Controllers\ReportsApi.cs" />
@@ -277,20 +277,21 @@
     <Compile Include="Events\PackageActions.cs" />
     <Compile Include="Events\RegisterViewEngine.cs" />
     <Compile Include="Helpers\FormHelper.cs" />
-    <Compile Include="Helpers\TransformationHelper.cs" />
+    <Compile Include="G42TransformationHelper\TransformationHelper.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Helpers\IpHelper.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
-    <Compile Include="Helpers\NodeHelper.cs" />
-    <Compile Include="Helpers\RedirectHelper.cs" />
+    <Compile Include="G42NodeHelper\NodeHelper.cs" />
+    <Compile Include="G42RedirectHelper\RedirectHelper.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\DbHelper.cs" />
-    <Compile Include="Interfaces\IErrorHandler.cs" />
-    <Compile Include="Helpers\Models\Site.cs" />
-    <Compile Include="Helpers\Models\ImageTag.cs" />
-    <Compile Include="Helpers\Models\ImageTransformation.cs" />
-    <Compile Include="Helpers\Models\Redirect.cs" />
+    <Compile Include="Interfaces\IG42ErrorHandler.cs" />
+    <Compile Include="G42NodeHelper\Models\Site.cs" />
+    <Compile Include="G42TransformationHelper\Models\ImageTag.cs" />
+    <Compile Include="G42TransformationHelper\Models\ImageTransformation.cs" />
+    <Compile Include="G42RedirectHelper\Models\Redirect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UmbracoApplications\Models\DefaultErrorHandler.cs" />
     <Compile Include="ViewEngines\G42ViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -308,8 +309,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppSettings\Models\" />
     <Folder Include="App_Plugins\G42UmbracoGrease\AppSettings\css\" />
+    <Folder Include="G42AppSettings\Cache\" />
+    <Folder Include="G42NodeHelper\Helpers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

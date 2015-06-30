@@ -4,7 +4,7 @@ using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence;
 
-namespace G42.UmbracoGrease.AppSettings.PetaPocoModels
+namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
 {
     [PrimaryKey("id")]
     [TableName("G42GreaseAppSettings")]
