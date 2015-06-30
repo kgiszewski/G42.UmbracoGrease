@@ -10,6 +10,8 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
 {
     public class DefaultErrorHandler : IG42ErrorHandler
     {
+        private static DateTime _lastSentOn = DateTime.MinValue;
+
         public void Execute(object sender, EventArgs e, Exception ex)
         {
             var context = HttpContext.Current;
@@ -18,7 +20,7 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
 
             var sendFrom = G42GreaseAppSetting.GetAppSetting("G42.UmbracoGrease:ErrorEmailFrom");
 
-            if (sendTo != null && sendFrom != null)
+            if (sendTo != null && sendFrom != null && DateTime.UtcNow.AddMinutes(-5) > _lastSentOn)
             {
                 var sendToList = sendTo.Value.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
 
@@ -34,6 +36,8 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
                             ex.Message,
                             true);
                     }
+
+                    _lastSentOn = DateTime.UtcNow;
                 }
 
                 context.Server.ClearError();
