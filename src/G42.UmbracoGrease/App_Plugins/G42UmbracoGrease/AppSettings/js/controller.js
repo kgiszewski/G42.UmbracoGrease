@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').controller('G42UmbracoGreaseAppSettingsDashboardController', function ($scope, $routeParams, greaseAppSettingsService) {
+﻿angular.module('umbraco').controller('G42UmbracoGreaseAppSettingsDashboardController', function ($scope, $routeParams, $timeout, greaseAppSettingsService) {
 
     $scope.model = {};
     $scope.model.Name = decodeURIComponent($routeParams.id);
@@ -6,8 +6,11 @@
     $scope.model.data = [];
     $scope.model.new = {};
 
+    $scope.isLoading = true;
+
     greaseAppSettingsService.getAll().then(function(data) {
         $scope.model.data = data;
+        $scope.isLoading = false;
     });
 
     $scope.add = function() {
@@ -17,9 +20,14 @@
         });
     }
 
-    $scope.save = function(setting) {
+    $scope.save = function (setting) {
+        setting.isSaving = true;
+
         greaseAppSettingsService.saveAppSetting(setting.key, setting.value).then(function(data) {
             console.log(data);
+            $timeout(function() {
+                setting.isSaving = false;
+            }, 500);
         });
     }
 

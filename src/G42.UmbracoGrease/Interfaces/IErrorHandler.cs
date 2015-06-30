@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace G42.UmbracoGrease.Shared.Interfaces
+namespace G42.UmbracoGrease.Interfaces
 {
     public interface IG42ErrorHandler
     {

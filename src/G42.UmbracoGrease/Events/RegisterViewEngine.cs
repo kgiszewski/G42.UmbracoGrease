@@ -1,7 +1,7 @@
 ﻿using G42.UmbracoGrease.ViewEngines;
 using Umbraco.Core;
 
-namespace G42.UmbracoGrease.Shared.Events
+namespace G42.UmbracoGrease.Events
 {
     public class RegisterViewEngine : ApplicationEventHandler
     {

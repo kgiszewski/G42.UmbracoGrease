@@ -1,0 +1,40 @@
+﻿<div ng-controller="G42UmbracoGreaseNodeHelperDashboardController">
+    <umb-panel>
+        <umb-header tabs="content.tabs">
+            <div class="umb-headline-editor-wrapper span12">
+                <h1 class="ng-binding">{{model.Name}}</h1>
+            </div>
+        </umb-header>
+        <umb-tab-view>
+            <umb-tab id="tab1" rel="content" class="app-settings-dashboard">
+                <div class="umb-pane">
+                    <div class="loading" ng-show="isLoading">
+                        <img src="/App_Plugins/G42UmbracoGrease/Assets/Images/loader.gif"/>LOADING...
+                    </div>
+                    <table ng="!isLoading" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Domain</th>
+                            <th>CreatedOn</th>
+                            <th class="text-right">Node Id</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-show="!model.data || model.data.length == 0">
+                            <td colspan="3">There are no results.</td>
+                        </tr>
+                        <tr ng-repeat="data in model.data track by $index">
+                            <td>{{data.domain}}</td>
+                            <td>{{data.createdOn}}</td>
+                            <td class="text-right">{{data.rootId}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn-warning" ng-click="reset()">Reset</button>
+                    </div>
+                </div>
+            </umb-tab>
+        </umb-tab-view>
+    </umb-panel>
+</div>

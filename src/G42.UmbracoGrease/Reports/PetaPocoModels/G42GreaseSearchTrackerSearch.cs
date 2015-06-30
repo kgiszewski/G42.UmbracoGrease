@@ -49,7 +49,7 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
 	                    [path] [nvarchar](255) NOT NULL,
 	                    [keywords] [nvarchar](255) NOT NULL,
 	                    [searchedOn] [datetime] NOT NULL,
-                     CONSTRAINT [PK_searchTrackerSearches] PRIMARY KEY CLUSTERED 
+                     CONSTRAINT [PK_G42GreaseSearchTrackerSearches] PRIMARY KEY CLUSTERED 
                     (
 	                    [id] ASC
                     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) 

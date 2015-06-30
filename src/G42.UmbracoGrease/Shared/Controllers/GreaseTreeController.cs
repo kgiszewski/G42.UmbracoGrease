@@ -18,6 +18,9 @@ namespace G42.UmbracoGrease.Shared.Controllers
                 //app_settings
                 _addNode(nodes, queryStrings, "AppSettings", "", "App Settings", "icon-settings", "/G42UmbracoGrease/G42UmbracoGreaseTree/app-settings-dashboard/App%20Settings");
 
+                //nodeHelper
+                _addNode(nodes, queryStrings, "NodeHelper", "", "Node Helper", "icon-globe", "/G42UmbracoGrease/G42UmbracoGreaseTree/node-helper-dashboard/Node%20Helper");
+
                 //404
                 _addNode(nodes, queryStrings, "404Tracker", "", "404 Tracker", "icon-block", "/G42UmbracoGrease/G42UmbracoGreaseTree/_404-tracker-dashboard/404%20Tracker");
 

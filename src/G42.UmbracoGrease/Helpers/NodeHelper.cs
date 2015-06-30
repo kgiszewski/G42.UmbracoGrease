@@ -5,8 +5,8 @@ using System.Web;
 using Umbraco.Web;
 using umbraco.cms.businesslogic.web;
 using Umbraco.Core.Logging;
-using G42.UmbracoGrease.Models;
 using Umbraco.Core;
+using G42.UmbracoGrease.Helpers.Models;
 
 namespace G42.UmbracoGrease.Helpers
 {
@@ -44,9 +44,16 @@ namespace G42.UmbracoGrease.Helpers
 
         public List<Site> Sites = new List<Site>();
 
+        public DateTime CreatedOn { get; private set; }
+
         public Site CurrentSite
         {
             get { return Sites.FirstOrDefault(x => x.Domain == HttpContext.Current.Request.Url.Host); }
+        }
+
+        public static bool IsInitialized()
+        {
+            return _instance != null;
         }
 
         public static NodeHelper Instance
@@ -60,6 +67,8 @@ namespace G42.UmbracoGrease.Helpers
                         if (_instance == null)
                         {
                             _instance = new NodeHelper();
+
+                            _instance.CreatedOn = DateTime.UtcNow;
 
                             var umbHelper = new UmbracoHelper(UmbracoContext.Current);
 

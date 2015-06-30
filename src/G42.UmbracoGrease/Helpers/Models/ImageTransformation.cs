@@ -1,4 +1,4 @@
-﻿namespace G42.UmbracoGrease.Models
+﻿namespace G42.UmbracoGrease.Helpers.Models
 {
     public class ImageTransformation
     {

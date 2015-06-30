@@ -9,7 +9,7 @@ using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 
-namespace G42.UmbracoGrease.Shared.Events
+namespace G42.UmbracoGrease.Events
 {
     public class PackageActions : ApplicationEventHandler
     {

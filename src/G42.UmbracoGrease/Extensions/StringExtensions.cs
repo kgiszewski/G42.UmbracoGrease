@@ -6,10 +6,8 @@ using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using G42.UmbracoGrease.Helpers;
-using G42.UmbracoGrease.Models;
+using G42.UmbracoGrease.Helpers.Models;
 using HtmlAgilityPack;
-using Umbraco.Core.Logging;
-using Umbraco.Web;
 
 namespace G42.UmbracoGrease.Extensions
 {

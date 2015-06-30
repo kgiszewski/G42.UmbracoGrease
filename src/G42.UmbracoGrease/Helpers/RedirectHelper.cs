@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using G42.UmbracoGrease.Helpers.Models;
 using Umbraco.Core.Logging;
 using Umbraco.Web;
 using Umbraco.Core.Models;
-using G42.UmbracoGrease.Models;
 
 namespace G42.UmbracoGrease.Helpers
 {

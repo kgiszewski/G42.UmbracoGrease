@@ -27,7 +27,7 @@ namespace G42.UmbracoGrease.AppSettings.PetaPocoModels
 
         public static void SaveAppSetting(string key, string value)
         {
-            var setting = DbHelper.DbContext.Database.SingleOrDefault<G42GreaseAppSetting>("SELECT * FROM G42GreaseAppSettings WHERE [key] = @0", key);
+            var setting = GetAppSetting(key);
 
             setting.UpdatedOn = DateTime.UtcNow;
 
@@ -45,19 +45,29 @@ namespace G42.UmbracoGrease.AppSettings.PetaPocoModels
         {
             if (!string.IsNullOrEmpty(key))
             {
-                LogHelper.Info<G42GreaseAppSetting>("Adding new key...");
+                var setting = GetAppSetting(key);
 
-                if (value == null)
+                if (setting == null)
                 {
-                    value = "";
+
+                    LogHelper.Info<G42GreaseAppSetting>("Adding new key...");
+
+                    if (value == null)
+                    {
+                        value = "";
+                    }
+
+                    DbHelper.DbContext.Database.Save(new G42GreaseAppSetting()
+                    {
+                        Key = key,
+                        Value = value,
+                        UpdatedOn = DateTime.UtcNow
+                    });
                 }
-
-                DbHelper.DbContext.Database.Save(new G42GreaseAppSetting()
+                else
                 {
-                    Key = key,
-                    Value = value,
-                    UpdatedOn = DateTime.UtcNow
-                });
+                    LogHelper.Info<G42GreaseAppSetting>("Key exists already=>" + key);
+                }
             }
         }
 

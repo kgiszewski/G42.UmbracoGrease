@@ -1,0 +1,6 @@
+﻿.table th.text-right, .table td.text-right {
+    text-align: right;
+}
+
+body table.table-striped tbody>tr:nth-child(even)>td {background: initial !important; background-color: #eee !important; }
+body table.table-striped tbody>tr:nth-child(odd)>td {background: initial !important; background-color: #fff !important; }
