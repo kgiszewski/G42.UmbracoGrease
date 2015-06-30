@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using G42.UmbracoGrease.G42AppSettings.Cache;
 using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence;
@@ -17,12 +19,12 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
 
         public static G42GreaseAppSetting GetAppSetting(string key)
         {
-            return DbHelper.DbContext.Database.SingleOrDefault<G42GreaseAppSetting>("SELECT * FROM G42GreaseAppSettings WHERE [key] = @0", key);
+            return GetAll().FirstOrDefault(x => x.Key == key);
         }
 
         public static IEnumerable<G42GreaseAppSetting> GetAll()
         {
-            return DbHelper.DbContext.Database.Fetch<G42GreaseAppSetting>("SELECT * FROM G42GreaseAppSettings ORDER BY [key]");
+            return AppSettingsCache.Instance.Items;
         }
 
         public static void SaveAppSetting(string key, string value)
@@ -34,11 +36,15 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
             setting.Value = value;
 
             DbHelper.DbContext.Database.Save(setting);
+
+            AppSettingsCache.Clear();
         }
 
         public static void RemoveAppSetting(int id)
         {
             DbHelper.DbContext.Database.Execute("DELETE FROM G42GreaseAppSettings WHERE id = @0", id);
+
+            AppSettingsCache.Clear();
         }
 
         public static void AddAppSetting(string key, string value)
@@ -49,7 +55,6 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
 
                 if (setting == null)
                 {
-
                     LogHelper.Info<G42GreaseAppSetting>("Adding new key...");
 
                     if (value == null)
@@ -63,6 +68,8 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
                         Value = value,
                         UpdatedOn = DateTime.UtcNow
                     });
+
+                    AppSettingsCache.Clear();
                 }
                 else
                 {

@@ -243,8 +243,6 @@
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\node-helper-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\search-tracker-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\_404-tracker-dashboard.html" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Fonts\grease.svg" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Fonts\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\HideTab\css\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\HideTab\js\directives.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\HideTab\views\hideTab.html" />
@@ -261,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Applications\GreaseApplication.cs" />
+    <Compile Include="G42AppSettings\Cache\AppSettingsCache.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
     <Compile Include="UmbracoApplications\GreaseUmbracoApplication.cs" />
     <Compile Include="G42AppSettings\Controllers\AppSettingApiController.cs" />
@@ -298,9 +297,6 @@
     <Content Include="packages.config" />
     <Content Include="App_Plugins\G42UmbracoGrease\package.manifest" />
     <Content Include="Views\Partials\ImageTransformations.cshtml" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Fonts\grease.eot" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Fonts\grease.ttf" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Fonts\grease.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -310,7 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\G42UmbracoGrease\AppSettings\css\" />
-    <Folder Include="G42AppSettings\Cache\" />
     <Folder Include="G42NodeHelper\Helpers\" />
   </ItemGroup>
   <PropertyGroup>

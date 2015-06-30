@@ -14,7 +14,6 @@
         }
       ],
     "css": [
-        "~/App_Plugins/G42UmbracoGrease/Fonts/styles.css",
         "~/App_Plugins/G42UmbracoGrease/_404Tracker/css/styles.css",
         "~/App_Plugins/G42UmbracoGrease/HideTab/css/styles.css",
         "~/App_Plugins/G42UmbracoGrease/SearchTracker/css/styles.css",

@@ -36,7 +36,7 @@ namespace G42.UmbracoGrease.G42NodeHelper.Controllers
         [HttpPost]
         public object Reset()
         {
-            NodeHelper.Instance = null;
+            NodeHelper.Clear();
 
             LogHelper.Info<NodeHelperApiController>("Reset");
 

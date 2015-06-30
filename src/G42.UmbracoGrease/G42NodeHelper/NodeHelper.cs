@@ -103,10 +103,15 @@ namespace G42.UmbracoGrease.G42NodeHelper
                 }
                 return _instance;
             }
-            set
+            private set
             {
                 _instance = value;
             }
+        }
+        public static void Clear()
+        {
+            LogHelper.Info<NodeHelper>("Clearing...");
+            _instance = null;
         }
     }
 }
