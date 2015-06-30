@@ -90,7 +90,7 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
 	                    [key] [nvarchar](150) NOT NULL,
 	                    [value] [nvarchar](150) NOT NULL,
 	                    [updatedOn] [datetime] NOT NULL,
-                     CONSTRAINT [PK_NdAppSettings] PRIMARY KEY CLUSTERED 
+                     CONSTRAINT [PK_GreaseAppSettings] PRIMARY KEY CLUSTERED 
                     (
 	                    [id] ASC
                     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
