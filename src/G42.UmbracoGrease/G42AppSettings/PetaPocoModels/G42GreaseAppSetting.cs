@@ -27,6 +27,11 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
             return AppSettingsCache.Instance.Items;
         }
 
+        internal static IEnumerable<G42GreaseAppSetting> GetAllFromDb()
+        {
+            return DbHelper.DbContext.Database.Fetch<G42GreaseAppSetting>("SELECT * FROM G42GreaseAppSettings ORDER BY [key]");
+        }
+
         public static void SaveAppSetting(string key, string value)
         {
             var setting = GetAppSetting(key);

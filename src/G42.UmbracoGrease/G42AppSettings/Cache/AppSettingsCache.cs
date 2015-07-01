@@ -39,7 +39,7 @@ namespace G42.UmbracoGrease.G42AppSettings.Cache
 
                             _instance.CreatedOn = DateTime.UtcNow;
 
-                            _instance.Items = DbHelper.DbContext.Database.Fetch<G42GreaseAppSetting>("SELECT * FROM G42GreaseAppSettings ORDER BY [key]");
+                            _instance.Items = G42GreaseAppSetting.GetAllFromDb();
 
                             LogHelper.Info<AppSettingsCache>("Loaded from DB");
                         }
