@@ -12,6 +12,8 @@ For example, Grease currently offers the following functionality:
   * `FormHelper`, great for sending emails.
   * `TransformationHelper`, render a partial as a string.  Great for altering how the RTE would normally render things like image markup.
   * `WebHelper` - Easily `GET` a URL and return the resource as a string.
+  * `IpHelper` - Easily get the IP address of the visitor.
+  * `DbHelper` - Easily get a reference to the Umbraco DB conntection.
 * AppSettings - Store key/value pairs cached (sort of like REDIS)
 * 404 Tracker - A dashboard of URL's that have 404'd (supports multisite)
 * Search Tracker - A dashboard of keyword usage from internal searches (supports
