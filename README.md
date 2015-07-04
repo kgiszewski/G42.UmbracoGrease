@@ -14,14 +14,14 @@ For example, Grease currently offers the following functionality:
   * `WebHelper` - Easily `GET` a URL and return the resource as a string.
   * `IpHelper` - Easily get the IP address of the visitor.
   * `DbHelper` - Easily get a reference to the Umbraco DB conntection.
-* AppSettings - Store key/value pairs cached (sort of like REDIS)
-* 404 Tracker - A dashboard of URL's that have 404'd (supports multisite)
-* Search Tracker - A dashboard of keyword usage from internal searches (supports
+* AppSettings - Store key/value pairs cached (sort of like Redis).
+* 404 Tracker - A dashboard of URL's that have 404'd (supports multisite).
+* Search Tracker - A dashboard of keyword usage from internal searches (supports multisite).
 * Email 500 errors - Debouced at an internval of 5 minutes, admins can get notified when something bad happens.
 * String, Int and IPublishedContent Extensions such as (just examples):
   * `ToHumanReadableBytes(this int len)` - Outputs 1.25MB
   * `TruncateAtWord(this string text, int maxCharacters, string trailingStringIfTextCut = "…")` - Outputs words at a specified character limit but won't split a word in half, adds an ellipsis or custom character at the end.  For teasers and search results.
-  * `ToOrdinal(this int input) - Outputs `1st, 2nd, 3rd, etc`
+  * `ToOrdinal(this int input)` - Outputs `1st, 2nd, 3rd, etc`
 
 ##Install
 Install with NuGet: `Install-Package G42.UmbracoGrease` https://www.nuget.org/packages/G42.UmbracoGrease/
