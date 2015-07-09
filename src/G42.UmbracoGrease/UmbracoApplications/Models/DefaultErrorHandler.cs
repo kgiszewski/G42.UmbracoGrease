@@ -16,9 +16,9 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
         {
             var context = HttpContext.Current;
 
-            var sendTo = G42GreaseAppSetting.GetAppSetting("G42.UmbracoGrease:ErrorEmailToCsv");
+            var sendTo = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailToCsv");
 
-            var sendFrom = G42GreaseAppSetting.GetAppSetting("G42.UmbracoGrease:ErrorEmailFrom");
+            var sendFrom = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailFrom");
 
             if (sendTo != null && sendFrom != null && DateTime.UtcNow.AddMinutes(-5) > _lastSentOn)
             {
@@ -31,7 +31,7 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
                     foreach (var email in sendToList)
                     {
                         FormHelper.SendMail(email.Trim(),
-                            G42GreaseAppSetting.GetAppSetting("G42.UmbracoGrease:ErrorEmailFrom").Value,
+                            G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailFrom").Value,
                             "Error reported by: " + HttpContext.Current.Request.Url.AbsoluteUri,
                             ex.Message,
                             true);
@@ -42,7 +42,7 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
 
                 context.Server.ClearError();
 
-                context.Response.Redirect(G42GreaseAppSetting.GetAppSetting("G42.UmbracoGrease:ErrorRedirectTo").Value);
+                context.Response.Redirect(G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorRedirectTo").Value);
             }
         }
     }

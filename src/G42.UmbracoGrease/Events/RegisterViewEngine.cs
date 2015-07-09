@@ -12,7 +12,7 @@ namespace G42.UmbracoGrease.Events
         {
             try
             {
-                var disableSetting = G42GreaseAppSetting.GetAppSetting("G42.UmbracoGrease:ViewEngineDisabled");
+                var disableSetting = G42GreaseAppSetting.Get("G42.UmbracoGrease:ViewEngineDisabled");
 
                 if (disableSetting == null || disableSetting.Value != "1")
                 {

@@ -14,7 +14,7 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
         [CamelCasingFilter]
         public object Get(string key)
         {
-            return G42GreaseAppSetting.GetAppSetting(key);
+            return G42GreaseAppSetting.Get(key);
         }
 
         [HttpGet]
@@ -27,7 +27,7 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
         [HttpPost]
         public object Save(G42GreaseAppSetting model)
         {
-            G42GreaseAppSetting.SaveAppSetting(model.Key, model.Value);
+            G42GreaseAppSetting.Save(model.Key, model.Value);
 
             return "saved";
         }
@@ -35,7 +35,7 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
         [HttpPost]
         public object Remove([FromBody] int id)
         {
-            G42GreaseAppSetting.RemoveAppSetting(id);
+            G42GreaseAppSetting.Remove(id);
 
             return "removed";
         }
@@ -45,7 +45,7 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
         {
             LogHelper.Info<G42GreaseAppSetting>(model.Key + " " + model.Value);
 
-            G42GreaseAppSetting.AddAppSetting(model.Key, model.Value);
+            G42GreaseAppSetting.Add(model.Key, model.Value);
 
             return "added";
         }

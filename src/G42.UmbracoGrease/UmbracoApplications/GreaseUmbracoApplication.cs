@@ -14,7 +14,7 @@ namespace G42.UmbracoGrease.UmbracoApplications
         {
             base.Application_Error(sender, e);
 
-            var disabledSetting = G42GreaseAppSetting.GetAppSetting("G42.UmbracoGrease:ErrorHandlerDisabled");
+            var disabledSetting = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorHandlerDisabled");
 
             if(disabledSetting == null || disabledSetting.Value != "1")
             {

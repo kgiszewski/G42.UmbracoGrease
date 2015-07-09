@@ -1,6 +1,9 @@
 # G42.UmbracoGrease
 ![Grease](assets/logo.png)
 
+##Manual##
+Get to the manual [here](https://github.com/kgiszewski/G42.UmbracoGrease-Manual)
+
 Grease is the stuff that's too dirty for the Umbraco core, but adds functionality that lots of ordinary websites can use.  By dirty we don't mean (low-quality), we just mean it's a collection of specific one-off type plugins, helpers and extensions.
 
 For example, Grease currently offers the following functionality:
