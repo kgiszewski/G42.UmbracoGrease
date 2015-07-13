@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
-using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.G42AppSettings.Cache
