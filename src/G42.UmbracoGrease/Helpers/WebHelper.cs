@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net;
+using System.Web;
 
 namespace G42.UmbracoGrease.Helpers
 {
@@ -27,6 +28,29 @@ namespace G42.UmbracoGrease.Helpers
 
                 return responseFromServer;
             }
+        }
+
+        public static string GetHeaders(bool useHtml = true)
+        {
+            var request = HttpContext.Current.Request;
+
+            var headers = "";
+
+            foreach (var key in request.Headers.AllKeys)
+            {
+                var open = "";
+                var close = "";
+
+                if (useHtml)
+                {
+                    open = "<p>";
+                    close = "</p>";
+                }
+
+                headers += string.Format("{2}{0}=>{1}{3}\n", key, request.Headers[key], open, close);
+            }
+
+            return headers;
         }
     }
 }

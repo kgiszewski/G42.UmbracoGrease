@@ -261,6 +261,7 @@
     <Compile Include="Applications\GreaseApplication.cs" />
     <Compile Include="G42AppSettings\Cache\AppSettingsCache.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
+    <Compile Include="Helpers\SecurityHelper.cs" />
     <Compile Include="UmbracoApplications\GreaseUmbracoApplication.cs" />
     <Compile Include="G42AppSettings\Controllers\AppSettingApiController.cs" />
     <Compile Include="G42AppSettings\PetaPocoModels\G42GreaseAppSetting.cs" />
