@@ -24,7 +24,7 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
             {
                 var sendInterval = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailInterval");
 
-                var interval = 5;
+                var interval = 15;
 
                 if (sendInterval != null)
                 {
@@ -35,12 +35,18 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
                 {
                     _sendEmail(context, ex);
                     _errorDictionary["hash"] = DateTime.UtcNow;
+
+                    LogHelper.Info<DefaultErrorHandler>(string.Format("{0}\n{1}\n{2}\n{3}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress()));
+
                 }
             }
             else
             {
                 _errorDictionary.Add(hash, DateTime.UtcNow);
                 _sendEmail(context, ex);
+
+                LogHelper.Info<DefaultErrorHandler>(string.Format("{0}\n{1}\n{2}\n{3}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress()));
+
             }
         }
 
@@ -50,15 +56,13 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
 
             var sendFrom = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailFrom");
 
-            if (sendTo != null && sendFrom != null)
+            if (sendTo != null && sendFrom != null && !string.IsNullOrEmpty(sendTo.Value) && !string.IsNullOrEmpty(sendFrom.Value))
             {
                 var sendToList = sendTo.Value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (sendToList.Any())
                 {
                     LogHelper.Info<GreaseUmbracoApplication>("Sending email to the G42.UmbracoGreaseErrorEmailToCsv list: " + sendTo.Value);
-
-                    LogHelper.Info<DefaultErrorHandler>(string.Format("{0}\n{1}\n{2}\n{3}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress()));
 
                     var message = string.Format("<p>{0}</p>\n{1}\n<p>{2}</p>\n", ex.Message, WebHelper.GetHeaders(), IpHelper.GetIpAddress());
 
