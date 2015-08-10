@@ -76,7 +76,7 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
 	                    [id] [bigint] IDENTITY(1,1) NOT NULL,
 	                    [domain] [nvarchar](50) NOT NULL,
 	                    [path] [nvarchar](255) NOT NULL,
-	                    [referrer] [nvarchar](50) NOT NULL,
+	                    [referrer] [nvarchar](255) NOT NULL,
 	                    [userAgent] [nvarchar](max) NULL,
 	                    [updatedOn] [datetime] NOT NULL,
                      CONSTRAINT [PK_G42Grease404Tracker] PRIMARY KEY CLUSTERED 
