@@ -1,32 +1,48 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace G42.UmbracoGrease.Helpers
 {
     public static class FormHelper
     {
-        public static void SendMail(string to, string from, string subject, string body, bool html)
+        public static void SendMail(string toCsv, string from, string subject, string body, bool html, string ccCsv = "", string bccCsv = "")
         {
-            var message = new MailMessage
+            var message = new MailMessage()
             {
                 From = new MailAddress(from),
                 Subject = subject,
                 IsBodyHtml = html
             };
 
-            message.To.Add(to);
+            //to
+            message.To.Add(toCsv);
+
+            //cc
+            if (!string.IsNullOrEmpty(ccCsv))
+            {
+                message.CC.Add(ccCsv);
+            }
+
+            //bcc
+            if (!string.IsNullOrEmpty(bccCsv))
+            {
+                message.Bcc.Add(bccCsv);
+            }
+
             message.Body = body;
+
             var smtp = new SmtpClient();
             smtp.Send(message);
         }
 
-        public static void SendFormEmail(string sendToEmail, string sendFromEmail, string sendToSubject, string formattedForm)
+        public static void SendFormEmail(string sendToEmailCsv, string sendFromEmail, string sendToSubject, string formattedForm)
         {
-            if (IsValidEmail(sendToEmail) && IsValidEmail(sendFromEmail))
+            if (IsValidEmail(sendToEmailCsv) && IsValidEmail(sendFromEmail))
             {
                 var messageBody = formattedForm;
 
-                SendMail(sendToEmail, sendFromEmail, sendToSubject, messageBody, true);
+                SendMail(sendToEmailCsv, sendFromEmail, sendToSubject, messageBody, true);
             }
         }
 

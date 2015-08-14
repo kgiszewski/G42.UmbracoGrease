@@ -25,10 +25,14 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
                 var sendInterval = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailInterval");
 
                 var interval = 15;
+                var tempInterval = 0;
 
                 if (sendInterval != null)
                 {
-                    interval = Convert.ToInt32(sendInterval.Value);
+                    if (Int32.TryParse(sendInterval.Value, out interval))
+                    {
+                        interval = tempInterval;
+                    }
                 }
 
                 if (DateTime.UtcNow.AddMinutes(interval * -1) > _errorDictionary[hash])
@@ -37,7 +41,6 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
                     _errorDictionary["hash"] = DateTime.UtcNow;
 
                     LogHelper.Info<DefaultErrorHandler>(string.Format("{0}\n{1}\n{2}\n{3}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress()));
-
                 }
             }
             else

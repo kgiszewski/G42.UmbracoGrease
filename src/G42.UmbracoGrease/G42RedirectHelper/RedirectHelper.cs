@@ -11,8 +11,13 @@ namespace G42.UmbracoGrease.G42RedirectHelper
 {
     public static class RedirectHelper
     {
-        public static void EnsureAwsSsl()
+        public static void EnsureAwsSsl(bool enableLocal = false)
         {
+            if (HttpContext.Current.Request.Url.Host.EndsWith(".local") && !enableLocal)
+            {
+                return;
+            }
+
             //added this due to how the ssl forwarding is working on AWS
             if (HttpContext.Current.Request.Headers["X-Forwarded-Proto"] == "http")
             {
@@ -20,8 +25,13 @@ namespace G42.UmbracoGrease.G42RedirectHelper
             }
         }
 
-        public static void EnsureSsl()
+        public static void EnsureSsl(bool enableLocal = false)
         {
+            if (HttpContext.Current.Request.Url.Host.EndsWith(".local") && !enableLocal)
+            {
+                return;
+            }
+
             if (HttpContext.Current.Request.Url.Port != 443)
             {
                 HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri.Replace("http:", "https:"));

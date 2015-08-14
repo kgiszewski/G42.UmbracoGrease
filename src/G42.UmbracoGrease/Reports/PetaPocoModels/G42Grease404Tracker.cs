@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.G42RedirectHelper;
 using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
@@ -24,6 +25,9 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
 
         [ResultColumn]
         public DateTime LastTried { get; set; }
+
+        [Ignore]
+        private static DateTime LastPurged { get; set; }
 
         public static IEnumerable<G42Grease404Tracker> Get(int countFilter = 1)
         {
@@ -63,6 +67,46 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             {
                 LogHelper.Error<Exception>(ex.Message, ex);
             }
+
+            //would like this to not run for every 404, but for now it'll do
+            PurgeTable();
+        }
+
+        internal static void PurgeTable()
+        {
+            if (LastPurged == DateTime.MinValue)
+            {
+                LastPurged = DateTime.UtcNow;
+            }
+
+            if (LastPurged > DateTime.UtcNow.AddDays(-1))
+            {
+                return;
+            }
+
+            var customDaysSetting = G42GreaseAppSetting.Get("G42.UmbracoGrease:404retainLogDays");
+            var customDays = 90;
+            var tempCustomDays = 0;
+
+            if (customDaysSetting != null)
+            {
+                if (Int32.TryParse(customDaysSetting.Value, out tempCustomDays))
+                {
+                    customDays = tempCustomDays;
+                }
+            }
+
+            var date = DateTime.UtcNow.AddDays(customDays * -1);
+
+            LogHelper.Info<G42Grease404Tracker>("Purging 404's " + customDays + " days prior beginning =>" + date.ToString("R"));
+
+            DbHelper.DbContext.Database.Execute(@"
+                DELETE
+                FROM G42Grease404Tracker
+                WHERE updatedOn < @0
+            ", date);
+
+            LastPurged = DateTime.UtcNow;
         }
 
         internal static void CreateTable()
