@@ -56,14 +56,35 @@ namespace G42.UmbracoGrease.Extensions
             return input.Replace("http:", "https:");
         }
 
-        public static string ToAzureBlobUrl(this string input)
+        public static string ToAzureBlobUrl(this string input, bool useSameProtocolAsRequest = true)
         {
-            var domain = HttpContext.Current.Request.Url.Host;
+            var request = HttpContext.Current.Request;
+            var requestProtocol = (request.Url.AbsoluteUri.StartsWith("http://")) ? "http" : "https";
+            var domain = request.Url.Host;
 
             if (domain.EndsWith(".local"))
-                return input;
+            {
+                return input.ToDesiredProtocol(requestProtocol, useSameProtocolAsRequest);
+            }
 
-            return input.Replace("://", string.Format("://{0}/remote.axd/", domain));
+            return input.Replace("://", string.Format("://{0}/remote.axd/", domain)).ToDesiredProtocol(requestProtocol, useSameProtocolAsRequest);
+        }
+
+        public static string ToDesiredProtocol(this string input, string desiredProtocol = "http", bool performReplacement = true)
+        {
+            if (!performReplacement)
+            {
+                return input;
+            }
+
+            var formattedProtocol = string.Format("{0}://", desiredProtocol);
+
+            if (input.StartsWith("http://"))
+            {
+                return input.Replace("http://", formattedProtocol);
+            }
+
+            return input.Replace("https://", formattedProtocol);
         }
 
         public static int ToIntFromDoubleString(this string input)
