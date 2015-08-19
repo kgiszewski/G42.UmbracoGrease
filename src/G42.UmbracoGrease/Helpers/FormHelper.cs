@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace G42.UmbracoGrease.Helpers
@@ -51,7 +50,7 @@ namespace G42.UmbracoGrease.Helpers
             if (str == null)
                 return false;
 
-            var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            var regex = new Regex(@"^([\w\.\-\+]+)@([\w\-]+)((\.(\w){2,3})+)$");
             var match = regex.Match(str);
             return match.Success;
         }
