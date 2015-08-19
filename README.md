@@ -21,11 +21,12 @@ For example, Grease currently offers the following functionality:
 * AppSettings - Store key/value pairs cached (sort of like Redis).
 * 404 Tracker - A dashboard of URL's that have 404'd (supports multisite).
 * Search Tracker - A dashboard of keyword usage from internal searches (supports multisite).
-* Email 500 errors - Debouced at an internval of 5 minutes, admins can get notified when something bad happens.
+* Email 500 errors - Debounced at an internval of 15 minutes, admins can get notified when something bad happens.
 * String, Int and IPublishedContent Extensions such as (just examples):
   * `ToHumanReadableBytes(this int len)` - Outputs 1.25MB
   * `TruncateAtWord(this string text, int maxCharacters, string trailingStringIfTextCut = "…")` - Outputs words at a specified character limit but won't split a word in half, adds an ellipsis or custom character at the end.  For teasers and search results.
   * `ToOrdinal(this int input)` - Outputs `1st, 2nd, 3rd, etc`
+  * `ToAzureBlobUrl()` - Outputs Azure based blob storage media with properly formatted URL's.
 
 ##Install
 Install with NuGet: `Install-Package G42.UmbracoGrease` https://www.nuget.org/packages/G42.UmbracoGrease/
