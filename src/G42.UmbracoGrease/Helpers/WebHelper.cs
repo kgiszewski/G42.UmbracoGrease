@@ -1,32 +1,26 @@
-﻿using System.IO;
-using System.Net;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace G42.UmbracoGrease.Helpers
 {
     public static class WebHelper
     {
-        public static string MakeWebRequest(string url)
+        public async static Task<string> Get(string url)
         {
-            var request = WebRequest.Create(url);
-
-            using (var response = request.GetResponse())
+            using (var client = new HttpClient())
             {
-                var dataStream = response.GetResponseStream();
+                return await client.GetStringAsync(url).ConfigureAwait(false);
+            }
+        }
 
-                if (dataStream == null)
-                {
-                    return "";
-                }
+        public async static Task<string> Post(string url, HttpContent content)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.PostAsync(url, content).ConfigureAwait(false);
 
-                var reader = new StreamReader(dataStream);
-
-                var responseFromServer = reader.ReadToEnd();
-
-                reader.Close();
-                response.Close();
-
-                return responseFromServer;
+                return await response.Content.ReadAsStringAsync();
             }
         }
 

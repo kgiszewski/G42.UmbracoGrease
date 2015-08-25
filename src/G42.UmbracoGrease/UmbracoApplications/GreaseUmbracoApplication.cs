@@ -27,9 +27,20 @@ namespace G42.UmbracoGrease.UmbracoApplications
 
                     if (errorHandlerType == null)
                     {
-                        LogHelper.Info<IG42ErrorHandler>("Using default error handler.");
+                        LogHelper.Info<IG42ErrorHandler>("Executing default error handler...");
 
-                        new DefaultErrorHandler().Execute(sender, e, lastError);
+                        var errorHandler = new DefaultErrorHandler();
+
+                        try
+                        {
+                            errorHandler.Execute(sender, e, lastError);
+                        }
+                        catch (Exception ex)
+                        {
+                            LogHelper.Error<Exception>(ex.Message, ex);
+                        }
+
+                        LogHelper.Info<IG42ErrorHandler>("Finished executing default handler.");
                     }
                     else
                     {
