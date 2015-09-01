@@ -33,7 +33,7 @@ namespace G42.UmbracoGrease.Extensions
 
             foreach (var keyword in keywords)
             {
-                var regex = new Regex(keyword, RegexOptions.IgnoreCase);
+                var regex = new Regex(Regex.Escape(keyword), RegexOptions.IgnoreCase);
 
                 foreach (Match match in regex.Matches(text))
                 {
@@ -180,6 +180,29 @@ namespace G42.UmbracoGrease.Extensions
             }
 
             return new HtmlString(document.DocumentNode.OuterHtml);
+        }
+
+        public static string ToOnlyAlphanumeric(this string input, bool allowSpaces = true, bool allowDashes = true, bool allowUnderscore = true)
+        {
+            var rgx = new Regex("[^a-zA-Z0-9 _-]");
+            var output = rgx.Replace(Regex.Escape(input), "");
+
+            if (!allowSpaces)
+            {
+                output = output.Replace(" ", "");
+            }
+
+            if (!allowDashes)
+            {
+                output = output.Replace("-", "");
+            }
+
+            if (!allowUnderscore)
+            {
+                output = output.Replace("_", "");
+            }
+
+            return output;
         }
     }
 }

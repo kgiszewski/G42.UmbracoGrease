@@ -3,7 +3,6 @@ using System.Text;
 using G42.UmbracoGrease.G42Slack.Models;
 using G42.UmbracoGrease.Helpers;
 using Newtonsoft.Json;
-using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.G42Slack.Helpers
 {
@@ -21,8 +20,6 @@ namespace G42.UmbracoGrease.G42Slack.Helpers
             };
 
             var postBody = JsonConvert.SerializeObject(slackPost);
-
-            LogHelper.Info<string>("Posting to slack " + url + "=>" + postBody);
 
             var content = new StringContent(postBody, Encoding.UTF8, "application/json");
 
