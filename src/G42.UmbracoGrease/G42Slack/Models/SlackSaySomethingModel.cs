@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace G42.UmbracoGrease.G42Slack.Models
 {
@@ -18,5 +19,8 @@ namespace G42.UmbracoGrease.G42Slack.Models
 
         [JsonProperty(PropertyName = "text")]
         public string Text { get; set; }
+
+        [JsonProperty(PropertyName = "attachments")]
+        public IEnumerable<SlackAttachmentModel> Attachments { get; set; } 
     }
 }

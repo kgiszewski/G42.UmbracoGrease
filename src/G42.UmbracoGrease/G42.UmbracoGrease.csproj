@@ -262,6 +262,8 @@
     <Compile Include="G42AppSettings\Cache\AppSettingsCache.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
     <Compile Include="G42Slack\Helpers\SlackHelper.cs" />
+    <Compile Include="G42Slack\Models\SlackAttachmentFieldModel.cs" />
+    <Compile Include="G42Slack\Models\SlackAttachmentModel.cs" />
     <Compile Include="G42Slack\Models\SlackSaySomethingModel.cs" />
     <Compile Include="G42Slack\Models\SlackSlashCommandModel.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
