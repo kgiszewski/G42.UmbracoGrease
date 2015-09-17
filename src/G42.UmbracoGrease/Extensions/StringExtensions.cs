@@ -182,24 +182,24 @@ namespace G42.UmbracoGrease.Extensions
             return new HtmlString(document.DocumentNode.OuterHtml);
         }
 
-        public static string ToOnlyAlphanumeric(this string input, bool allowSpaces = true, bool allowDashes = true, bool allowUnderscore = true)
+        public static string ToOnlyAlphanumeric(this string input, bool allowSpaces = true, bool allowDashes = true, bool allowUnderscore = true, string replacementString = "")
         {
             var rgx = new Regex("[^a-zA-Z0-9 _-]");
-            var output = rgx.Replace(Regex.Escape(input), "");
+            var output = rgx.Replace(Regex.Escape(input), replacementString);
 
             if (!allowSpaces)
             {
-                output = output.Replace(" ", "");
+                output = output.Replace(" ", replacementString);
             }
 
             if (!allowDashes)
             {
-                output = output.Replace("-", "");
+                output = output.Replace("-", replacementString);
             }
 
             if (!allowUnderscore)
             {
-                output = output.Replace("_", "");
+                output = output.Replace("_", replacementString);
             }
 
             return output;
