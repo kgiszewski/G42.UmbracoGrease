@@ -259,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Applications\GreaseApplication.cs" />
+    <Compile Include="Extensions\ExamineExtensions.cs" />
     <Compile Include="G42AppSettings\Cache\AppSettingsCache.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
     <Compile Include="G42Slack\Helpers\SlackHelper.cs" />

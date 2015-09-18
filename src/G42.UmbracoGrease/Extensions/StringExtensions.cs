@@ -204,5 +204,42 @@ namespace G42.UmbracoGrease.Extensions
 
             return output;
         }
+
+        public static IHtmlString ToAbsoluteUrls(this string input, string xpath = "//a", string attributeName = "href")
+        {
+            if (String.IsNullOrWhiteSpace(input))
+            {
+                return new HtmlString(input);
+            }
+
+            var document = new HtmlDocument();
+            document.LoadHtml(input);
+
+            var elements = document.DocumentNode.SelectNodes(xpath);
+
+            if (elements == null)
+            {
+                return new HtmlString(input);
+            }
+
+            var hostname = HttpContext.Current.Request.Url.Host;
+
+            var requestProtocol = (HttpContext.Current.Request.Url.AbsoluteUri.StartsWith("http://")) ? "http" : "https";
+
+            foreach (var element in elements)
+            {
+                var attribute = element.Attributes[attributeName];
+
+                if (attribute != null)
+                {
+                    if (!attribute.Value.StartsWith("http"))
+                    {
+                        attribute.Value = string.Format("{0}://{1}{2}", requestProtocol, hostname, attribute.Value);
+                    }
+                }
+            }
+
+            return new HtmlString(document.DocumentNode.OuterHtml);
+        }
     }
 }
