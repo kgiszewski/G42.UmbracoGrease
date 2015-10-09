@@ -38,27 +38,36 @@ namespace G42.UmbracoGrease.G42RedirectHelper
             }
         }
 
-        public static void TryRedirect(IPublishedContent rootRedirectNode, string redirectDoctypeAlias, Func<IPublishedContent, Redirect> mapRedirectFunc)
+        public static bool TryRedirect(IPublishedContent rootRedirectNode, string redirectDoctypeAlias, Func<IPublishedContent, Redirect> mapRedirectFunc)
         {
             if (HttpContext.Current == null)
-                return;
+                return false;
 
             var context = HttpContext.Current;
 
             var redirects = _getRedirectConfig(rootRedirectNode, mapRedirectFunc, redirectDoctypeAlias);
 
-            var redirect = redirects.FirstOrDefault(x => x.UrlToRedirect == GetCurrentPath());
+            var redirect = redirects.FirstOrDefault(x => x.UrlToRedirect.ToLower() == GetCurrentPath().ToLower());
+
+            LogHelper.Info<Redirect>("Path that Grease is looking for =>" + GetCurrentPath());
+
+            foreach (var x in redirects)
+            {
+                LogHelper.Info<Redirect>("Redirect registered=>" + x.UrlToRedirect);
+            }
 
             if (redirect != null)
             {
                 LogHelper.Info<Redirect>(string.Format("Redirecting '{0}' to '{1}' with status {2}", redirect.UrlToRedirect, redirect.RedirectToUrl, redirect.StatusCode));
                 context.Response.StatusCode = redirect.StatusCode;
                 context.Response.RedirectLocation = redirect.RedirectToUrl;
-
-                context.Response.Flush();  
+                context.Response.Flush();
+                return true;
             }
 
             LogHelper.Info<Redirect>(string.Format("No redirect found for '{0}', 404 issued", GetCurrentPath()));
+
+            return false;
         }
 
         public static void SetHttpStatus(int statusCode)
