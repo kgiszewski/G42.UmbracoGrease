@@ -49,13 +49,6 @@ namespace G42.UmbracoGrease.G42RedirectHelper
 
             var redirect = redirects.FirstOrDefault(x => x.UrlToRedirect.ToLower() == GetCurrentPath().ToLower());
 
-            LogHelper.Info<Redirect>("Path that Grease is looking for =>" + GetCurrentPath());
-
-            foreach (var x in redirects)
-            {
-                LogHelper.Info<Redirect>("Redirect registered=>" + x.UrlToRedirect);
-            }
-
             if (redirect != null)
             {
                 LogHelper.Info<Redirect>(string.Format("Redirecting '{0}' to '{1}' with status {2}", redirect.UrlToRedirect, redirect.RedirectToUrl, redirect.StatusCode));
