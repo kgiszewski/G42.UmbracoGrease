@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Configuration;
-using System.Diagnostics;
-using System.Reflection;
 using System.Xml;
 using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
+using G42.UmbracoGrease.G42MigrationHelper;
 using G42.UmbracoGrease.Reports.PetaPocoModels;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;
@@ -13,7 +12,6 @@ namespace G42.UmbracoGrease.Events
 {
     public class PackageActions : ApplicationEventHandler
     {
-
         private string _dllVersion;
 
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
@@ -22,14 +20,13 @@ namespace G42.UmbracoGrease.Events
 
             const string versionAppsettingKey = "G42.UmbracoGrease:Version";
 
-            _dllVersion = _version();
+            _dllVersion = MigrationHelper.GetDllVersion();
 
             LogHelper.Info<PackageActions>("Determining G42.UmbracoGrease:Version to be: " + _dllVersion);
 
             if (string.IsNullOrEmpty(ConfigurationManager.AppSettings[versionAppsettingKey]))
             {
-                LogHelper.Info<PackageActions>("Running initial setup block.");
-                //_addDashboardTab();
+                LogHelper.Info<PackageActions>("Running initial setup block, this assumes a fresh install and may cause issues if DB tables already exist.");
                 _addLanguageKey();
 
                 G42Grease404Tracker.CreateTable();
@@ -43,33 +40,21 @@ namespace G42.UmbracoGrease.Events
             }
             else
             {
-                LogHelper.Info<PackageActions>("Running alternate setup block, found => " + ConfigurationManager.AppSettings[versionAppsettingKey]);
+                var currentVersion = ConfigurationManager.AppSettings[versionAppsettingKey];
 
-                if (ConfigurationManager.AppSettings[versionAppsettingKey] != _dllVersion)
+                LogHelper.Info<PackageActions>("Grease already installed => " + currentVersion);
+
+                if (currentVersion != _dllVersion)
                 {
+                    LogHelper.Info<PackageActions>(string.Format("Grease upgrading {0} to {1} ", currentVersion, _dllVersion));
+
                     var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
                     config.AppSettings.Settings.Remove(versionAppsettingKey);
                     config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);
                     config.Save();
+
+                    MigrationHelper.HandleMigrations(new Version(currentVersion));
                 }
-            }
-        }
-
-        private void _addDashboardTab()
-        {
-            var xd = new XmlDocument();
-
-            xd.LoadXml(@"<Action runat='install' undo='false' alias='AddXmlFragment' file='~/config/Dashboard.config' xpath='//* [@alias=""StartupDeveloperDashboardSection""]' position='end'><tab caption='Umbraco Grease'><control>/app_plugins/G42.UmbracoGrease/developerdashboard/views/dashboard.html</control></tab></Action>");
-
-            LogHelper.Info<PackageActions>("Running G42.UmbracoGrease dashboard action.");
-
-            try
-            {
-                PackageAction.RunPackageAction("G42.UmbracoGrease", "AddXmlFragment", xd.FirstChild);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error<PackageActions>(ex.Message, ex); 
             }
         }
 
@@ -81,14 +66,6 @@ namespace G42.UmbracoGrease.Events
 
             LogHelper.Info<PackageActions>("Running Grease language action.");
             PackageAction.RunPackageAction("G42.UmbracoGrease", "AddLanguageFileKey", xd.FirstChild);
-        }
-
-        private string _version()
-        {
-            var asm = Assembly.GetExecutingAssembly();
-            var fvi = FileVersionInfo.GetVersionInfo(asm.Location);
-
-            return fvi.FileVersion;
         }
     }
 }

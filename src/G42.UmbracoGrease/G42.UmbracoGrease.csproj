@@ -267,6 +267,9 @@
     <Compile Include="G42Slack\Models\SlackAttachmentModel.cs" />
     <Compile Include="G42Slack\Models\SlackSaySomethingModel.cs" />
     <Compile Include="G42Slack\Models\SlackSlashCommandModel.cs" />
+    <Compile Include="G42MigrationHelper\MigrationHelper.cs" />
+    <Compile Include="G42MigrationHelper\Migrations\MigrationBase.cs" />
+    <Compile Include="G42MigrationHelper\Migrations\TargetVersionZeroSixTwo.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
     <Compile Include="UmbracoApplications\GreaseUmbracoApplication.cs" />
     <Compile Include="G42AppSettings\Controllers\AppSettingApiController.cs" />
