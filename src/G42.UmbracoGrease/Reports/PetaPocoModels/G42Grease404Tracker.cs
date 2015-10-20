@@ -19,6 +19,7 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
         public string Referrer { get; set; }
         public string UserAgent { get; set; }
         public DateTime UpdatedOn { get; set; }
+        public string IpAddress { get; set; }
 
         [ResultColumn]
         public int Count { get; set; }
@@ -60,6 +61,7 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
                     Path = RedirectHelper.GetCurrentPath(),
                     Referrer = referrer,
                     UserAgent = context.Request.UserAgent,
+                    IpAddress = IpHelper.GetIpAddress(),
                     UpdatedOn = DateTime.UtcNow
                 });
             }
@@ -122,6 +124,7 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
 	                    [path] [nvarchar](255) NOT NULL,
 	                    [referrer] [nvarchar](255) NOT NULL,
 	                    [userAgent] [nvarchar](max) NULL,
+                        [ipAddress] [nvarchar](50) DEFAULT NULL,
 	                    [updatedOn] [datetime] NOT NULL,
                      CONSTRAINT [PK_G42Grease404Tracker] PRIMARY KEY CLUSTERED 
                     (
