@@ -24,10 +24,10 @@ namespace G42.UmbracoGrease.G42MigrationHelper
 
             foreach (var migration in migrations)
             {
+                LogHelper.Info<MigrationHelper>("Examining migration =>" + migration.TargetVersion.ToString());
+
                 if (migration.TargetVersion > currentVersion)
                 {
-                    LogHelper.Info<MigrationHelper>("Examining migration =>" + migration.TargetVersion.ToString());
-
                     LogHelper.Info<MigrationHelper>("Executing...");
 
                     try
