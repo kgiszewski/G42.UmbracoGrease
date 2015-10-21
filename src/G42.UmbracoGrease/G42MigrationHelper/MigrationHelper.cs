@@ -17,14 +17,13 @@ namespace G42.UmbracoGrease.G42MigrationHelper
                 .Assembly.GetTypes()
                 .Where(t => t.IsSubclassOf(typeof (MigrationBase)) && !t.IsAbstract)
                 .Select(t => (MigrationBase) Activator.CreateInstance(t))
-                .OrderBy(x => x.TargetVersion.Major)
-                .ThenBy(x => x.TargetVersion.Minor)
-                .ThenBy(x => x.TargetVersion.Build)
-                .ThenBy(x => x.TargetVersion.Revision);
+                .OrderBy(x => x.TargetVersion.Major);
+
+            LogHelper.Info<MigrationHelper>("Total Migrations=>" + migrations.Count());
 
             foreach (var migration in migrations)
             {
-                LogHelper.Info<MigrationHelper>("Examining migration =>" + migration.TargetVersion.ToString());
+                LogHelper.Info<MigrationHelper>("Examining migration =>" + migration.TargetVersion);
 
                 if (migration.TargetVersion > currentVersion)
                 {
