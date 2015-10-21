@@ -17,7 +17,7 @@ namespace G42.UmbracoGrease.G42MigrationHelper
                 .Assembly.GetTypes()
                 .Where(t => t.IsSubclassOf(typeof (MigrationBase)) && !t.IsAbstract)
                 .Select(t => (MigrationBase) Activator.CreateInstance(t))
-                .OrderBy(x => x.TargetVersion.Major);
+                .OrderBy(x => x.TargetVersion);
 
             LogHelper.Info<MigrationHelper>("Total Migrations=>" + migrations.Count());
 
