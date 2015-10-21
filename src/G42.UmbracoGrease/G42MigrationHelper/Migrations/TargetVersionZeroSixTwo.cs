@@ -11,11 +11,6 @@ namespace G42.UmbracoGrease.G42MigrationHelper.Migrations
             get { return new Version("0.6.2"); }
         }
 
-        public static bool HandleMigrations()
-        {
-            return true;
-        }
-
         public override void Excecute()
         {      
             var sql = @"
