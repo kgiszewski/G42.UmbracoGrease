@@ -10,12 +10,19 @@ using G42.UmbracoGrease.G42NodeHelper.Models;
 
 namespace G42.UmbracoGrease.G42NodeHelper
 {
+    /// <summary>
+    /// Singleton class that represents a basic website structure and caches the result.
+    /// </summary>
     public sealed class NodeHelper
     {
         private static volatile NodeHelper _instance;
         private static object _padLock = new Object();
         private static Type _siteType;
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="NodeHelper"/> class from being created.
+        /// </summary>
+        /// <exception cref="Exception">You may only have one Site type.</exception>
         private NodeHelper()
         {
             var baseType = typeof (Site);
@@ -46,16 +53,32 @@ namespace G42.UmbracoGrease.G42NodeHelper
 
         public DateTime CreatedOn { get; private set; }
 
+        /// <summary>
+        /// Gets the current site.
+        /// </summary>
+        /// <value>
+        /// The current site.
+        /// </value>
         public Site CurrentSite
         {
             get { return Sites.FirstOrDefault(x => x.Domain == HttpContext.Current.Request.Url.Host); }
         }
 
+        /// <summary>
+        /// Determines whether this instance is initialized.
+        /// </summary>
+        /// <returns></returns>
         public static bool IsInitialized()
         {
             return _instance != null;
         }
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static NodeHelper Instance
         {
             get
@@ -108,6 +131,9 @@ namespace G42.UmbracoGrease.G42NodeHelper
                 _instance = value;
             }
         }
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
         public static void Clear()
         {
             LogHelper.Info<NodeHelper>("Clearing...");

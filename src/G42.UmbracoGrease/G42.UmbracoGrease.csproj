@@ -316,7 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\G42UmbracoGrease\AppSettings\css\" />
-    <Folder Include="G42NodeHelper\Helpers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

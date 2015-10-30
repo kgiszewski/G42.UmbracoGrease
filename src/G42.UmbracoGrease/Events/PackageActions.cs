@@ -10,10 +10,19 @@ using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.Events
 {
+    /// <summary>
+    /// A startup class that handles package installation tasks.
+    /// </summary>
     public class PackageActions : ApplicationEventHandler
     {
         private string _dllVersion;
 
+        /// <summary>
+        /// Overridable method to execute when Bootup is completed, this allows you to perform any other bootup logic required for the application.
+        /// Resolution is frozen so now they can be used to resolve instances.
+        /// </summary>
+        /// <param name="umbracoApplication"></param>
+        /// <param name="applicationContext"></param>
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
             base.ApplicationStarted(umbracoApplication, applicationContext);
@@ -58,6 +67,9 @@ namespace G42.UmbracoGrease.Events
             }
         }
 
+        /// <summary>
+        /// Adds the language key to the core XML language files.
+        /// </summary>
         private void _addLanguageKey()
         {
             var xd = new XmlDocument();

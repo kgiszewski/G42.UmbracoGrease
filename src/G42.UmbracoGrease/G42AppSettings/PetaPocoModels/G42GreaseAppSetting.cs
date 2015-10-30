@@ -8,6 +8,9 @@ using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
 {
+    /// <summary>
+    /// Model that represents the key/value pair in the DB.s
+    /// </summary>
     [PrimaryKey("id")]
     [TableName("G42GreaseAppSettings")]
     public class G42GreaseAppSetting
@@ -17,21 +20,39 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
         public string Value { get; set; }
         public DateTime UpdatedOn { get; set; }
 
+        /// <summary>
+        /// Gets the specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         public static G42GreaseAppSetting Get(string key)
         {
             return GetAll().FirstOrDefault(x => x.Key == key);
         }
 
+        /// <summary>
+        /// Gets all the keys.
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<G42GreaseAppSetting> GetAll()
         {
             return AppSettingsCache.Instance.Items;
         }
 
+        /// <summary>
+        /// Gets all keys from the DB.
+        /// </summary>
+        /// <returns></returns>
         internal static IEnumerable<G42GreaseAppSetting> GetAllFromDb()
         {
             return DbHelper.DbContext.Database.Fetch<G42GreaseAppSetting>("SELECT * FROM G42GreaseAppSettings ORDER BY [key]");
         }
 
+        /// <summary>
+        /// Saves the specified key in the DB.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public static void Save(string key, string value)
         {
             var setting = Get(key);
@@ -45,6 +66,10 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
             AppSettingsCache.Clear();
         }
 
+        /// <summary>
+        /// Removes the specified key by name.
+        /// </summary>
+        /// <param name="key">The key.</param>
         public static void Remove(string key)
         {
             DbHelper.DbContext.Database.Execute("DELETE FROM G42GreaseAppSettings WHERE [key] = @0", key);
@@ -52,6 +77,10 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
             AppSettingsCache.Clear();
         }
 
+        /// <summary>
+        /// Removes the specified key by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         internal static void Remove(int id)
         {
             DbHelper.DbContext.Database.Execute("DELETE FROM G42GreaseAppSettings WHERE id = @0", id);
@@ -59,6 +88,11 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
             AppSettingsCache.Clear();
         }
 
+        /// <summary>
+        /// Adds the specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public static void Add(string key, string value)
         {
             if (!string.IsNullOrEmpty(key))
@@ -90,6 +124,9 @@ namespace G42.UmbracoGrease.G42AppSettings.PetaPocoModels
             }
         }
 
+        /// <summary>
+        /// Creates the table if not exists.
+        /// </summary>
         internal static void CreateTable()
         {
             if (!DbHelper.DbContext.Database.TableExist("G42GreaseAppSettings"))

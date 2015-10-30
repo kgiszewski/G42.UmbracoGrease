@@ -8,6 +8,9 @@ using Umbraco.Web.Mvc;
 
 namespace G42.UmbracoGrease.G42NodeHelper.Controllers
 {
+    /// <summary>
+    /// API Controller that handled dashboard NodeHelper interactions.
+    /// </summary>
     [PluginController("G42UmbracoGrease")]
     public class NodeHelperApiController : UmbracoAuthorizedJsonController
     {
@@ -33,6 +36,10 @@ namespace G42.UmbracoGrease.G42NodeHelper.Controllers
             return sites;
         }
 
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public object Reset()
         {

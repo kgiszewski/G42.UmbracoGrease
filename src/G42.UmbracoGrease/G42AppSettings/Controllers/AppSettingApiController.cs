@@ -7,9 +7,17 @@ using Umbraco.Web.Mvc;
 
 namespace G42.UmbracoGrease.G42AppSettings.Controllers
 {
+    /// <summary>
+    /// API controller that handles app setting interactions.
+    /// </summary>
     [PluginController("G42UmbracoGrease")]
     public class AppSettingsApiController : UmbracoAuthorizedJsonController
     {
+        /// <summary>
+        /// Gets the specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpGet]
         [CamelCasingFilter]
         public object Get(string key)
@@ -17,6 +25,10 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
             return G42GreaseAppSetting.Get(key);
         }
 
+        /// <summary>
+        /// Gets all the keys.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [CamelCasingFilter]
         public object GetAll()
@@ -24,6 +36,11 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
             return G42GreaseAppSetting.GetAll();
         }
 
+        /// <summary>
+        /// Saves the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         public object Save(G42GreaseAppSetting model)
         {
@@ -32,6 +49,11 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
             return "saved";
         }
 
+        /// <summary>
+        /// Removes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [HttpPost]
         public object Remove([FromBody] int id)
         {
@@ -40,6 +62,11 @@ namespace G42.UmbracoGrease.G42AppSettings.Controllers
             return "removed";
         }
 
+        /// <summary>
+        /// Adds the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         public object Add(G42GreaseAppSetting model)
         {

@@ -11,8 +11,18 @@ using HtmlAgilityPack;
 
 namespace G42.UmbracoGrease.Extensions
 {
+    /// <summary>
+    /// String Extensions.
+    /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// Truncates a string after the given character count without breaking in between words. Optionally change the ellipses character.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="maxCharacters">The maximum characters.</param>
+        /// <param name="trailingStringIfTextCut">The trailing string if text cut.</param>
+        /// <returns></returns>
         public static string TruncateAtWord(this string text, int maxCharacters, string trailingStringIfTextCut = "…")
         {
             if (text == null || (text = text.Trim()).Length <= maxCharacters)
@@ -27,6 +37,12 @@ namespace G42.UmbracoGrease.Extensions
             return string.Empty;
         }
 
+        /// <summary>
+        /// Highlights the given keywords as &lt;strong&gt; tags.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="query">The query.</param>
+        /// <returns></returns>
         public static string HighlightKeywords(this string text, string query)
         {
             var keywords = query.Split(' ');
@@ -44,6 +60,11 @@ namespace G42.UmbracoGrease.Extensions
             return text;
         }
 
+        /// <summary>
+        /// Wraps unsafe text into a CDATA string.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
         public static string ToXmlSafeString(this string input)
         {
             var escapedString = SecurityElement.Escape(input);
@@ -51,11 +72,22 @@ namespace G42.UmbracoGrease.Extensions
             return input == escapedString ? input : "<![CDATA[" + input + "]]>";
         }
 
+        /// <summary>
+        /// Converts a string with http to https
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
         public static string ToHttpsUrl(this string input)
         {
             return input.Replace("http:", "https:");
         }
 
+        /// <summary>
+        /// Converts a string to a proper Azure blob URL if using Dirk Seefeld's project: https://our.umbraco.org/projects/backoffice-extensions/azure-blob-storage-provider/
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="useSameProtocolAsRequest">if set to <c>true</c> [use same protocol as request].</param>
+        /// <returns></returns>
         public static string ToAzureBlobUrl(this string input, bool useSameProtocolAsRequest = true)
         {
             var request = HttpContext.Current.Request;
@@ -70,6 +102,13 @@ namespace G42.UmbracoGrease.Extensions
             return input.Replace("://", string.Format("://{0}/remote.axd/", domain)).ToDesiredProtocol(requestProtocol, useSameProtocolAsRequest);
         }
 
+        /// <summary>
+        /// Converts a URL as a string to the desired protocol.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="desiredProtocol">The desired protocol.</param>
+        /// <param name="performReplacement">if set to <c>true</c> [perform replacement].</param>
+        /// <returns></returns>
         public static string ToDesiredProtocol(this string input, string desiredProtocol = "http", bool performReplacement = true)
         {
             if (!performReplacement)
@@ -87,11 +126,24 @@ namespace G42.UmbracoGrease.Extensions
             return input.Replace("https://", formattedProtocol);
         }
 
+        /// <summary>
+        /// Converts a double represented as a string to an int.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
         public static int ToIntFromDoubleString(this string input)
         {
             return Convert.ToInt32(Math.Truncate(Convert.ToDouble(input)));
         }
 
+        /// <summary>
+        /// Transforms image tags embedded by the Umbraco RTE to use different HTML as defined in a partial.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="classesToTransform">The classes to transform.</param>
+        /// <param name="pathToPartial">The path to partial.</param>
+        /// <returns></returns>
         public static IHtmlString TransformImages(this string input, ControllerContext context, string[] classesToTransform, string pathToPartial = "~/Views/Partials/ImageTransformations.cshtml")
         {
             if (String.IsNullOrWhiteSpace(input))
@@ -182,6 +234,15 @@ namespace G42.UmbracoGrease.Extensions
             return new HtmlString(document.DocumentNode.OuterHtml);
         }
 
+        /// <summary>
+        /// Cleans a string to be only alphanumeric, space, dash and underscore.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="allowSpaces">if set to <c>true</c> [allow spaces].</param>
+        /// <param name="allowDashes">if set to <c>true</c> [allow dashes].</param>
+        /// <param name="allowUnderscore">if set to <c>true</c> [allow underscore].</param>
+        /// <param name="replacementString">The replacement string.</param>
+        /// <returns></returns>
         public static string ToOnlyAlphanumeric(this string input, bool allowSpaces = true, bool allowDashes = true, bool allowUnderscore = true, string replacementString = "")
         {
             var rgx = new Regex("[^a-zA-Z0-9 _-]");
@@ -205,6 +266,13 @@ namespace G42.UmbracoGrease.Extensions
             return output;
         }
 
+        /// <summary>
+        /// Converts RTE text URL's from http to https.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <returns></returns>
         public static IHtmlString ToAbsoluteUrls(this string input, string xpath = "//a", string attributeName = "href")
         {
             if (String.IsNullOrWhiteSpace(input))

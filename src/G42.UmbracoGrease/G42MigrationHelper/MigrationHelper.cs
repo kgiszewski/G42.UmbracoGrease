@@ -7,8 +7,15 @@ using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.G42MigrationHelper
 {
+    /// <summary>
+    /// Class that is used to facilitate the migrations.
+    /// </summary>
     public class MigrationHelper
     {
+        /// <summary>
+        /// Handles the migrations by using reflection to grab instances of MigrationBase.
+        /// </summary>
+        /// <param name="currentVersion">The current version.</param>
         public static void HandleMigrations(Version currentVersion)
         {
             LogHelper.Info<MigrationHelper>("Handling migrations based on current version =>" + currentVersion.ToString());
@@ -45,6 +52,10 @@ namespace G42.UmbracoGrease.G42MigrationHelper
             }
         }
 
+        /// <summary>
+        /// Helper that gets the DLL version.
+        /// </summary>
+        /// <returns></returns>
         public static string GetDllVersion()
         {
             var asm = Assembly.GetExecutingAssembly();

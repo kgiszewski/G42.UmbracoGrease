@@ -4,6 +4,9 @@ using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.G42MigrationHelper.Migrations
 {
+    /// <summary>
+    /// Adds the 'ipAddress' field to an install.
+    /// </summary>
     public class TargetVersionZeroSixTwo : MigrationBase
     {
         public override Version TargetVersion

@@ -5,11 +5,17 @@ using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.G42AppSettings.Cache
 {
+    /// <summary>
+    /// Singleton class that acts as a key/value pair cache.
+    /// </summary>
     internal sealed class AppSettingsCache
     {
         private static volatile AppSettingsCache _instance;
         private static object _padLock = new Object();
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="AppSettingsCache"/> class from being created.
+        /// </summary>
         private AppSettingsCache()
         {
            
@@ -17,13 +23,23 @@ namespace G42.UmbracoGrease.G42AppSettings.Cache
 
         public DateTime CreatedOn { get; private set; }
 
+        /// <summary>
+        /// Determines whether this instance is initialized.
+        /// </summary>
+        /// <returns></returns>
         public static bool IsInitialized()
         {
             return _instance != null;
         }
 
-        public IEnumerable<G42GreaseAppSetting> Items; 
+        public IEnumerable<G42GreaseAppSetting> Items;
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static AppSettingsCache Instance
         {
             get
@@ -52,6 +68,9 @@ namespace G42.UmbracoGrease.G42AppSettings.Cache
             }
         }
 
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
         public static void Clear()
         {
             LogHelper.Info<AppSettingsCache>("Clearing...");

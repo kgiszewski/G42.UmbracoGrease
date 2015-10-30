@@ -9,8 +9,15 @@ using Umbraco.Core.Models;
 
 namespace G42.UmbracoGrease.G42RedirectHelper
 {
+    /// <summary>
+    /// Helper class that handles redirects.
+    /// </summary>
     public static class RedirectHelper
     {
+        /// <summary>
+        /// Ensures the AWS SSL when using a shared SSL environment.
+        /// </summary>
+        /// <param name="enableLocal">if set to <c>true</c> [enable local].</param>
         public static void EnsureAwsSsl(bool enableLocal = false)
         {
             if (HttpContext.Current.Request.Url.Host.EndsWith(".local") && !enableLocal)
@@ -25,6 +32,10 @@ namespace G42.UmbracoGrease.G42RedirectHelper
             }
         }
 
+        /// <summary>
+        /// Ensures the SSL on normal setups.
+        /// </summary>
+        /// <param name="enableLocal">if set to <c>true</c> [enable local].</param>
         public static void EnsureSsl(bool enableLocal = false)
         {
             if (HttpContext.Current.Request.Url.Host.EndsWith(".local") && !enableLocal)
@@ -38,6 +49,13 @@ namespace G42.UmbracoGrease.G42RedirectHelper
             }
         }
 
+        /// <summary>
+        /// Tries to find the redirect based on the requested URL.
+        /// </summary>
+        /// <param name="rootRedirectNode">The root redirect node.</param>
+        /// <param name="redirectDoctypeAlias">The redirect doctype alias.</param>
+        /// <param name="mapRedirectFunc">The map redirect function.</param>
+        /// <returns></returns>
         public static bool TryRedirect(IPublishedContent rootRedirectNode, string redirectDoctypeAlias, Func<IPublishedContent, Redirect> mapRedirectFunc)
         {
             if (HttpContext.Current == null)
@@ -63,6 +81,10 @@ namespace G42.UmbracoGrease.G42RedirectHelper
             return false;
         }
 
+        /// <summary>
+        /// Sets the HTTP status to the given value.
+        /// </summary>
+        /// <param name="statusCode">The status code.</param>
         public static void SetHttpStatus(int statusCode)
         {
             if (HttpContext.Current == null)
@@ -73,6 +95,10 @@ namespace G42.UmbracoGrease.G42RedirectHelper
             context.Response.StatusCode = statusCode;
         }
 
+        /// <summary>
+        /// Gets the current path which is useful for custom error pages.
+        /// </summary>
+        /// <returns></returns>
         public static string GetCurrentPath()
         {
             if (HttpContext.Current == null)
@@ -83,6 +109,13 @@ namespace G42.UmbracoGrease.G42RedirectHelper
             return context.Request.QueryString["aspxerrorpath"] ?? context.Request.RawUrl;
         }
 
+        /// <summary>
+        /// Gets the redirect configuration.
+        /// </summary>
+        /// <param name="rootRedirectNode">The root redirect node.</param>
+        /// <param name="mapUrlFunc">The map URL function.</param>
+        /// <param name="redirectDoctypeAlias">The redirect doctype alias.</param>
+        /// <returns></returns>
        private static IEnumerable<Redirect> _getRedirectConfig(IPublishedContent rootRedirectNode, Func<IPublishedContent, Redirect> mapUrlFunc, string redirectDoctypeAlias)
         {
             var redirects = new List<Redirect>();
