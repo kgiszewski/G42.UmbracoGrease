@@ -7,9 +7,17 @@ using Umbraco.Web.Mvc;
 
 namespace G42.UmbracoGrease.Reports.Controllers
 {
+    /// <summary>
+    /// API controller that handles custom section interactions.
+    /// </summary>
     [PluginController("G42UmbracoGrease")]
     public class ReportsApiController : UmbracoAuthorizedJsonController
     {
+        /// <summary>
+        /// Returns 404's from the DB.
+        /// </summary>
+        /// <param name="countFilter">The count filter.</param>
+        /// <returns></returns>
         [HttpGet]
         [CamelCasingFilter]
         public object Get404s(int countFilter)

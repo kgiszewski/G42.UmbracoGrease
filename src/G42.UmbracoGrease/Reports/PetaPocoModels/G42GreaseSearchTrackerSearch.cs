@@ -7,6 +7,9 @@ using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.Reports.PetaPocoModels
 {
+    /// <summary>
+    /// Model that represents a single search in the DB.
+    /// </summary>
     [TableName("G42GreaseSearchTrackerSearches")]
     [PrimaryKey("id")]
     public class G42GreaseSearchTrackerSearch
@@ -17,6 +20,10 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
         public string Keywords { get; set; }
         public DateTime SearchedOn { get; set; }
 
+        /// <summary>
+        /// Adds the specified keywords to the DB.
+        /// </summary>
+        /// <param name="keywords">The keywords.</param>
         public static void Add(string keywords)
         {
             var context = HttpContext.Current;
@@ -37,6 +44,9 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             });
         }
 
+        /// <summary>
+        /// Creates the table in the DB.
+        /// </summary>
         internal static void CreateTable()
         {
             if (!DbHelper.DbContext.Database.TableExist("G42GreaseSearchTrackerSearches"))

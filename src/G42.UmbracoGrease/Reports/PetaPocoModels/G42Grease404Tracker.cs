@@ -9,6 +9,9 @@ using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.Reports.PetaPocoModels
 {
+    /// <summary>
+    /// Model that represents the 404 data stored in the DB.
+    /// </summary>
     [PrimaryKey("id")]
     [TableName("G42Grease404Tracker")]
     public class G42Grease404Tracker
@@ -30,6 +33,11 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
         [Ignore]
         private static DateTime LastPurged { get; set; }
 
+        /// <summary>
+        /// Gets the 404s that have the minimum count specified.
+        /// </summary>
+        /// <param name="countFilter">The count filter.</param>
+        /// <returns></returns>
         public static IEnumerable<G42Grease404Tracker> Get(int countFilter = 1)
         {
             return DbHelper.DbContext.Database.Fetch<G42Grease404Tracker>(@"
@@ -43,6 +51,9 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             ", countFilter);
         }
 
+        /// <summary>
+        /// Adds a 404 to the DB.
+        /// </summary>
         public static void Add()
         {
             var context = HttpContext.Current;
@@ -74,6 +85,9 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             PurgeTable();
         }
 
+        /// <summary>
+        /// Purges the table of old items.
+        /// </summary>
         internal static void PurgeTable()
         {
             if (LastPurged == DateTime.MinValue)
@@ -111,6 +125,9 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             LastPurged = DateTime.UtcNow;
         }
 
+        /// <summary>
+        /// Creates the 404 table.
+        /// </summary>
         internal static void CreateTable()
         {
             if (!DbHelper.DbContext.Database.TableExist("G42Grease404Tracker"))

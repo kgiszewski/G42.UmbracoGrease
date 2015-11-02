@@ -4,8 +4,16 @@ using System.Web;
 
 namespace G42.UmbracoGrease.Helpers
 {
+    /// <summary>
+    /// Helper class that performs HTTP requests on behalf of the application.
+    /// </summary>
     public static class WebHelper
     {
+        /// <summary>
+        /// Gets the specified URL async and returns the response as a response string.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
         public async static Task<string> Get(string url)
         {
             using (var client = new HttpClient())
@@ -14,6 +22,12 @@ namespace G42.UmbracoGrease.Helpers
             }
         }
 
+        /// <summary>
+        /// Posts to the specified URL async and returns the response as a string.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="content">The content.</param>
+        /// <returns></returns>
         public async static Task<string> Post(string url, HttpContent content)
         {
             using (var client = new HttpClient())
@@ -24,6 +38,12 @@ namespace G42.UmbracoGrease.Helpers
             }
         }
 
+        /// <summary>
+        /// Gets the headers of the current request. Optionally add HTML formatting and skip cookies in the output.
+        /// </summary>
+        /// <param name="useHtml">if set to <c>true</c> use HTML.</param>
+        /// <param name="skipCookies">if set to <c>true</c> skip cookies.</param>
+        /// <returns></returns>
         public static string GetHeaders(bool useHtml = true, bool skipCookies = true)
         {
             var request = HttpContext.Current.Request;

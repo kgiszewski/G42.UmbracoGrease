@@ -3,8 +3,16 @@ using System.Text;
 
 namespace G42.UmbracoGrease.Helpers
 {
+    /// <summary>
+    /// Helper that handles cryptographic and security related tasks.
+    /// </summary>
     public static class SecurityHelper
     {
+        /// <summary>
+        /// Calculates the MD5 hash of the given input.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
         public static string CalculateMd5Hash(string input)
         {
             var md5 = MD5.Create();

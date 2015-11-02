@@ -5,10 +5,17 @@ using G42.UmbracoGrease.Reports.PetaPocoModels;
 
 namespace G42.UmbracoGrease.Reports.Models
 {
+    /// <summary>
+    /// Model that represents search terms used by domain in a report form.
+    /// </summary>
     public class G42GreaseSearchTableModel
     {
         public IEnumerable<DomainSearch> Data { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="G42GreaseSearchTableModel"/> class.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public G42GreaseSearchTableModel(IEnumerable<G42GreaseSearchTrackerKeyword> data)
         {
             var domains = new List<DomainSearch>();
@@ -36,12 +43,19 @@ namespace G42.UmbracoGrease.Reports.Models
 
             Data = domains.OrderBy(x => x.Domain);
         }
+
+        /// <summary>
+        /// Model that represents keywords by domain.
+        /// </summary>
         public class DomainSearch
         {
             public string Domain { get; set; }
             public IEnumerable<DomainKeyword> Keywords { get; set; }
         }
 
+        /// <summary>
+        /// Model that represents the count and last time a keyword was used.
+        /// </summary>
         public class DomainKeyword
         {
             public string Keyword { get; set; }

@@ -2,6 +2,9 @@
 
 namespace G42.UmbracoGrease.G42Slack.Models
 {
+    /// <summary>
+    /// Model that represents a Slack attachment field.
+    /// </summary>
     public class SlackAttachmentFieldModel
     {
         [JsonProperty("title")]

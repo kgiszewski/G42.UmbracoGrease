@@ -2,6 +2,9 @@
 
 namespace G42.UmbracoGrease.G42Slack.Models
 {
+    /// <summary>
+    /// Model that represents a CLI message from Slack.
+    /// </summary>
     public class SlackSlashCommandModel
     {
         public string Token { get; set; }
@@ -14,6 +17,10 @@ namespace G42.UmbracoGrease.G42Slack.Models
         public string Command { get; set; }
         public string Text { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SlackSlashCommandModel"/> class.
+        /// </summary>
+        /// <param name="kvp">The KVP.</param>
         public SlackSlashCommandModel(NameValueCollection kvp)
         {
             Token = kvp.Get("token");

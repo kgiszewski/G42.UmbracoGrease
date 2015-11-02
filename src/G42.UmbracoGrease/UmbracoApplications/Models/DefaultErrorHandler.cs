@@ -10,10 +10,19 @@ using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.UmbracoApplications.Models
 {
+    /// <summary>
+    /// The default implementation of the Grease error handler.
+    /// </summary>
     public class DefaultErrorHandler : IG42ErrorHandler
     {
         private static Dictionary<string, DateTime> _errorDictionary = new Dictionary<string, DateTime>();
 
+        /// <summary>
+        /// Handles the specific error handling logic.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="ex">The ex.</param>
         public void Execute(object sender, EventArgs e, Exception ex)
         {
             var context = HttpContext.Current;
@@ -59,6 +68,12 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
             }
         }
 
+        /// <summary>
+        /// Say something in Slack based on configured settings.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="ex">The ex.</param>
+        /// <returns></returns>
         private string _saySomethingInSlack(HttpContext context, Exception ex)
         {
             var disabled = G42GreaseAppSetting.Get("G42.UmbracoGrease:SlackErrorDisabled");
@@ -80,6 +95,11 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
             return "Slack not configured.";
         }
 
+        /// <summary>
+        /// Sends the email notifications based on configured settings.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="ex">The ex.</param>
         private void _sendEmail(HttpContext context, Exception ex)
         {
             var disabled = G42GreaseAppSetting.Get("G42.UmbracoGrease:EmailErrorDisabled");

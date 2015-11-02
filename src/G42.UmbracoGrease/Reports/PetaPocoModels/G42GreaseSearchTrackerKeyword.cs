@@ -6,6 +6,9 @@ using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.Reports.PetaPocoModels
 {
+    /// <summary>
+    /// Model that represents a search keyword in the DB.
+    /// </summary>
     [TableName("G42GreaseSearchTrackerKeywords")]
     [PrimaryKey("id")]
     public class G42GreaseSearchTrackerKeyword
@@ -16,6 +19,11 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
         public int Count { get; set; }
         public DateTime LastUsedOn { get; set; }
 
+        /// <summary>
+        /// Adds they keyword to the DB for the given domain.
+        /// </summary>
+        /// <param name="domain">The domain.</param>
+        /// <param name="keyword">The keyword.</param>
         internal static void Add(string domain, string keyword)
         {
             var currentKeyword =
@@ -33,6 +41,11 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             }
         }
 
+        /// <summary>
+        /// Gets keywords that have the minimum count specified.
+        /// </summary>
+        /// <param name="countFilter">The count filter.</param>
+        /// <returns></returns>
         public static IEnumerable<G42GreaseSearchTrackerKeyword> Get(int countFilter = 1)
         {
             return
@@ -40,6 +53,11 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
                     "SELECT * FROM G42GreaseSearchTrackerKeywords WHERE count >= @0", countFilter);
         }
 
+        /// <summary>
+        /// Inserts the specified keyword and domain.
+        /// </summary>
+        /// <param name="domain">The domain.</param>
+        /// <param name="keyword">The keyword.</param>
         private static void _insert(string domain, string keyword)
         {
             DbHelper.DbContext.Database.Save(new G42GreaseSearchTrackerKeyword()
@@ -51,6 +69,9 @@ namespace G42.UmbracoGrease.Reports.PetaPocoModels
             });
         }
 
+        /// <summary>
+        /// Creates the table in the DB.
+        /// </summary>
         internal static void CreateTable()
         {
             if (!DbHelper.DbContext.Database.TableExist("G42GreaseSearchTrackerKeywords"))

@@ -7,8 +7,22 @@ using Newtonsoft.Json;
 
 namespace G42.UmbracoGrease.G42Slack.Helpers
 {
+    /// <summary>
+    /// Wrapper class to handle posting to Slack.
+    /// </summary>
     public static class SlackHelper
     {
+        /// <summary>
+        /// Says something in Slack.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="url">The URL.</param>
+        /// <param name="channel">The channel.</param>
+        /// <param name="emoji">The emoji.</param>
+        /// <param name="attachements">The attachements.</param>
+        /// <param name="iconUrl">The icon URL.</param>
+        /// <returns></returns>
         public static string SaySomething(string text, string username, string url, string channel = "", string emoji = "", IEnumerable<SlackAttachmentModel> attachements = null, string iconUrl = "")
         {
             var slackPost = new SlackSaySomethingModel()

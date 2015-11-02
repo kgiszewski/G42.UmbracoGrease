@@ -9,8 +9,16 @@ using Umbraco.Web;
 
 namespace G42.UmbracoGrease.UmbracoApplications
 {
+    /// <summary>
+    /// Custom UmbracoApplication that extends the typical Global.asax implementations on MVC sites.
+    /// </summary>
     public class GreaseUmbracoApplication : UmbracoApplication
     {
+        /// <summary>
+        /// Extension point that handles uncaught errors.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected new void Application_Error(object sender, EventArgs e)
         {
             base.Application_Error(sender, e);

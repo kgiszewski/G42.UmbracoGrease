@@ -1,7 +1,14 @@
 ﻿namespace G42.UmbracoGrease.Helpers
 {
+    /// <summary>
+    /// Helper class to get IP address related information.
+    /// </summary>
     public static class IpHelper
     {
+        /// <summary>
+        /// Gets the IP address.
+        /// </summary>
+        /// <returns></returns>
         public static string GetIpAddress()
         {
             System.Web.HttpContext context = System.Web.HttpContext.Current;

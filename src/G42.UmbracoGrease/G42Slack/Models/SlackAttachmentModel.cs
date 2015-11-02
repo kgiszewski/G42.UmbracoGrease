@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace G42.UmbracoGrease.G42Slack.Models
 {
+    /// <summary>
+    /// Model that represents a Slack attachment.
+    /// </summary>
     public class SlackAttachmentModel
     {
         [JsonProperty("fallback")]
