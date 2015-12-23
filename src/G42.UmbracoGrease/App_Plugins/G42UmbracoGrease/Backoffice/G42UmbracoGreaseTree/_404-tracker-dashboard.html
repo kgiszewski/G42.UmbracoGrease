@@ -6,7 +6,7 @@
             </div>
         </umb-header>
         <umb-tab-view>
-            <umb-tab id="tab1" rel="content" class="_404-tracker-dashboard">
+            <umb-tab id="tab1" rel="content" class="_404-tracker-dashboard" style="display: block;">
                 <div class="umb-pane">
                     <div>
                         <label><strong>Minimum Count</strong></label>
@@ -20,36 +20,36 @@
 
                     <table ng="!isLoading" class="table table-striped">
                         <thead>
-                        <tr>
-                            <th>Domain</th>
-                            <th>URLS</th>
-                        </tr>
+                            <tr>
+                                <th>Domain</th>
+                                <th>URLS</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr ng-show="!model.data || model.data.length == 0">
-                            <td colspan="2">There are no results.</td>
-                        </tr>
-                        <tr ng-repeat="data in model.data">
-                            <td>{{data.domain}}</td>
-                            <td>
-                                <table class="url-table">
-                                    <tr>
-                                        <th>Path</th>
-                                        <th>Last Tried</th>
-                                        <th>Count</th>
-                                    </tr>
-                                    <tr ng-repeat="url in data.urls">
-                                        <td>{{url.path}}</td>
-                                        <td class="url-last-tried">{{url.lastTried}}</td>
-                                        <td class="url-count">{{url.count}}</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
+                            <tr ng-show="!model.data || model.data.length == 0">
+                                <td colspan="2">There are no results.</td>
+                            </tr>
+                            <tr ng-repeat="data in model.data">
+                                <td>{{data.domain}}</td>
+                                <td>
+                                    <table class="url-table">
+                                        <tr>
+                                            <th>Path</th>
+                                            <th>Last Tried</th>
+                                            <th>Count</th>
+                                        </tr>
+                                        <tr ng-repeat="url in data.urls">
+                                            <td>{{url.path}}</td>
+                                            <td class="url-last-tried">{{url.lastTried}}</td>
+                                            <td class="url-count">{{url.count}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-           </umb-tab>
+            </umb-tab>
         </umb-tab-view>
     </umb-panel>
 </div>
