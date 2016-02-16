@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using G42.UmbracoGrease.G42TransformationHelper;
 using G42.UmbracoGrease.G42TransformationHelper.Models;
 using HtmlAgilityPack;
+using Umbraco.Core;
+using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.Extensions
 {
@@ -45,16 +47,17 @@ namespace G42.UmbracoGrease.Extensions
         /// <returns></returns>
         public static string HighlightKeywords(this string text, string query)
         {
-            var keywords = query.Split(' ');
+            var keywords = HttpUtility.UrlDecode(query).Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries);
+
+            text = text.StripHtml();
 
             foreach (var keyword in keywords)
             {
-                var regex = new Regex(Regex.Escape(keyword), RegexOptions.IgnoreCase);
+                LogHelper.Info<string>("Highlighting=>" + keyword);
 
-                foreach (Match match in regex.Matches(text))
-                {
-                    text = text.Replace(match.Value, "<strong>" + match.Value + "</strong>");
-                }
+                var pattern = string.Format(@"(\b{0}\b)(?![^<]*>|[^<>]*<\/)", Regex.Escape(keyword));
+
+                text = Regex.Replace(text, pattern, m => string.Format("<strong>{0}</strong>", m.Value), RegexOptions.IgnoreCase);
             }
 
             return text;
