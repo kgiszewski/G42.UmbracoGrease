@@ -30,42 +30,55 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
             //computer hash of the url and error message and send email
             var hash = SecurityHelper.CalculateMd5Hash(string.Format("{0}{1}", context.Request.Url.AbsoluteUri, ex.Message));
 
+            var sendInterval = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailInterval");
+
+            var interval = 15;
+            var tempInterval = 0;
+
+            if (sendInterval != null)
+            {
+                if (!Int32.TryParse(sendInterval.Value, out interval))
+                {
+                    interval = tempInterval;
+                }
+            }
+
             if (_errorDictionary.ContainsKey(hash))
             {
-                var sendInterval = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorEmailInterval");
-
-                var interval = 15;
-                var tempInterval = 0;
-
-                if (sendInterval != null)
-                {
-                    if (Int32.TryParse(sendInterval.Value, out interval))
-                    {
-                        interval = tempInterval;
-                    }
-                }
-
                 if (DateTime.UtcNow.AddMinutes(interval * -1) > _errorDictionary[hash])
                 {
                     _sendEmail(context, ex);
 
-                    _saySomethingInSlack(context, ex);
+                    _saySomethingInSlack(context, ex, hash, interval);
 
-                    _errorDictionary["hash"] = DateTime.UtcNow;
+                    _errorDictionary[hash] = DateTime.UtcNow;
 
-                    LogHelper.Info<DefaultErrorHandler>(string.Format("{0}\n{1}\n{2}\n{3}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress()));
+                    _sendErrorToLog(context, ex, hash, interval);
                 }
             }
             else
             {
                 _errorDictionary.Add(hash, DateTime.UtcNow);
 
-                 _sendEmail(context, ex);
+                _sendEmail(context, ex);
 
-                _saySomethingInSlack(context, ex);
+                _saySomethingInSlack(context, ex, hash, interval);
 
-                LogHelper.Info<DefaultErrorHandler>(string.Format("{0}\n{1}\n{2}\n{3}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress()));
+                _sendErrorToLog(context, ex, hash, interval);
             }
+
+        }
+
+        /// <summary>
+        /// _sends the error to log.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="ex">The ex.</param>
+        /// <param name="hash">The hash.</param>
+        /// <param name="interval">The interval.</param>
+        private void _sendErrorToLog(HttpContext context, Exception ex, string hash, int interval)
+        {
+            LogHelper.Info<DefaultErrorHandler>(string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress(), hash, interval));
         }
 
         /// <summary>
@@ -73,8 +86,10 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="ex">The ex.</param>
+        /// <param name="hash">The hash.</param>
+        /// <param name="interval">The interval.</param>
         /// <returns></returns>
-        private string _saySomethingInSlack(HttpContext context, Exception ex)
+        private string _saySomethingInSlack(HttpContext context, Exception ex, string hash, int interval)
         {
             var disabled = G42GreaseAppSetting.Get("G42.UmbracoGrease:SlackErrorDisabled");
             var hookUrl = G42GreaseAppSetting.Get("G42.UmbracoGrease:SlackErrorHookUrl");
@@ -87,7 +102,7 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
                 var botNameValue = (botName != null) ? botName.Value : "GreaseBot";
                 var emojiValue = (emoji != null) ? emoji.Value : ":rotating_light:";
 
-                var message = string.Format("{0}\n{1}\n{2}\n{3}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress());
+                var message = string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n", context.Request.Url.AbsoluteUri, ex.Message, WebHelper.GetHeaders(false), IpHelper.GetIpAddress(), hash, interval);
 
                 return SlackHelper.SaySomething(message, botNameValue, hookUrl.Value, channel.Value, emojiValue);
             }
