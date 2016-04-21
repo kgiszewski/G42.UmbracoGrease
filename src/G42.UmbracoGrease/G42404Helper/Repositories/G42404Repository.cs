@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web;
 using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.G42404Helper.Models;
-using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.G42RedirectHelper;
 using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
@@ -118,19 +117,8 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
                 return;
             }
 
-            var customDaysSetting = G42GreaseAppSetting.Get("G42.UmbracoGrease:404retainLogDays");
+            //TODO: CONNECT THIS TO DASHBOARD
             var customDays = 90;
-
-            if (customDaysSetting != null)
-            {
-                var tempCustomDays = 0;
-
-                if (Int32.TryParse(customDaysSetting.Value, out tempCustomDays))
-                {
-                    customDays = tempCustomDays;
-                }
-            }
-
             var date = DateTime.UtcNow.AddDays(customDays * -1);
 
             LogHelper.Info<G42Grease404Tracker>("Purging 404's " + customDays + " days prior beginning =>" + date.ToString("R"));

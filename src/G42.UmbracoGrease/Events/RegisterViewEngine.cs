@@ -1,5 +1,4 @@
 ﻿using System;
-using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.ViewEngines;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
@@ -20,9 +19,10 @@ namespace G42.UmbracoGrease.Events
         {
             try
             {
-                var disableSetting = G42GreaseAppSetting.Get("G42.UmbracoGrease:ViewEngineDisabled");
+                //TODO: CONNECT THIS TO DASHBOARD
+                var disableSetting = false;
 
-                if (disableSetting == null || disableSetting.Value != "1")
+                if (!disableSetting)
                 {
                     LogHelper.Info<RegisterViewEngine>("Registering Grease ViewEngine...");
                     System.Web.Mvc.ViewEngines.Engines.Add(new G42ViewEngine());

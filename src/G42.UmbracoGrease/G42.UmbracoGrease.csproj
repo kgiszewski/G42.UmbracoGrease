@@ -268,7 +268,6 @@
     <Compile Include="G42404Helper\Controllers\G42404ReportsApi.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404DomainPath.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404ResultsModel.cs" />
-    <Compile Include="G42AppSettings\Cache\AppSettingsCache.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
     <Compile Include="G42Slack\Helpers\SlackHelper.cs" />
     <Compile Include="G42Slack\Models\SlackAttachmentFieldModel.cs" />
@@ -282,8 +281,6 @@
     <Compile Include="G42404Helper\Repositories\G42404Repository.cs" />
     <Compile Include="G42404Helper\Services\G42404Service.cs" />
     <Compile Include="UmbracoApplications\GreaseUmbracoApplication.cs" />
-    <Compile Include="G42AppSettings\Controllers\AppSettingApiController.cs" />
-    <Compile Include="G42AppSettings\PetaPocoModels\G42GreaseAppSetting.cs" />
     <Compile Include="Filters\CamelCaseFilter.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Reports\Controllers\ReportsApi.cs" />

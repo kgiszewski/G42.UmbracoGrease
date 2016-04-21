@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Xml;
 using G42.UmbracoGrease.Core;
-using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.G42MigrationHelper;
 using G42.UmbracoGrease.Reports.Models;
 using umbraco.cms.businesslogic.packager;
@@ -42,7 +41,6 @@ namespace G42.UmbracoGrease.Events
                 Grease.Services.G42404Service.CreateTable();
                 G42GreaseSearchTrackerKeyword.CreateTable();
                 G42GreaseSearchTrackerSearch.CreateTable();
-                G42GreaseAppSetting.CreateTable();
 
                 var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
                 config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);

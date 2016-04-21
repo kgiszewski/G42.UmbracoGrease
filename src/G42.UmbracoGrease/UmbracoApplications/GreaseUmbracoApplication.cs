@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.Interfaces;
 using G42.UmbracoGrease.UmbracoApplications.Models;
 using Umbraco.Core;
@@ -23,9 +22,10 @@ namespace G42.UmbracoGrease.UmbracoApplications
         {
             base.Application_Error(sender, e);
 
-            var disabledSetting = G42GreaseAppSetting.Get("G42.UmbracoGrease:ErrorHandlerDisabled");
+            //TODO: CONNECT THIS TO DASHBOARD
+            var disabledSetting = true;
 
-            if(disabledSetting == null || disabledSetting.Value != "1")
+            if(disabledSetting == null || disabledSetting)
             {
                 var lastError = Server.GetLastError();
 
