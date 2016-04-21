@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using G42.UmbracoGrease.Reports.PetaPocoModels;
+using G42.UmbracoGrease.Reports.Models;
 
 namespace G42.UmbracoGrease.Reports.Models
 {

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Configuration;
 using System.Xml;
+using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
 using G42.UmbracoGrease.G42MigrationHelper;
-using G42.UmbracoGrease.Reports.PetaPocoModels;
+using G42.UmbracoGrease.Reports.Models;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
@@ -38,7 +39,7 @@ namespace G42.UmbracoGrease.Events
                 LogHelper.Info<PackageActions>("Running initial setup block, this assumes a fresh install and may cause issues if DB tables already exist.");
                 _addLanguageKey();
 
-                G42Grease404Tracker.CreateTable();
+                Grease.Services.G42404Service.CreateTable();
                 G42GreaseSearchTrackerKeyword.CreateTable();
                 G42GreaseSearchTrackerSearch.CreateTable();
                 G42GreaseAppSetting.CreateTable();

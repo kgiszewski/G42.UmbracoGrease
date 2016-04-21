@@ -9,6 +9,7 @@
         $scope.isLoading = true;
 
         greaseReportsService.get404s($scope.model.countFilter).then(function (results) {
+
             $scope.model.data = results.data;
             $scope.isLoading = false;
         });

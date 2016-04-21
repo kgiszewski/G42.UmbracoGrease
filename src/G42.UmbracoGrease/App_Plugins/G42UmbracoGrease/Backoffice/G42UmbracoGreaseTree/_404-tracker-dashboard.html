@@ -35,12 +35,12 @@
                                     <table class="url-table">
                                         <tr>
                                             <th>Path</th>
-                                            <th>Last Tried</th>
+                                            <th>Last Visited</th>
                                             <th>Count</th>
                                         </tr>
                                         <tr ng-repeat="url in data.urls">
                                             <td>{{url.path}}</td>
-                                            <td class="url-last-tried">{{url.lastTried}}</td>
+                                            <td class="url-last-tried">{{url.lastVisited}}</td>
                                             <td class="url-count">{{url.count}}</td>
                                         </tr>
                                     </table>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using G42.UmbracoGrease.Reports.PetaPocoModels;
+using G42.UmbracoGrease.Reports.Models;
 
-namespace G42.UmbracoGrease.Reports.Models
+namespace G42.UmbracoGrease.G42404Helper.Models
 {
     /// <summary>
     /// Model that represents the 404 data in a report format.
@@ -16,7 +16,7 @@ namespace G42.UmbracoGrease.Reports.Models
         /// Initializes a new instance of the <see cref="G42Grease404TableModel"/> class.
         /// </summary>
         /// <param name="data">The data.</param>
-        public G42Grease404TableModel(IEnumerable<G42Grease404Tracker> data)
+        public G42Grease404TableModel(IEnumerable<G42Grease404ResultsModel> data)
         {
             var domains = new List<DomainPaths>();
 
@@ -29,7 +29,7 @@ namespace G42.UmbracoGrease.Reports.Models
                     urls.Add(new PathLastTried()
                     {
                         Path = url.Path,
-                        LastTried = url.LastTried,
+                        LastVisited = url.LastVisited,
                         Count = url.Count
                     });
                 }
@@ -59,7 +59,7 @@ namespace G42.UmbracoGrease.Reports.Models
         public class PathLastTried
         {
             public string Path { get; set; }
-            public DateTime LastTried { get; set; }
+            public DateTime LastVisited { get; set; }
             public int Count { get; set; }
         }
     }

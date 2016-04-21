@@ -2,7 +2,7 @@
     return {
         get404s: function (countFilter) {
             return umbRequestHelper.resourcePromise(
-                $http.get("/umbraco/backoffice/G42UmbracoGrease/reportsapi/get404s?countFilter=" + countFilter), 'Failed to get 404 data'
+                $http.get("/umbraco/backoffice/G42UmbracoGrease/g42404reportsapi/get404s?countFilter=" + countFilter), 'Failed to get 404 data'
             );
         },
         getKeywords: function (countFilter) {

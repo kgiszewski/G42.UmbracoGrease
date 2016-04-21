@@ -5,7 +5,7 @@ using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Persistence;
 
-namespace G42.UmbracoGrease.Reports.PetaPocoModels
+namespace G42.UmbracoGrease.Reports.Models
 {
     /// <summary>
     /// Model that represents a single search in the DB.
