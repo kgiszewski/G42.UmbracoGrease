@@ -14,7 +14,7 @@ namespace G42.UmbracoGrease.Helpers
         /// </summary>
         /// <param name="url">The URL.</param>
         /// <returns></returns>
-        public async static Task<string> Get(string url)
+        public static async Task<string> Get(string url)
         {
             using (var client = new HttpClient())
             {
@@ -28,7 +28,7 @@ namespace G42.UmbracoGrease.Helpers
         /// <param name="url">The URL.</param>
         /// <param name="content">The content.</param>
         /// <returns></returns>
-        public async static Task<string> Post(string url, HttpContent content)
+        public static async Task<string> Post(string url, HttpContent content)
         {
             using (var client = new HttpClient())
             {

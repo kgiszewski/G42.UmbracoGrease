@@ -35,9 +35,9 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
             {
                 if (DateTime.UtcNow.AddMinutes(interval * -1) > _errorDictionary[hash])
                 {
-                    _saySomethingInSlack(context, ex, hash, interval);
-
                     _errorDictionary[hash] = DateTime.UtcNow;
+
+                    _saySomethingInSlack(context, ex, hash, interval);
 
                     _sendErrorToLog(context, ex, hash, interval);
                 }
@@ -50,7 +50,6 @@ namespace G42.UmbracoGrease.UmbracoApplications.Models
 
                 _sendErrorToLog(context, ex, hash, interval);
             }
-
         }
 
         /// <summary>

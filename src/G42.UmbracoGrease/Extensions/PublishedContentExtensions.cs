@@ -7,7 +7,7 @@ namespace G42.UmbracoGrease.Extensions
     /// <summary>
     /// IPublishedContent Extensions.
     /// </summary>
-    public static class IPublishedContentExtensions
+    public static class PublishedContentExtensions
     {
         /// <summary>
         /// Coalesces the HTML title from a property stored within NodeHelper's SiteSettings property.
@@ -22,6 +22,7 @@ namespace G42.UmbracoGrease.Extensions
                 return "";
 
             var umbHelper = new UmbracoHelper();
+
             return NodeHelper.Instance.CurrentSite.SiteSettings.GetPropertyValue(prefixPropertyAlias) + " " + umbHelper.Coalesce(content.GetPropertyValue(htmlTitleAlias), content.Name);
         }
 
@@ -37,6 +38,7 @@ namespace G42.UmbracoGrease.Extensions
                 return "";
 
             var umbHelper = new UmbracoHelper();
+
             return umbHelper.Coalesce(content.GetPropertyValue(propertyAlias), content.Name);
         }
     }

@@ -237,9 +237,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\G42UmbracoGrease\AppSettings\js\controller.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\Assets\Images\loader.gif" />
-    <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\app-settings-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\node-helper-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\search-tracker-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\_404-tracker-dashboard.html" />
@@ -250,7 +248,6 @@
     <Content Include="App_Plugins\G42UmbracoGrease\NodeHelper\js\services.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\SearchTracker\css\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\SearchTracker\js\controller.js" />
-    <Content Include="App_Plugins\G42UmbracoGrease\AppSettings\js\services.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\Shared\js\services.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\Shared\css\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\_404Tracker\css\styles.css" />
@@ -298,7 +295,7 @@
     <Compile Include="G42TransformationHelper\TransformationHelper.cs" />
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Helpers\IpHelper.cs" />
-    <Compile Include="Extensions\IPublishedContentExtensions.cs" />
+    <Compile Include="Extensions\PublishedContentExtensions.cs" />
     <Compile Include="G42NodeHelper\NodeHelper.cs" />
     <Compile Include="G42RedirectHelper\RedirectHelper.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -322,9 +319,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Plugins\G42UmbracoGrease\AppSettings\css\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

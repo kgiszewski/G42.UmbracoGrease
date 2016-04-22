@@ -25,7 +25,7 @@ namespace G42.UmbracoGrease.UmbracoApplications
             //TODO: CONNECT THIS TO DASHBOARD
             var disabledSetting = true;
 
-            if(disabledSetting == null || disabledSetting)
+            if(!disabledSetting)
             {
                 var lastError = Server.GetLastError();
 

@@ -7,28 +7,43 @@
     switch (Model.Type)
     {
         case "image-full-width":
-            <div class="image-holder display-table">
+            <div class="image-holder display-table justified-image">
                 <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="" />
-                <div class="caption"><em>@Html.Raw(meta.Alt)</em></div>
+                @if (!string.IsNullOrWhiteSpace(meta.Alt))
+                {
+                    <div class="caption">
+                        <em>@Html.Raw(meta.Alt)</em>
+                    </div>
+                }
             </div>
             break;
 
         case "image-right":
-        <div class="float-right display-table">
-            <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="image-right" />
-            <div class="caption"><em>@Html.Raw(meta.Alt)</em></div>
-        </div>
+            <div class="float-right display-table justified-image">
+                <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="image-right" />
+                @if (!string.IsNullOrWhiteSpace(meta.Alt))
+                {
+                    <div class="caption">
+                        <em>@Html.Raw(meta.Alt)</em>
+                    </div>
+                }
+            </div>
             break;
 
         case "image-left":
-        <div class="float-left display-table">
-            <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="image-left" />
-            <div class="caption"><em>@Html.Raw(meta.Alt)</em></div>
-        </div>
+            <div class="float-left display-table justified-image">
+                <img src="@meta.Src" alt="@meta.Alt" title="@meta.Title" class="image-left" />
+                @if (!string.IsNullOrWhiteSpace(meta.Alt))
+                {
+                    <div class="caption">
+                        <em>@Html.Raw(meta.Alt)</em>
+                    </div>
+                }
+            </div>
             break;
 
         default:
-        <span class="@Model.Type">@Model.Text</span>
+            <span class="@Model.Type">@Model.Text</span>
             break;
     }
 }

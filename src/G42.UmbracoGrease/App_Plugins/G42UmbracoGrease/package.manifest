@@ -25,8 +25,6 @@
         "~/App_Plugins/G42UmbracoGrease/HideTab/js/directives.js",
         "~/App_Plugins/G42UmbracoGrease/Shared/js/services.js",
         "~/App_Plugins/G42UmbracoGrease/SearchTracker/js/controller.js",
-        "~/App_Plugins/G42UmbracoGrease/AppSettings/js/controller.js",
-        "~/App_Plugins/G42UmbracoGrease/AppSettings/js/services.js",
         "~/App_Plugins/G42UmbracoGrease/_404Tracker/js/controller.js",
         "~/App_Plugins/G42UmbracoGrease/NodeHelper/js/controller.js",
         "~/App_Plugins/G42UmbracoGrease/NodeHelper/js/services.js"
