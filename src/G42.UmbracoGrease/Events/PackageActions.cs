@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Xml;
 using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.G42MigrationHelper;
-using G42.UmbracoGrease.Reports.Models;
+using G42.UmbracoGrease.G42SearchHelper.Models;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
@@ -38,9 +38,10 @@ namespace G42.UmbracoGrease.Events
                 LogHelper.Info<PackageActions>("Running initial setup block, this assumes a fresh install and may cause issues if DB tables already exist.");
                 _addLanguageKey();
 
-                Grease.Services.G42404Service.CreateTable();
-                G42GreaseSearchTrackerKeyword.CreateTable();
-                G42GreaseSearchTrackerSearch.CreateTable();
+                Grease.Services.G42404Service.Create404DomainPathsTable();
+                Grease.Services.G42404Service.Create404TrackerTable();
+                Grease.Services.G42SearchService.CreateSearchTrackerKeywordsTable();
+                Grease.Services.G42SearchService.CreateSearchTrackerSearchesTable();
 
                 var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
                 config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);

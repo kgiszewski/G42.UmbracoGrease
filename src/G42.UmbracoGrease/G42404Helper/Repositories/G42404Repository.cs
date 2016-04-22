@@ -135,7 +135,7 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
         /// <summary>
         /// Creates the 404 table.
         /// </summary>
-        internal static void CreateTable(PetaPocoUnitOfWork unitOfWork)
+        internal static void Create404TrackerTable(PetaPocoUnitOfWork unitOfWork)
         {
             if (!unitOfWork.Database.TableExist("G42Grease404Tracker"))
             {
@@ -153,6 +153,25 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
 	                    [id] ASC
                     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
                     )
+                ");
+            }
+            else
+            {
+                LogHelper.Info<G42Grease404Tracker>("Table exists.");
+            }
+        }
+
+        /// <summary>
+        /// Creates the 404 table.
+        /// </summary>
+        internal static void Create404DomainPathsTable(PetaPocoUnitOfWork unitOfWork)
+        {
+            if (!unitOfWork.Database.TableExist("G42Grease404Tracker"))
+            {
+                LogHelper.Info<G42Grease404Tracker>("Creating table.");
+
+                unitOfWork.Database.Execute(@"
+                    TODO!
                 ");
             }
             else

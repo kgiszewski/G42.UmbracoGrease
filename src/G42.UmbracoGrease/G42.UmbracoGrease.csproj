@@ -269,6 +269,8 @@
     <Compile Include="G42404Helper\Models\G42Grease404DomainPath.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404ResultsModel.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
+    <Compile Include="G42SearchHelper\Repositories\G42SearchRepository.cs" />
+    <Compile Include="G42SearchHelper\Services\G42SearchService.cs" />
     <Compile Include="G42Slack\Helpers\SlackHelper.cs" />
     <Compile Include="G42Slack\Models\SlackAttachmentFieldModel.cs" />
     <Compile Include="G42Slack\Models\SlackAttachmentModel.cs" />
@@ -283,11 +285,11 @@
     <Compile Include="UmbracoApplications\GreaseUmbracoApplication.cs" />
     <Compile Include="Filters\CamelCaseFilter.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
-    <Compile Include="Reports\Controllers\ReportsApi.cs" />
-    <Compile Include="Reports\Models\G42GreaseSearchTableModel.cs" />
+    <Compile Include="G42SearchHelper\Controllers\G42SearchReportsApi.cs" />
+    <Compile Include="G42SearchHelper\Models\G42GreaseSearchTableModel.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404TableModel.cs" />
-    <Compile Include="Reports\Models\G42GreaseSearchTrackerKeyword.cs" />
-    <Compile Include="Reports\Models\G42GreaseSearchTrackerSearch.cs" />
+    <Compile Include="G42SearchHelper\Models\G42GreaseSearchTrackerKeyword.cs" />
+    <Compile Include="G42SearchHelper\Models\G42GreaseSearchTrackerSearch.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404Tracker.cs" />
     <Compile Include="Shared\Controllers\GreaseTreeController.cs" />
     <Compile Include="Events\PackageActions.cs" />
@@ -323,7 +325,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\G42UmbracoGrease\AppSettings\css\" />
-    <Folder Include="Reports\Repositories\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

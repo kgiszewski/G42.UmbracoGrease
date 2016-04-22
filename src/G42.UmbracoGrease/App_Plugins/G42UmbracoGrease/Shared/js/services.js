@@ -7,7 +7,7 @@
         },
         getKeywords: function (countFilter) {
             return umbRequestHelper.resourcePromise(
-                $http.get("/umbraco/backoffice/G42UmbracoGrease/reportsapi/getkeywords?countFilter=" + countFilter), 'Failed to get keyword data'
+                $http.get("/umbraco/backoffice/G42UmbracoGrease/g42searchreportsapi/getkeywords?countFilter=" + countFilter), 'Failed to get keyword data'
             );
         }
     }

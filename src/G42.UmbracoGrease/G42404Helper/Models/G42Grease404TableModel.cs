@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using G42.UmbracoGrease.Reports.Models;
+using G42.UmbracoGrease.G42SearchHelper.Models;
 
 namespace G42.UmbracoGrease.G42404Helper.Models
 {

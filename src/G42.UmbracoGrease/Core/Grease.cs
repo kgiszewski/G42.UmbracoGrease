@@ -1,5 +1,5 @@
-﻿using System;
-using G42.UmbracoGrease.G42404Helper.Services;
+﻿using G42.UmbracoGrease.G42404Helper.Services;
+using G42.UmbracoGrease.G42SearchHelper.Services;
 
 namespace G42.UmbracoGrease.Core
 {
@@ -18,7 +18,9 @@ namespace G42.UmbracoGrease.Core
                     {
                         if (_services == null)
                         {
-                            _services = new Services(new G42404Service());
+                            _services = new Services(
+                                new G42404Service(),
+                                new G42SearchService());
                         
                             return _services;
                         }
@@ -29,6 +31,9 @@ namespace G42.UmbracoGrease.Core
 
                 return _services;
             }
+
+            // the idea here is to allow the services to be swapped with a different set for testing
+            set { _services = value; }
         }
     }
 }

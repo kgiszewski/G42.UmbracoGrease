@@ -37,11 +37,23 @@ namespace G42.UmbracoGrease.G42404Helper.Services
             }
         }
 
-        public void CreateTable()
+        public void Create404TrackerTable()
         {
             using (var uow = new PetaPocoUnitOfWork())
             {
-                G42404Repository.CreateTable(uow);
+                G42404Repository.Create404TrackerTable(uow);
+
+                uow.Commit();
+            }
+        }
+
+        public void Create404DomainPathsTable()
+        {
+            using (var uow = new PetaPocoUnitOfWork())
+            {
+                G42404Repository.Create404DomainPathsTable(uow);
+
+                uow.Commit();
             }
         }
     }
