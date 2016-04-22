@@ -25,6 +25,7 @@ namespace G42.UmbracoGrease.Helpers
             {
                 sb.Append(hash[i].ToString("X2"));
             }
+
             return sb.ToString();
         }
     }

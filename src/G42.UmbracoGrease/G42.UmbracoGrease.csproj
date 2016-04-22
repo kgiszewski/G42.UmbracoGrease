@@ -302,7 +302,6 @@
     <Compile Include="G42NodeHelper\NodeHelper.cs" />
     <Compile Include="G42RedirectHelper\RedirectHelper.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Helpers\DbHelper.cs" />
     <Compile Include="Interfaces\IG42ErrorHandler.cs" />
     <Compile Include="G42NodeHelper\Models\Site.cs" />
     <Compile Include="G42TransformationHelper\Models\ImageTag.cs" />
