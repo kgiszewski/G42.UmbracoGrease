@@ -66,7 +66,7 @@ namespace G42.UmbracoGrease.Helpers
                     close = "</p>";
                 }
 
-                headers += string.Format("{2}{0,-25}=>{1}{3}\n", key, request.Headers[key], open, close);
+                headers += string.Format("{2}{0}=>{1}{3}\n", key, request.Headers[key], open, close);
             }
 
             return headers;

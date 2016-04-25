@@ -42,6 +42,7 @@ namespace G42.UmbracoGrease.Events
                 Grease.Services.G42404Service.Create404TrackerTable();
                 Grease.Services.G42SearchService.CreateSearchTrackerKeywordsTable();
                 Grease.Services.G42SearchService.CreateSearchTrackerSearchesTable();
+                Grease.Services.G42AppSettingsService.CreateAppSettingsTable();
 
                 var config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
                 config.AppSettings.Settings.Add(versionAppsettingKey, _dllVersion);

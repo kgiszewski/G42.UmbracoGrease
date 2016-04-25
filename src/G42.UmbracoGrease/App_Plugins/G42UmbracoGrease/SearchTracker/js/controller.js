@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').controller('G42UmbracoGreaseSearchTrackerDashboardController', function ($scope, $routeParams, greaseReportsService) {
+﻿angular.module('umbraco').controller('G42UmbracoGreaseSearchTrackerDashboardController', function ($scope, $routeParams, greaseSearchTrackerService) {
 
     $scope.model = {};
     $scope.model.Name = decodeURIComponent($routeParams.id);
@@ -9,7 +9,7 @@
     $scope.getResults = function() {
         $scope.isLoading = true;
 
-        greaseReportsService.getKeywords($scope.model.countFilter).then(function (results) {
+        greaseSearchTrackerService.getKeywords($scope.model.countFilter).then(function (results) {
             $scope.model.data = results.data;
             $scope.isLoading = false;
         });

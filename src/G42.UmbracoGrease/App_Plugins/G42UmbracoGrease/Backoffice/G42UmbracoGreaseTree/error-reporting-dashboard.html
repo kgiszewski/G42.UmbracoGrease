@@ -1,0 +1,60 @@
+﻿<div ng-controller="G42UmbracoGreaseErrorReportingDashboardController">
+    <umb-panel>
+        <umb-header tabs="content.tabs">
+            <div class="umb-headline-editor-wrapper span12">
+                <h1 class="ng-binding">{{model.Name}}</h1>
+            </div>
+        </umb-header>
+        <umb-tab-view>
+            <umb-tab id="tab1" rel="content" class="error-reporting-dashboard" style="display: block;">
+                <div class="umb-pane">
+                    <div>
+                        <p>This section configures the Grease error reporting feature.</p>
+
+                        <div>
+                            <label><input type="checkbox" ng-model="model.config.enable" />Enable?</label>
+                            <small>Tick this box to enable Error Reporting!</small>
+                        </div>
+
+                        <label><strong>Reporting Interval</strong></label>
+                        <small>If the same error occurs, notifications will not be sent out again until the interval has elapsed.</small>
+                        <input id="reporting-interval" type="text" placeholder="15" ng-model="model.config.reportingInterval" />
+                    </div>
+
+                    <h2><img class="slack" src="/App_Plugins/G42UmbracoGrease/Assets/Images/slack.png"/>Slack</h2>
+
+                    <p>Use this section to send 500 errors your users encounter to a Slack channel.</p>
+
+                    <div>
+                        <label><input type="checkbox" ng-model="model.config.slackEnable" />Enable?</label>
+                        <small>Tick this box to enable Slack!</small>
+                    </div>
+                    <div>
+                        <label><strong>Webhook URL</strong></label>
+                        <input id="slack-webhook" type="text" placeholder="https://something.slack.com" ng-model="model.config.slackWebhookUrl" />
+                        <small>Register a Slack webhook URL and place it here.</small>
+                    </div>
+                    <div>
+                        <label><strong>Channel</strong></label>
+                        <input type="text" placeholder="#channel @username" ng-model="model.config.slackChannel" />
+                        <small>Specify which channel (or user) the errors appear in.</small>
+                    </div>
+                    <div>
+                        <label><strong>Botname</strong></label>
+                        <input type="text" placeholder="ErrorBot" ng-model="model.config.slackBotName" />
+                        <small>Name your bot something sweet!</small>
+                    </div>
+                    <div>
+                        <label><strong>Emoji</strong></label>
+                        <input type="text" placeholder=":smile:" ng-model="model.config.slackEmoji" />
+                        <small>Choose your emoji icon when posting the message.</small>
+                    </div>
+
+                    <div class="pull-right">
+                        <button class="btn btn-success" ng-click="save()" ng-disabled="isSaving">Save</button>
+                    </div>
+                </div>
+            </umb-tab>
+        </umb-tab-view>
+    </umb-panel>
+</div>

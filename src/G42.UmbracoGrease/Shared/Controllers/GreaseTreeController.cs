@@ -27,6 +27,9 @@ namespace G42.UmbracoGrease.Shared.Controllers
                 //404
                 _addNode(nodes, queryStrings, "404Tracker", "", "404 Tracker", "icon-block", "/G42UmbracoGrease/G42UmbracoGreaseTree/_404-tracker-dashboard/404%20Tracker");
 
+                //error reporting
+                _addNode(nodes, queryStrings, "ErrorReporing", "", "Error Reporting", "icon-application-error", "/G42UmbracoGrease/G42UmbracoGreaseTree/error-reporting-dashboard/Error%20Reporting");
+
                 //nodeHelper
                 _addNode(nodes, queryStrings, "NodeHelper", "", "Node Helper", "icon-globe", "/G42UmbracoGrease/G42UmbracoGreaseTree/node-helper-dashboard/Node%20Helper");
 

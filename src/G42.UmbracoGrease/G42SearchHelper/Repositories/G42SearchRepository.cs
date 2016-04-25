@@ -85,7 +85,6 @@ namespace G42.UmbracoGrease.G42SearchHelper.Repositories
         /// <param name="keywords">The keywords.</param>
         internal static void AddSearch(PetaPocoUnitOfWork unitOfWork, string keywords)
         {
-            //TODO: factor this out
             var context = HttpContext.Current;
 
             var domain = context.Request.Url.Host;

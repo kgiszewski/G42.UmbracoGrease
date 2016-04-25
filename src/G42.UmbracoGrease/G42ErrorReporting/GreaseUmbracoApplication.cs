@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
+using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.Interfaces;
-using G42.UmbracoGrease.UmbracoApplications.Models;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Web;
 
-namespace G42.UmbracoGrease.UmbracoApplications
+namespace G42.UmbracoGrease.G42ErrorReporting
 {
     /// <summary>
     /// Custom UmbracoApplication that extends the typical Global.asax implementations on MVC sites.
@@ -22,10 +22,9 @@ namespace G42.UmbracoGrease.UmbracoApplications
         {
             base.Application_Error(sender, e);
 
-            //TODO: CONNECT THIS TO DASHBOARD
-            var disabledSetting = true;
+            var enabled = Grease.Services.G42AppSettingsService.GetValue<bool>(Core.Constants.ERROR_REPORTING_ENABLE_KEY);
 
-            if(!disabledSetting)
+            if(enabled)
             {
                 var lastError = Server.GetLastError();
 
