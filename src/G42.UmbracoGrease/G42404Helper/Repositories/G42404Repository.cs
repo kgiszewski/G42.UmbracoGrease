@@ -117,8 +117,8 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
                 return;
             }
 
-            //TODO: CONNECT THIS TO DASHBOARD
-            var customDays = 90;
+            var customDays = Grease.Services.G42AppSettingsService.GetValue<int>(Constants._404_TRACKER_DEFAULT_DAYS_TO_RETAIN_KEY);
+
             var date = DateTime.UtcNow.AddDays(customDays * -1);
 
             LogHelper.Info<G42Grease404Tracker>("Purging 404's " + customDays + " days prior beginning =>" + date.ToString("R"));
@@ -126,7 +126,7 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
             unitOfWork.Database.Execute(@"
                 DELETE
                 FROM G42Grease404Tracker
-                WHERE updatedOn < @0
+                WHERE addedOn < @0
             ", date);
 
             LastPurged = DateTime.UtcNow;

@@ -270,6 +270,7 @@
     <Compile Include="Core\Services.cs" />
     <Compile Include="Extensions\ExamineExtensions.cs" />
     <Compile Include="G42404Helper\Controllers\G42404ReportsApi.cs" />
+    <Compile Include="G42404Helper\Models\G42Grease404ConfigModel.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404DomainPath.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404ResultsModel.cs" />
     <Compile Include="G42AppSettings\Models\G42AppSetting.cs" />

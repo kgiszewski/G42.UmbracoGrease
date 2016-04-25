@@ -28,8 +28,17 @@ namespace G42.UmbracoGrease.G42AppSettings.Repositories
 
         internal static IEnumerable<G42AppSetting> GetErrorReportingConfigs(PetaPocoUnitOfWork unitOfWork)
         {
+            //TODO: use constant
             return unitOfWork.Database.Fetch<G42AppSetting>(@"
                 WHERE [key] LIKE 'errorReporting:%'
+            ");
+        }
+
+        internal static IEnumerable<G42AppSetting> Get404trackerConfigs(PetaPocoUnitOfWork unitOfWork)
+        {
+            //TODO: use constant
+            return unitOfWork.Database.Fetch<G42AppSetting>(@"
+                WHERE [key] LIKE '_404tracker:%'
             ");
         }
 

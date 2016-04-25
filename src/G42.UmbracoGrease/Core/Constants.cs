@@ -12,5 +12,8 @@
         public const string ERROR_REPORTING_SLACK_EMOJI_KEY = "errorReporting:SlackEmoji";
 
         public const int ERROR_REPORTING_DEFAULT_INTERVAL = 15;
+
+        public const string _404_TRACKER_DEFAULT_DAYS_TO_RETAIN_KEY = "_404tracker:DaysToRetain";
+        public const int _404_TRACKER_DEFAULT_DAYS_TO_RETAIN = 90;
     }
 }

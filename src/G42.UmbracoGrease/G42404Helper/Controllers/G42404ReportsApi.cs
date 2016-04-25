@@ -24,5 +24,17 @@ namespace G42.UmbracoGrease.G42404Helper.Controllers
         {
             return new G42Grease404TableModel(Grease.Services.G42404Service.GetResults(countFilter));
         }
+
+        [HttpGet]
+        public object GetConfig()
+        {
+            return Grease.Services.G42AppSettingsService.Get404TrackerConfig();
+        }
+
+        [HttpPost]
+        public object Save(G42Grease404ConfigModel model)
+        {
+            return Grease.Services.G42AppSettingsService.Save404TrackerConfig(model);
+        }
     }
 }

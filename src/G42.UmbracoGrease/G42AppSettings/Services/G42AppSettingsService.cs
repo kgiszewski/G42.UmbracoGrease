@@ -1,5 +1,6 @@
 ﻿using System;
 using G42.UmbracoGrease.Core;
+using G42.UmbracoGrease.G42404Helper.Models;
 using G42.UmbracoGrease.G42AppSettings.Models;
 using G42.UmbracoGrease.G42AppSettings.Repositories;
 using G42.UmbracoGrease.G42ErrorReporting.Models;
@@ -61,6 +62,18 @@ namespace G42.UmbracoGrease.G42AppSettings.Services
             return true;
         }
 
+        public bool Save404TrackerConfig(G42Grease404ConfigModel model)
+        {
+            using (var uow = new PetaPocoUnitOfWork())
+            {
+                _saveSetting(uow, Constants._404_TRACKER_DEFAULT_DAYS_TO_RETAIN_KEY, model.DaysToRetain.ToString(), "90");
+                
+                uow.Commit();
+            }
+
+            return true;
+        }
+
         public G42ErrorReportingConfigModel GetErrorReportingConfig()
         {
             using (var uow = new PetaPocoUnitOfWork())
@@ -68,6 +81,16 @@ namespace G42.UmbracoGrease.G42AppSettings.Services
                 var rawSettings = G42AppSettingRepository.GetErrorReportingConfigs(uow);
 
                 return new G42ErrorReportingConfigModel(rawSettings);
+            }
+        }
+
+        public G42Grease404ConfigModel Get404TrackerConfig()
+        {
+            using (var uow = new PetaPocoUnitOfWork())
+            {
+                var rawSettings = G42AppSettingRepository.Get404trackerConfigs(uow);
+
+                return new G42Grease404ConfigModel(rawSettings);
             }
         }
 
@@ -83,6 +106,7 @@ namespace G42.UmbracoGrease.G42AppSettings.Services
         {
             value = value ?? defaultValue;
 
+            //some special cases
             if (key == Constants.ERROR_REPORTING_REPORTING_INTERVAL_KEY)
             {
                 int reportingIntervalValue;
@@ -93,6 +117,18 @@ namespace G42.UmbracoGrease.G42AppSettings.Services
                 }
             }
 
+            if (key == Constants._404_TRACKER_DEFAULT_DAYS_TO_RETAIN_KEY)
+            {
+                int reportingIntervalValue;
+
+                if (!int.TryParse(value, out reportingIntervalValue) || reportingIntervalValue <= 0)
+                {
+                    value = Constants._404_TRACKER_DEFAULT_DAYS_TO_RETAIN.ToString();
+                }
+            }
+
+
+            //get on with the saving bit
             var setting = G42AppSettingRepository.Get(uow, key);
 
             if (setting == null)

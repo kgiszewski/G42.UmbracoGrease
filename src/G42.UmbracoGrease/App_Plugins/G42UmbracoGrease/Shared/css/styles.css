@@ -4,3 +4,23 @@
 
 body table.table-striped tbody>tr:nth-child(even)>td {background: initial !important; background-color: #eee !important; }
 body table.table-striped tbody>tr:nth-child(odd)>td {background: initial !important; background-color: #fff !important; }
+
+.grease-section-settings {
+    background-color: #eee;
+    padding: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+a.grease-section-settings-button {
+    color: blue;
+    cursor: pointer;
+}
+
+.grease-section-settings label {
+    margin-top: 5px;
+}
+
+.grease-section-settings small {
+    display: block;
+}
