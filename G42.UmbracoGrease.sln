@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G42.UmbracoGrease", "src\G42.UmbracoGrease\G42.UmbracoGrease.csproj", "{97F9C8C3-D631-4EAC-A4BD-018848ED1590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G42.UmbracoGrease.Tests", "src\G42.UmbracoGrease.Tests\G42.UmbracoGrease.Tests.csproj", "{5AB7F0B5-FCBE-43FD-8604-E5436158D02B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{97F9C8C3-D631-4EAC-A4BD-018848ED1590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F9C8C3-D631-4EAC-A4BD-018848ED1590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F9C8C3-D631-4EAC-A4BD-018848ED1590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB7F0B5-FCBE-43FD-8604-E5436158D02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB7F0B5-FCBE-43FD-8604-E5436158D02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB7F0B5-FCBE-43FD-8604-E5436158D02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB7F0B5-FCBE-43FD-8604-E5436158D02B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
