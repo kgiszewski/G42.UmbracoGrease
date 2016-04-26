@@ -219,6 +219,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionTests\UnitTests.cs" />
     <Compile Include="G42404Tests\FunctionalTests.cs" />
     <Compile Include="G42404Tests\UnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace G42.UmbracoGrease.Tests.G42404Tests
 {
+    [Category("404")]
     [TestFixture]
     public class FunctionalTests
     {

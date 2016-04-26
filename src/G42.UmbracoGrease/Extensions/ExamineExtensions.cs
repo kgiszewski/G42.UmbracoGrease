@@ -55,8 +55,11 @@ namespace G42.UmbracoGrease.Extensions
         /// <returns></returns>
         public static string ToExamineFriendly(this string input, string replacementCharacter = " ")
         {
+            input = input.Trim();
+
             var rgx = new Regex("[^a-zA-Z0-9 -]");
-            return rgx.Replace(input, replacementCharacter);
+
+            return rgx.Replace(input, replacementCharacter).Trim();
         }
     }
 }
