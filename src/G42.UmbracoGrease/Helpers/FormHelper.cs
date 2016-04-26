@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Mail;
-using System.Text.RegularExpressions;
+﻿using System.Net.Mail;
 
 namespace G42.UmbracoGrease.Helpers
 {

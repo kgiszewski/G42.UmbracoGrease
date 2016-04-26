@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Xml;
 using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.G42MigrationHelper;
-using G42.UmbracoGrease.G42SearchHelper.Models;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;
 using Umbraco.Core.Logging;

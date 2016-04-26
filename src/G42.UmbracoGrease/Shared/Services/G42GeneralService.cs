@@ -1,7 +1,6 @@
 ﻿using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.G42AppSettings.Repositories;
 using G42.UmbracoGrease.G42AppSettings.Services;
-using G42.UmbracoGrease.G42ErrorReporting.Models;
 using G42.UmbracoGrease.Shared.Models;
 
 namespace G42.UmbracoGrease.Shared.Services

@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 using G42.UmbracoGrease.Core;
-using G42.UmbracoGrease.G42404Helper.Models;
 using G42.UmbracoGrease.Shared.Models;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;

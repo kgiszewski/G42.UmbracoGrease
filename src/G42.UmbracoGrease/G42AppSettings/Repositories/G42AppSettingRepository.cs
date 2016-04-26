@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.G42AppSettings.Models;
