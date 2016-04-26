@@ -7,10 +7,15 @@ namespace G42.UmbracoGrease.Core
     {
         private readonly Transaction _petaTransaction;
         private readonly Database _database;
-        public string ConnectionString = "UmbracoDbDSN";
+        public static string ConnectionString = "UmbracoDbDSN";
 
-        public PetaPocoUnitOfWork()
+        public PetaPocoUnitOfWork(string connectionString = "")
         {
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                ConnectionString = connectionString;
+            }
+
             _database = new Database(ConnectionString);
             _petaTransaction = new Transaction(_database);
         }
