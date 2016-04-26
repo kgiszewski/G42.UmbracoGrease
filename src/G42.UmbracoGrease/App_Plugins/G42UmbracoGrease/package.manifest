@@ -17,19 +17,22 @@
         "~/App_Plugins/G42UmbracoGrease/_404Tracker/css/styles.css",
         "~/App_Plugins/G42UmbracoGrease/HideTab/css/styles.css",
         "~/App_Plugins/G42UmbracoGrease/SearchTracker/css/styles.css",
-        "~/App_Plugins/G42UmbracoGrease/Shared/css/styles.css"
-
-            
+        "~/App_Plugins/G42UmbracoGrease/Shared/css/styles.css",
+        "~/App_Plugins/G42UmbracoGrease/General/css/styles.css",
+        "~/App_Plugins/G42UmbracoGrease/ErrorReporting/css/styles.css"
     ],
     "javascript": [
         "~/App_Plugins/G42UmbracoGrease/HideTab/js/directives.js",
-        "~/App_Plugins/G42UmbracoGrease/Shared/js/services.js",
+        "~/App_Plugins/G42UmbracoGrease/General/js/controller.js",
+        "~/App_Plugins/G42UmbracoGrease/General/js/services.js",
         "~/App_Plugins/G42UmbracoGrease/SearchTracker/js/controller.js",
-        "~/App_Plugins/G42UmbracoGrease/AppSettings/js/controller.js",
-        "~/App_Plugins/G42UmbracoGrease/AppSettings/js/services.js",
+        "~/App_Plugins/G42UmbracoGrease/SearchTracker/js/services.js",
         "~/App_Plugins/G42UmbracoGrease/_404Tracker/js/controller.js",
+        "~/App_Plugins/G42UmbracoGrease/_404Tracker/js/services.js",
         "~/App_Plugins/G42UmbracoGrease/NodeHelper/js/controller.js",
-        "~/App_Plugins/G42UmbracoGrease/NodeHelper/js/services.js"
+        "~/App_Plugins/G42UmbracoGrease/NodeHelper/js/services.js",
+        "~/App_Plugins/G42UmbracoGrease/ErrorReporting/js/controller.js",
+        "~/App_Plugins/G42UmbracoGrease/ErrorReporting/js/services.js"
     ]
 }
 

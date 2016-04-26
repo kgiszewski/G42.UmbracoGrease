@@ -1,4 +1,5 @@
 ﻿using System;
+using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
 
@@ -16,12 +17,17 @@ namespace G42.UmbracoGrease.G42MigrationHelper.Migrations
 
         public override void Excecute()
         {
-            var sql = @"
-                ALTER TABLE [G42Grease404Tracker]
-                ADD [ipAddress] NVARCHAR(50) NULL
-            ";
+            using (var unitOfWork = new PetaPocoUnitOfWork())
+            {
+                var sql = @"
+                    ALTER TABLE [G42Grease404Tracker]
+                    ADD [ipAddress] NVARCHAR(50) NULL
+                ";
 
-            DbHelper.DbContext.Database.Execute(sql);
+                unitOfWork.Database.Execute(sql);
+
+                unitOfWork.Commit();
+            }
         }
     }
 }

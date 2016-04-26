@@ -15,41 +15,6 @@ namespace G42.UmbracoGrease.G42RedirectHelper
     public static class RedirectHelper
     {
         /// <summary>
-        /// Ensures the AWS SSL when using a shared SSL environment.
-        /// </summary>
-        /// <param name="enableLocal">if set to <c>true</c> [enable local].</param>
-        public static void EnsureAwsSsl(bool enableLocal = false)
-        {
-            if (HttpContext.Current.Request.Url.Host.EndsWith(".local") && !enableLocal)
-            {
-                return;
-            }
-
-            //added this due to how the ssl forwarding is working on AWS
-            if (HttpContext.Current.Request.Headers["X-Forwarded-Proto"] == "http")
-            {
-                HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri.Replace("http:", "https:"));
-            }
-        }
-
-        /// <summary>
-        /// Ensures the SSL on normal setups.
-        /// </summary>
-        /// <param name="enableLocal">if set to <c>true</c> [enable local].</param>
-        public static void EnsureSsl(bool enableLocal = false)
-        {
-            if (HttpContext.Current.Request.Url.Host.EndsWith(".local") && !enableLocal)
-            {
-                return;
-            }
-
-            if (HttpContext.Current.Request.Url.Port != 443)
-            {
-                HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri.Replace("http:", "https:"));
-            }
-        }
-
-        /// <summary>
         /// Tries to find the redirect based on the requested URL.
         /// </summary>
         /// <param name="rootRedirectNode">The root redirect node.</param>
@@ -73,6 +38,7 @@ namespace G42.UmbracoGrease.G42RedirectHelper
                 context.Response.StatusCode = redirect.StatusCode;
                 context.Response.RedirectLocation = redirect.RedirectToUrl;
                 context.Response.Flush();
+
                 return true;
             }
 

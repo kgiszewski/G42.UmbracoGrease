@@ -24,6 +24,7 @@ pkg/*.zip
 [Oo]bj/
 [Pp]ackages/
 VersionInfo.cs
+src/G42.UmbracoGrease.Tests/app.config
 
 *.aps
 *.bak

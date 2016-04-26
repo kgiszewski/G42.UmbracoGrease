@@ -1,0 +1,29 @@
+﻿.error-reporting-dashboard h2 {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.error-reporting-dashboard h2 .slack {
+    width: 24px;
+    margin-right: 4px;
+}
+
+.error-reporting-dashboard #slack-webhook {
+    width: 99%;
+}
+
+.error-reporting-dashboard #reporting-interval {
+    width: 30px;
+}
+
+.error-reporting-dashboard input[type=checkbox] {
+    margin-right: 5px; 
+}
+
+.error-reporting-dashboard label {
+    margin-top: 5px;
+}
+
+.error-reporting-dashboard small {
+    display: block;
+}

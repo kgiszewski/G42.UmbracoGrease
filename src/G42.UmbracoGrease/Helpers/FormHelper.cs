@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Mail;
-using System.Text.RegularExpressions;
+﻿using System.Net.Mail;
 
 namespace G42.UmbracoGrease.Helpers
 {
@@ -49,39 +47,6 @@ namespace G42.UmbracoGrease.Helpers
                 var smtp = new SmtpClient();
                 smtp.Send(message);
             }
-        }
-
-        /// <summary>
-        /// Sends the form email.
-        /// </summary>
-        /// <param name="sendToEmailCsv">The send to email CSV.</param>
-        /// <param name="sendFromEmail">The send from email.</param>
-        /// <param name="sendToSubject">The send to subject.</param>
-        /// <param name="formattedForm">The formatted form.</param>
-        [Obsolete("Please use SendMail.")]
-        public static void SendFormEmail(string sendToEmailCsv, string sendFromEmail, string sendToSubject, string formattedForm)
-        {
-            if (IsValidEmail(sendToEmailCsv) && IsValidEmail(sendFromEmail))
-            {
-                var messageBody = formattedForm;
-
-                SendMail(sendToEmailCsv, sendFromEmail, sendToSubject, messageBody, true);
-            }
-        }
-
-        /// <summary>
-        /// Determines whether an email is valid based on regex.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <returns></returns>
-        public static bool IsValidEmail(this string str)
-        {
-            if (str == null)
-                return false;
-
-            var regex = new Regex(@"^([\w\.\-\+]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            var match = regex.Match(str);
-            return match.Success;
         }
 
         /// <summary>

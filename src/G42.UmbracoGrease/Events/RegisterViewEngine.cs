@@ -1,5 +1,5 @@
 ﻿using System;
-using G42.UmbracoGrease.G42AppSettings.PetaPocoModels;
+using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.ViewEngines;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
@@ -20,9 +20,9 @@ namespace G42.UmbracoGrease.Events
         {
             try
             {
-                var disableSetting = G42GreaseAppSetting.Get("G42.UmbracoGrease:ViewEngineDisabled");
+                var enabled = Grease.Services.G42AppSettingsService.GetValue<bool>(Core.Constants.VIEW_ENGINE_ENABLE_KEY);
 
-                if (disableSetting == null || disableSetting.Value != "1")
+                if (enabled)
                 {
                     LogHelper.Info<RegisterViewEngine>("Registering Grease ViewEngine...");
                     System.Web.Mvc.ViewEngines.Engines.Add(new G42ViewEngine());
@@ -35,7 +35,6 @@ namespace G42.UmbracoGrease.Events
             catch (Exception ex)
             {
                 LogHelper.Error<Exception>(ex.Message, ex);
-                LogHelper.Error<RegisterViewEngine>("Likely failed due tables not yet created.", ex);
             }
 
             base.ApplicationStarting(umbracoApplication, applicationContext);

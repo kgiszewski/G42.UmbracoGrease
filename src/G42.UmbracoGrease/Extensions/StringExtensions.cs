@@ -312,5 +312,20 @@ namespace G42.UmbracoGrease.Extensions
 
             return new HtmlString(document.DocumentNode.OuterHtml);
         }
+
+        /// <summary>
+        /// Determines whether an email is valid based on regex.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns></returns>
+        public static bool IsValidEmail(this string str)
+        {
+            if (str == null)
+                return false;
+
+            var regex = new Regex(@"^([\w\.\-\+]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            var match = regex.Match(str);
+            return match.Success;
+        }
     }
 }

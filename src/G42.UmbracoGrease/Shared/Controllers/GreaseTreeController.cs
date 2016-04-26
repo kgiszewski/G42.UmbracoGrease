@@ -24,11 +24,14 @@ namespace G42.UmbracoGrease.Shared.Controllers
 
             if (id == "-1")
             {
+                //general
+                _addNode(nodes, queryStrings, "General", "", "General", "icon-settings", "/G42UmbracoGrease/G42UmbracoGreaseTree/general-dashboard/General");
+
                 //404
                 _addNode(nodes, queryStrings, "404Tracker", "", "404 Tracker", "icon-block", "/G42UmbracoGrease/G42UmbracoGreaseTree/_404-tracker-dashboard/404%20Tracker");
 
-                //app_settings
-                _addNode(nodes, queryStrings, "AppSettings", "", "App Settings", "icon-settings", "/G42UmbracoGrease/G42UmbracoGreaseTree/app-settings-dashboard/App%20Settings");
+                //error reporting
+                _addNode(nodes, queryStrings, "ErrorReporing", "", "Error Reporting", "icon-application-error", "/G42UmbracoGrease/G42UmbracoGreaseTree/error-reporting-dashboard/Error%20Reporting");
 
                 //nodeHelper
                 _addNode(nodes, queryStrings, "NodeHelper", "", "Node Helper", "icon-globe", "/G42UmbracoGrease/G42UmbracoGreaseTree/node-helper-dashboard/Node%20Helper");
