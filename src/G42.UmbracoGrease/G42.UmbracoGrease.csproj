@@ -273,7 +273,7 @@
     </Compile>
     <Compile Include="Core\Services.cs" />
     <Compile Include="Extensions\ExamineExtensions.cs" />
-    <Compile Include="G42404Helper\Controllers\G42404ReportsApi.cs" />
+    <Compile Include="G42404Helper\Controllers\G42404ReportsApiController.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404ConfigModel.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404DomainPath.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404ResultsModel.cs" />
@@ -300,7 +300,7 @@
     <Compile Include="G42ErrorReporting\GreaseUmbracoApplication.cs" />
     <Compile Include="Filters\CamelCaseFilter.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
-    <Compile Include="G42SearchHelper\Controllers\G42SearchReportsApi.cs" />
+    <Compile Include="G42SearchHelper\Controllers\G42SearchReportsApiController.cs" />
     <Compile Include="G42SearchHelper\Models\G42GreaseSearchTableModel.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404TableModel.cs" />
     <Compile Include="G42SearchHelper\Models\G42GreaseSearchTrackerKeyword.cs" />
