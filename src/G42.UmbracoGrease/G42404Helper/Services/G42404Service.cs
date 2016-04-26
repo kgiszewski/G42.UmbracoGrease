@@ -10,8 +10,10 @@ namespace G42.UmbracoGrease.G42404Helper.Services
 {
     public class G42404Service
     {
-        public void Add(HttpRequest request)
+        public void Add()
         {
+            var request = HttpContext.Current.Request;
+
             using (var uow = new PetaPocoUnitOfWork())
             {
                 var domainPath = G42404Repository.GetDomainPath(uow, request);
