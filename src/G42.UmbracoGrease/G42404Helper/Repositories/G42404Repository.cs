@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Web;
 using G42.UmbracoGrease.Core;
+using G42.UmbracoGrease.Extensions;
 using G42.UmbracoGrease.G42404Helper.Models;
 using G42.UmbracoGrease.G42RedirectHelper;
 using G42.UmbracoGrease.Helpers;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.G42404Helper.Repositories
 {
@@ -34,11 +34,11 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
             ", countFilter);
         }
 
-        internal static G42Grease404DomainPath GetDomainPath(PetaPocoUnitOfWork unitOfWork, HttpRequest request)
+        internal static G42Grease404DomainPath GetDomainPath(PetaPocoUnitOfWork unitOfWork, string domain, string path)
         {
             return unitOfWork.Database.SingleOrDefault<G42Grease404DomainPath>(@"
                 WHERE domain = @0 AND path = @1
-            ", request.Url.Host, RedirectHelper.GetCurrentPath());
+            ", domain, path);
         }
 
         internal static void TouchDomainPath(PetaPocoUnitOfWork unitOfWork, G42Grease404DomainPath domainPath)
@@ -48,12 +48,12 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
             unitOfWork.Database.Save(domainPath);
         }
 
-        internal static G42Grease404DomainPath AddDomainPath(PetaPocoUnitOfWork unitOfWork, HttpRequest request)
+        internal static G42Grease404DomainPath AddDomainPath(PetaPocoUnitOfWork unitOfWork, string domain, string path)
         {
             var domainPath = new G42Grease404DomainPath
             {
-                Domain = request.Url.Host,
-                Path = RedirectHelper.GetCurrentPath(),
+                Domain = domain,
+                Path = path,
                 AddedOn = DateTime.UtcNow,
                 LastVisited = DateTime.UtcNow
             };
@@ -66,29 +66,15 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
         /// <summary>
         /// Adds a 404 to the DB.
         /// </summary>
-        internal static void AddTracker(PetaPocoUnitOfWork unitOfWork, HttpRequest request, G42Grease404DomainPath domainPath)
+        internal static void AddTracker(PetaPocoUnitOfWork unitOfWork, string referrer, string userAgent, G42Grease404DomainPath domainPath)
         {
-            var referrer = "";
-
-            if (request.UrlReferrer != null)
-            {
-                try
-                {
-                    referrer = request.UrlReferrer.AbsoluteUri;
-                }
-                catch (Exception ex)
-                {
-                    referrer = request.UrlReferrer.ToString();
-                }
-            }
-
             try
             {
                 unitOfWork.Database.Save(new G42Grease404Tracker()
                 {
                     DomainPathId = domainPath.Id,
                     Referrer = referrer,
-                    UserAgent = request.UserAgent,
+                    UserAgent = userAgent,
                     IpAddress = IpHelper.GetIpAddress(),
                     AddedOn = DateTime.UtcNow
                 });
@@ -137,7 +123,7 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
         /// </summary>
         internal static void Create404TrackerTable(PetaPocoUnitOfWork unitOfWork)
         {
-            if (!unitOfWork.Database.TableExist("G42Grease404Tracker"))
+            if (!unitOfWork.Database.DoesTableExist("G42Grease404Tracker"))
             {
                 LogHelper.Info<G42Grease404Tracker>("Creating table...");
 
@@ -167,7 +153,7 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
         /// </summary>
         internal static void Create404DomainPathsTable(PetaPocoUnitOfWork unitOfWork)
         {
-            if (!unitOfWork.Database.TableExist("G42Grease404Tracker"))
+            if (!unitOfWork.Database.DoesTableExist("G42Grease404TrackerDomainPaths"))
             {
                 LogHelper.Info<G42Grease404Tracker>("Creating table...");
 

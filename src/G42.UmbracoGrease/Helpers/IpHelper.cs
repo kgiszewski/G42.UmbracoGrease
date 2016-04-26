@@ -12,6 +12,11 @@
         public static string GetIpAddress()
         {
             var context = System.Web.HttpContext.Current;
+
+            if (context == null)
+            {
+                return "No context";
+            }
             
             var ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 

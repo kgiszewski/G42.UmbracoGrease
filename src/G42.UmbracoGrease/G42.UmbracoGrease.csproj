@@ -273,6 +273,7 @@
     </Compile>
     <Compile Include="Core\Services.cs" />
     <Compile Include="Extensions\ExamineExtensions.cs" />
+    <Compile Include="Extensions\PetaPocoExtensions.cs" />
     <Compile Include="G42404Helper\Controllers\G42404ReportsApiController.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404ConfigModel.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404DomainPath.cs" />
