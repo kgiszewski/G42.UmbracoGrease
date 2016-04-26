@@ -1,0 +1,11 @@
+﻿.general-dashboard input[type=checkbox] {
+    margin-right: 5px; 
+}
+
+.general-dashboard label {
+    margin-top: 5px;
+}
+
+.general-dashboard small {
+    display: block;
+}

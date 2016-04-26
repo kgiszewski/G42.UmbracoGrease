@@ -12,7 +12,7 @@ namespace G42.UmbracoGrease.G42ErrorReporting.Controllers
         [HttpPost]
         public object Save(G42ErrorReportingConfigModel model)
         {
-            Grease.Services.G42AppSettingsService.SaveErrorReportingConfig(model);
+            Grease.Services.G42ErrorReportingService.SaveErrorReportingConfig(model);
 
             return model;
         }
@@ -20,7 +20,7 @@ namespace G42.UmbracoGrease.G42ErrorReporting.Controllers
         [HttpGet]
         public object GetConfig()
         {
-            return Grease.Services.G42AppSettingsService.GetErrorReportingConfig();
+            return Grease.Services.G42ErrorReportingService.GetErrorReportingConfig();
         }
     }
 }

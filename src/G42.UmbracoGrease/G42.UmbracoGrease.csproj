@@ -239,12 +239,16 @@
   <ItemGroup>
     <Content Include="App_Plugins\G42UmbracoGrease\Assets\Images\loader.gif" />
     <Content Include="App_Plugins\G42UmbracoGrease\Assets\Images\slack.png" />
+    <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\general-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\error-reporting-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\node-helper-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\search-tracker-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\Backoffice\G42UmbracoGreaseTree\_404-tracker-dashboard.html" />
     <Content Include="App_Plugins\G42UmbracoGrease\ErrorReporting\css\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\ErrorReporting\js\services.js" />
+    <Content Include="App_Plugins\G42UmbracoGrease\General\css\styles.css" />
+    <Content Include="App_Plugins\G42UmbracoGrease\General\js\controller.js" />
+    <Content Include="App_Plugins\G42UmbracoGrease\General\js\services.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\HideTab\css\styles.css" />
     <Content Include="App_Plugins\G42UmbracoGrease\HideTab\js\directives.js" />
     <Content Include="App_Plugins\G42UmbracoGrease\HideTab\views\hideTab.html" />
@@ -278,6 +282,7 @@
     <Compile Include="G42AppSettings\Services\G42AppSettingsService.cs" />
     <Compile Include="G42ErrorReporting\Controllers\G42ErrorReportingApiController.cs" />
     <Compile Include="G42ErrorReporting\Models\G42ErrorReportingConfigModel.cs" />
+    <Compile Include="G42ErrorReporting\Services\G42ErrorReportingService.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
     <Compile Include="G42SearchHelper\Repositories\G42SearchRepository.cs" />
     <Compile Include="G42SearchHelper\Services\G42SearchService.cs" />
@@ -301,6 +306,7 @@
     <Compile Include="G42SearchHelper\Models\G42GreaseSearchTrackerKeyword.cs" />
     <Compile Include="G42SearchHelper\Models\G42GreaseSearchTrackerSearch.cs" />
     <Compile Include="G42404Helper\Models\G42Grease404Tracker.cs" />
+    <Compile Include="Shared\Controllers\G42GeneralApiController.cs" />
     <Compile Include="Shared\Controllers\GreaseTreeController.cs" />
     <Compile Include="Events\PackageActions.cs" />
     <Compile Include="Events\RegisterViewEngine.cs" />
@@ -319,6 +325,8 @@
     <Compile Include="G42RedirectHelper\Models\Redirect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="G42ErrorReporting\DefaultErrorHandler.cs" />
+    <Compile Include="Shared\Models\G42GeneralConfigModel.cs" />
+    <Compile Include="Shared\Services\G42GeneralService.cs" />
     <Compile Include="ViewEngines\G42ViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>

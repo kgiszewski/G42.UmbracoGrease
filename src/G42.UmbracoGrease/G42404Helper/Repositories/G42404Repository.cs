@@ -170,8 +170,9 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
             {
                 LogHelper.Info<G42Grease404Tracker>("Creating table.");
 
+                //TODO: Create the SQL for this table!
                 unitOfWork.Database.Execute(@"
-                    TODO!
+                    
                 ");
             }
             else

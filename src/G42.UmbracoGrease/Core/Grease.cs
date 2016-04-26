@@ -1,6 +1,8 @@
 ﻿using G42.UmbracoGrease.G42404Helper.Services;
 using G42.UmbracoGrease.G42AppSettings.Services;
+using G42.UmbracoGrease.G42ErrorReporting.Services;
 using G42.UmbracoGrease.G42SearchHelper.Services;
+using G42.UmbracoGrease.Shared.Services;
 
 namespace G42.UmbracoGrease.Core
 {
@@ -22,7 +24,10 @@ namespace G42.UmbracoGrease.Core
                             _services = new Services(
                                 new G42404Service(),
                                 new G42SearchService(),
-                                new G42AppSettingsService());
+                                new G42AppSettingsService(),
+                                new G42GeneralService(),
+                                new G42ErrorReportingService()
+                            );
                         
                             return _services;
                         }

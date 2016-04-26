@@ -24,6 +24,9 @@ namespace G42.UmbracoGrease.Shared.Controllers
 
             if (id == "-1")
             {
+                //general
+                _addNode(nodes, queryStrings, "General", "", "General", "icon-settings", "/G42UmbracoGrease/G42UmbracoGreaseTree/general-dashboard/General");
+
                 //404
                 _addNode(nodes, queryStrings, "404Tracker", "", "404 Tracker", "icon-block", "/G42UmbracoGrease/G42UmbracoGreaseTree/_404-tracker-dashboard/404%20Tracker");
 

@@ -3,6 +3,8 @@ using System.Web;
 using G42.UmbracoGrease.Core;
 using G42.UmbracoGrease.G42404Helper.Models;
 using G42.UmbracoGrease.G42404Helper.Repositories;
+using G42.UmbracoGrease.G42AppSettings.Repositories;
+using G42.UmbracoGrease.G42AppSettings.Services;
 
 namespace G42.UmbracoGrease.G42404Helper.Services
 {
@@ -55,6 +57,28 @@ namespace G42.UmbracoGrease.G42404Helper.Services
 
                 uow.Commit();
             }
+        }
+
+        public G42Grease404ConfigModel Get404TrackerConfig()
+        {
+            using (var uow = new PetaPocoUnitOfWork())
+            {
+                var rawSettings = G42AppSettingRepository.Get404TrackerConfigs(uow);
+
+                return new G42Grease404ConfigModel(rawSettings);
+            }
+        }
+
+        public bool Save404TrackerConfig(G42Grease404ConfigModel model)
+        {
+            using (var uow = new PetaPocoUnitOfWork())
+            {
+                G42AppSettingsService.SaveSetting(uow, Constants._404_TRACKER_DEFAULT_DAYS_TO_RETAIN_KEY, model.DaysToRetain.ToString(), "90");
+
+                uow.Commit();
+            }
+
+            return true;
         }
     }
 }

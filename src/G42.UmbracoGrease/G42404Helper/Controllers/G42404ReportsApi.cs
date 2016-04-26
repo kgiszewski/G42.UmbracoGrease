@@ -28,13 +28,13 @@ namespace G42.UmbracoGrease.G42404Helper.Controllers
         [HttpGet]
         public object GetConfig()
         {
-            return Grease.Services.G42AppSettingsService.Get404TrackerConfig();
+            return Grease.Services.G42404Service.Get404TrackerConfig();
         }
 
         [HttpPost]
         public object Save(G42Grease404ConfigModel model)
         {
-            return Grease.Services.G42AppSettingsService.Save404TrackerConfig(model);
+            return Grease.Services.G42404Service.Save404TrackerConfig(model);
         }
     }
 }
