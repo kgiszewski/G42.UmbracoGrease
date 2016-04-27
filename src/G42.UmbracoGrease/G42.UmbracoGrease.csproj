@@ -284,6 +284,7 @@
     <Compile Include="G42ErrorReporting\Controllers\G42ErrorReportingApiController.cs" />
     <Compile Include="G42ErrorReporting\Models\G42ErrorReportingConfigModel.cs" />
     <Compile Include="G42ErrorReporting\Services\G42ErrorReportingService.cs" />
+    <Compile Include="G42MigrationHelper\Migrations\TargetVersionOneZeroZero.cs" />
     <Compile Include="G42NodeHelper\Controllers\NodeHelperApiController.cs" />
     <Compile Include="G42SearchHelper\Repositories\G42SearchRepository.cs" />
     <Compile Include="G42SearchHelper\Services\G42SearchService.cs" />

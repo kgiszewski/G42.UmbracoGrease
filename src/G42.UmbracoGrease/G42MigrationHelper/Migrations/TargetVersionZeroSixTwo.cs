@@ -1,7 +1,5 @@
 ﻿using System;
 using G42.UmbracoGrease.Core;
-using G42.UmbracoGrease.Helpers;
-using Umbraco.Core.Logging;
 
 namespace G42.UmbracoGrease.G42MigrationHelper.Migrations
 {
