@@ -1,5 +1,6 @@
 ﻿using System;
 using G42.UmbracoGrease.Core;
+using G42.UmbracoGrease.G42404Helper.Repositories;
 
 namespace G42.UmbracoGrease.G42MigrationHelper.Migrations
 {
@@ -15,32 +16,15 @@ namespace G42.UmbracoGrease.G42MigrationHelper.Migrations
         {
             using (var unitOfWork = new PetaPocoUnitOfWork())
             {
+                G42404Repository.Create404DomainPathsTable(unitOfWork);
+
                 var sql = @"
-                    ALTER TABLE [G42Grease404Tracker]
-                    ADD [domainPathId] [bigint] NOT NULL
+                    DROP TABLE [G42Grease404Tracker]
                 ";
 
                 unitOfWork.Database.Execute(sql);
 
-                sql = @"
-                    ALTER TABLE [G42Grease404Tracker]
-                    DROP COLUMN [domain]
-                ";
-
-                unitOfWork.Database.Execute(sql);
-
-                sql = @"
-                    ALTER TABLE [G42Grease404Tracker]
-                    DROP COLUMN [path]
-                ";
-
-                unitOfWork.Database.Execute(sql);
-
-                sql = @"
-                    EXEC sp_RENAME 'G42Grease404Tracker.updatedOn', 'addedOn', 'COLUMN'
-                ";
-
-                unitOfWork.Database.Execute(sql);
+                G42404Repository.Create404TrackerTable(unitOfWork);
 
                 unitOfWork.Commit();
             }
