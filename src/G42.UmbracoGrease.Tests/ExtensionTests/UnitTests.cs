@@ -7,10 +7,9 @@ namespace G42.UmbracoGrease.Tests.ExtensionTests
     [TestFixture]
     public class UnitTests
     {
-        [TestCase("Jon Snow is Dead!", "Jon Snow is Dead", " ")]
-        [TestCase("Jon Snow is n@t Dead!", "Jon Snow is nt Dead", "")]
-        [TestCase("Jon Snow is n@t Dead!", "Jon Snow is n_t Dead_", "_")]
-        public void Can_Make_Examine_Friendly(string input, string expectedOutput, string replacementCharacter)
+        [TestCase("Jon Snow is Dead!", "Jon Snow is Dead", ' ')]
+        [TestCase("Jon Snow is n@t Dead!", "Jon Snow is n_t Dead", '_')]
+        public void Can_Make_Examine_Friendly(string input, string expectedOutput, char replacementCharacter)
         {
             var result = input.ToExamineFriendly(replacementCharacter);
 

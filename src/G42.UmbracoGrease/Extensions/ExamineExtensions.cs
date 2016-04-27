@@ -53,13 +53,13 @@ namespace G42.UmbracoGrease.Extensions
         /// <param name="input">The input.</param>
         /// <param name="replacementCharacter">The replacement character.</param>
         /// <returns></returns>
-        public static string ToExamineFriendly(this string input, string replacementCharacter = " ")
+        public static string ToExamineFriendly(this string input, char replacementCharacter = ' ')
         {
             input = input.Trim();
 
             var rgx = new Regex("[^a-zA-Z0-9 -]");
 
-            return rgx.Replace(input, replacementCharacter).Trim();
+            return rgx.Replace(input, replacementCharacter.ToString()).Trim(replacementCharacter);
         }
     }
 }
