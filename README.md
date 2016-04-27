@@ -4,6 +4,9 @@
 ##Manual##
 Get to the manual [here](https://github.com/kgiszewski/G42.UmbracoGrease-Manual).
 
+##V1 Breaking Changes##
+If you're upgrading from the `0.x.x` versions, you'll want to review the huge list of breaking changes: https://github.com/kgiszewski/G42.UmbracoGrease/pull/1
+
 ##Overview##
 Grease is the stuff that's too dirty for the Umbraco core, but adds functionality that lots of ordinary websites can use.  By dirty we don't mean (low-quality), we just mean it's a collection of specific one-off type plugins, helpers and extensions.
 
