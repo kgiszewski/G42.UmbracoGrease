@@ -31,32 +31,6 @@ namespace G42.UmbracoGrease.Extensions
         }
 
         /// <summary>
-        /// From an integer you can get its corresponding prevalue from the DB.
-        /// </summary>
-        /// <param name="dtdId">The DTD identifier.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public static int GetPrevalueIdByValue(this int dtdId, string value)
-        {
-            if (string.IsNullOrEmpty(value) || value == "0")
-            {
-                return 0;
-            }
-
-            return GetPrevalues(dtdId).FirstOrDefault(x => x.Value.Value == value).Value.Id;
-        }
-
-        /// <summary>
-        /// From an integer, get the prevalues associated.
-        /// </summary>
-        /// <param name="dtdId">The DTD identifier.</param>
-        /// <returns></returns>
-        public static IDictionary<string, PreValue> GetPrevalues(this int dtdId)
-        {
-            return ApplicationContext.Current.Services.DataTypeService.GetPreValuesCollectionByDataTypeId(dtdId).PreValuesAsDictionary;
-        }
-
-        /// <summary>
         /// Converts an integer to its ordinal value (i.e. 1st, 2nd, 3rd, etc).
         /// </summary>
         /// <param name="input">The input.</param>
