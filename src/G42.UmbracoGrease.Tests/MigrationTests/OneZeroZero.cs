@@ -54,7 +54,7 @@ namespace G42.UmbracoGrease.Tests.MigrationTests
         [Test]
         public void Can_Migrate_To_One_Zero_Zero()
         {
-            //assert domain/path table does not exists
+            //assert domain/path table does not exist
             using (var uow = new PetaPocoUnitOfWork())
             {
                 Assert.That(uow.Database.DoesTableExist("G42Grease404Tracker"));

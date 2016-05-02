@@ -223,6 +223,7 @@
     <Compile Include="ExtensionTests\UnitTests.cs" />
     <Compile Include="G42404Tests\FunctionalTests.cs" />
     <Compile Include="G42404Tests\UnitTests.cs" />
+    <Compile Include="MigrationTests\OneZeroThree.cs" />
     <Compile Include="MigrationTests\ZeroSixTwo.cs" />
     <Compile Include="MigrationTests\OneZeroZero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

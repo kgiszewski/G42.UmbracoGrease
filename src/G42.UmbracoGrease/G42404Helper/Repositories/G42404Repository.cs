@@ -138,8 +138,8 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
                      CONSTRAINT [PK_G42Grease404Tracker] PRIMARY KEY CLUSTERED 
                     (
 	                    [id] ASC
-                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                    ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+                    )
                 ");
             }
             else
@@ -160,15 +160,20 @@ namespace G42.UmbracoGrease.G42404Helper.Repositories
                 unitOfWork.Database.Execute(@"
                     CREATE TABLE [dbo].[G42Grease404TrackerDomainPaths](
 	                    [id] [bigint] IDENTITY(1,1) NOT NULL,
-	                    [domain] [nvarchar](max) NOT NULL,
-	                    [path] [nvarchar](max) NOT NULL,
+	                    [domain] [nvarchar](75) NOT NULL,
+	                    [path] [nvarchar](255) NOT NULL,
 	                    [addedOn] [datetime] NOT NULL,
 	                    [lastVisited] [datetime] NULL,
-                        CONSTRAINT [PK_G42Grease404TrackerDomainPaths] PRIMARY KEY CLUSTERED 
+                     CONSTRAINT [PK_G42Grease404TrackerDomainPaths] PRIMARY KEY CLUSTERED 
                     (
 	                    [id] ASC
-                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                    ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON),
+                     CONSTRAINT [IX_G42Grease404TrackerDomainPaths] UNIQUE NONCLUSTERED 
+                    (
+	                    [domain] ASC,
+	                    [path] ASC
+                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+                    )
                 ");
             }
             else
