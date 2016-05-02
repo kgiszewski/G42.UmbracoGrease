@@ -91,10 +91,21 @@ namespace G42.UmbracoGrease.Extensions
         /// <param name="input">The input.</param>
         /// <param name="useSameProtocolAsRequest">if set to <c>true</c> [use same protocol as request].</param>
         /// <returns></returns>
-        public static string ToAzureBlobUrl(this string input, bool useSameProtocolAsRequest = true)
+        public static string ToAzureBlobUrl(this string input, bool useSameProtocolAsRequest = true, HttpContext context = null)
         {
-            var request = HttpContext.Current.Request;
+            HttpRequest request;
+
+            if (context != null)
+            {
+                request = context.Request;
+            }
+            else
+            {
+                request = HttpContext.Current.Request;
+            }
+
             var requestProtocol = (request.Url.AbsoluteUri.StartsWith("http://")) ? "http" : "https";
+
             var domain = request.Url.Host;
 
             if (domain.EndsWith(".local"))

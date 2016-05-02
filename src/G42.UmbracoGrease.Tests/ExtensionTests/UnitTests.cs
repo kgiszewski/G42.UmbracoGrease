@@ -1,5 +1,7 @@
-﻿using G42.UmbracoGrease.Extensions;
+﻿using System.Web;
+using G42.UmbracoGrease.Extensions;
 using NUnit.Framework;
+using Umbraco.Web;
 
 namespace G42.UmbracoGrease.Tests.ExtensionTests
 {
@@ -89,6 +91,18 @@ namespace G42.UmbracoGrease.Tests.ExtensionTests
         public void Can_Make_Https_Url(string input, string expectedOutput)
         {
             var result = input.ToHttpsUrl();
+
+            Assert.AreEqual(expectedOutput, result);
+        }
+
+        [TestCase("http://foo.local/bar.jpg", "http://foo.local/bar.jpg?mode=pad", false)]
+        [TestCase("https://foo.local/bar.jpg", "https://foo.local/bar.jpg?mode=pad", true)]
+        [TestCase("https://foo.com/bar.jpg", "https://foo.com/remote.axd/foo.com/bar.jpg?mode=pad", true)]
+        public void Can_Transform_To_Azure_Blob_Url(string input, string expectedOutput, bool useSameProtocolAsRequest)
+        {
+            var context = new HttpContext(new HttpRequest(null, input, null), new HttpResponse(null));
+
+            var result = input.GetCropUrl().ToAzureBlobUrl(useSameProtocolAsRequest, context);
 
             Assert.AreEqual(expectedOutput, result);
         }
