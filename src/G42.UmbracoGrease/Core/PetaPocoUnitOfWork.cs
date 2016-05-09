@@ -13,10 +13,13 @@ namespace G42.UmbracoGrease.Core
         {
             if (!string.IsNullOrEmpty(connectionString))
             {
-                ConnectionString = connectionString;
+                _database = new Database(connectionString);
             }
-
-            _database = new Database(ConnectionString);
+            else
+            {
+                _database = new Database(ConnectionString);
+            }
+            
             _petaTransaction = new Transaction(_database);
         }
 
