@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Umbraco.Core.Persistence;
 
 namespace G42.UmbracoGrease.Core
@@ -20,7 +21,7 @@ namespace G42.UmbracoGrease.Core
                 _database = new Database(ConnectionString);
             }
             
-            _petaTransaction = new Transaction(_database);
+            _petaTransaction = new Transaction(_database, IsolationLevel.ReadCommitted);
         }
 
         public void Dispose()
